@@ -6,6 +6,8 @@ namespace game
 namespace nodes
 {
 	class Room;
+	class StairsDown;
+	class StairsUp;
 	class HorizontalCorridor;
 	class VerticalCorridor;
 
@@ -15,6 +17,8 @@ namespace nodes
 		virtual ~Visitor() noexcept = 0;
 
 		virtual void Visit(Room& node) = 0;
+		virtual void Visit(StairsDown& node) = 0;
+		virtual void Visit(StairsUp& node) = 0;
 		virtual void Visit(HorizontalCorridor& node) = 0;
 		virtual void Visit(VerticalCorridor& node) = 0;
 	}; // class Visitor

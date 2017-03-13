@@ -267,6 +267,31 @@ void Dungeon::Randomize(const unsigned int layerCount, const unsigned int width,
 		}
 	}
 
+	for (unsigned int z = 0; z < layerCount; z++)
+	{
+		auto& layer = layers[z];
+
+		if (z > 0)
+		{
+			auto node = layer[y][x];
+			auto x = 0 + (rand() % (int)((roomsWidth / 2) - 0 + 1)) * 2; // make sure it's even, then it's a room
+			auto y = 0 + (rand() % (int)((roomsHeight/ 2) - 0 + 1)) * 2; // make sure it's even, then it's a room
+
+			//auto stairsDown = static_cast<nodes::StairsDown*>(layer[y][x]);
+
+			layer[y].SetNode(x, new nodes::StairsDown);
+		}
+
+		if (z < layerCount)
+		{
+			auto x = 0 + (rand() % (int)(roomsWidth - 0 + 1));
+			auto y = 0 + (rand() % (int)(roomsHeight - 0 + 1));
+
+			//auto stairsUp = static_cast<nodes::StairsUp*>(layer[y][x]);
+
+			layer[y].SetNode(x, new nodes::StairsUp());
+		}
+	}
 	// TODO: Add a stair down at a random spot on the top layer.
 
 	// TODO: Add a stair up at a random spot on the lowest layer.

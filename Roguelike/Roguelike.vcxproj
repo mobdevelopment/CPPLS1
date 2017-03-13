@@ -73,6 +73,7 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)Utilities/include;$(BOOST_ROOT);$(IncludePath)</IncludePath>
     <LibraryPath>$(BOOST_ROOT)lib/x86d;$(LibraryPath)</LibraryPath>
+    <EnableManagedIncrementalBuild>true</EnableManagedIncrementalBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -97,10 +98,12 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <ObjectFileName>$(IntDir)/%(RelativeDir)/</ObjectFileName>
+      <AdditionalIncludeDirectories>C:\boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\boost\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -169,6 +172,8 @@
     <ClCompile Include="src\game\nodes\horizontalcorridor.cpp" />
     <ClCompile Include="src\game\nodes\node.cpp" />
     <ClCompile Include="src\game\nodes\room.cpp" />
+    <ClCompile Include="src\game\nodes\stairsdown.cpp" />
+    <ClCompile Include="src\game\nodes\stairsup.cpp" />
     <ClCompile Include="src\game\nodes\verticalcorridor.cpp" />
     <ClCompile Include="src\game\nodes\visitor.cpp" />
     <ClCompile Include="src\ui\cnsl\state\context.cpp" />
@@ -203,6 +208,8 @@
     <ClInclude Include="src\game\nodes\node.h" />
     <ClInclude Include="src\game\nodes\placeholder.h" />
     <ClInclude Include="src\game\nodes\room.h" />
+    <ClInclude Include="src\game\nodes\stairsdown.h" />
+    <ClInclude Include="src\game\nodes\stairsup.h" />
     <ClInclude Include="src\game\nodes\type.h" />
     <ClInclude Include="src\game\nodes\verticalcorridor.h" />
     <ClInclude Include="src\game\nodes\visitor.h" />

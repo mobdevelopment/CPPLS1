@@ -29,18 +29,33 @@ void Map::DrawConsole() const
 
 			auto type = node->GetType();
 
-			switch (type)
+			if (node == context.game.GetHeroLocation())
 			{
-			case game::nodes::Type::ROOM:
-				std::cout << 'N';
-				break;
-			case game::nodes::Type::HORIZONTAL_CORRIDOR:
-				std::cout << '-';
-				break;
-			case game::nodes::Type::VERTICAL_CORRIDOR:
-				std::cout << '|';
-				break;
+				std::cout << 'C';
 			}
+			else
+			{
+				switch (type)
+				{
+				case game::nodes::Type::ROOM:
+					std::cout << 'N';
+					break;
+				case game::nodes::Type::STAIRS_DOWN:
+					std::cout << 'D';
+					break;
+				case game::nodes::Type::STAIRS_UP:
+					std::cout << 'U';
+					break;
+				case game::nodes::Type::HORIZONTAL_CORRIDOR:
+					std::cout << '-';
+					break;
+				case game::nodes::Type::VERTICAL_CORRIDOR:
+					std::cout << '|';
+					break;
+				}
+			}
+
+			
 		}
 
 		std::cout << std::endl;

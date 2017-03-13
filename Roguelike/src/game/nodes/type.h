@@ -9,6 +9,8 @@ namespace nodes
 	{
 		HORIZONTAL_CORRIDOR,
 		VERTICAL_CORRIDOR,
+		STAIRS_DOWN,
+		STAIRS_UP,
 		ROOM,
 		PLACEHOLDER
 	}; // enum class Type

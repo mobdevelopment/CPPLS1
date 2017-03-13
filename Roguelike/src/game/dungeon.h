@@ -14,6 +14,8 @@
 
 #include "nodes/node.h"
 #include "nodes/room.h"
+#include "nodes/stairsdown.h"
+#include "nodes/stairsup.h"
 #include "nodes/horizontalcorridor.h"
 #include "nodes/verticalcorridor.h"
 
