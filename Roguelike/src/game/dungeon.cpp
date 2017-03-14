@@ -296,12 +296,22 @@ void Dungeon::Randomize(const unsigned int layerCount, const unsigned int width,
 
 		if (z < layerCount)
 		{
-			auto x = 0 + (rand() % (int)(roomsWidth - 0 + 1));
-			auto y = 0 + (rand() % (int)(roomsHeight - 0 + 1));
+			auto x = 0 + (rand() % (int)((roomsWidth / 2 ) - 0 + 1)) * 2;
+			auto y = 0 + (rand() % (int)((roomsHeight / 2 ) - 0 + 1)) * 2;
+			auto node = static_cast<nodes::Room*>(layer[y][x]);
 
-			//auto stairsUp = static_cast<nodes::StairsUp*>(layer[y][x]);
+			auto stair = new nodes::StairsDown();
 
-			layer[y].SetNode(x, new nodes::StairsUp());
+			if (node->eastCorridor != nullptr)
+				node->eastCorridor->SetWestRoom(stair);
+			if (node->westCorridor != nullptr)
+				node->westCorridor->SetEastRoom(stair);
+			if (node->northCorridor != nullptr)
+				node->northCorridor->SetSouthRoom(stair);
+			if (node->southCorridor != nullptr)
+				node->southCorridor->SetNorthRoom(stair);
+
+			layer[y].SetNode(x, stair);
 		}
 	}
 }
