@@ -7,22 +7,22 @@ unsigned int HorizontalCorridor::GetWeight() const
 	return room1->GetWeight() + room2->GetWeight();
 }
 
-Room* HorizontalCorridor::GetEastRoom()
+Space* HorizontalCorridor::GetEastRoom()
 {
 	return room1;
 }
 
-Room* HorizontalCorridor::GetWestRoom()
+Space* HorizontalCorridor::GetWestRoom()
 {
 	return room2;
 }
 
-void HorizontalCorridor::SetEastRoom(Room* const room)
+void HorizontalCorridor::SetEastRoom(Space* const room)
 {
 	room1 = room;
 }
 
-void HorizontalCorridor::SetWestRoom(Room* const room)
+void HorizontalCorridor::SetWestRoom(Space* const room)
 {
 	room2 = room;
 }

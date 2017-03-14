@@ -4,23 +4,23 @@
 #include "node.h"
 #include "type.h"
 
-#include "room.h"
-
 namespace game
 {
 namespace nodes
 {
+	class Space;
+
 	class Corridor
 	{
 	public:
-		Room* room1;
-		Room* room2;
+		Space* room1;
+		Space* room2;
 
 		bool collapsed = false;
 
 		virtual ~Corridor() noexcept = 0;
 
-		Room* GetOther(const Room* const room) const;
+		Space* GetOther(const Space* const room) const;
 
 		virtual unsigned int GetWeight() const = 0;
 	}; // class Corridor

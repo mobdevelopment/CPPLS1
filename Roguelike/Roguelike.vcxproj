@@ -172,6 +172,7 @@
     <ClCompile Include="src\game\nodes\horizontalcorridor.cpp" />
     <ClCompile Include="src\game\nodes\node.cpp" />
     <ClCompile Include="src\game\nodes\room.cpp" />
+    <ClCompile Include="src\game\nodes\space.cpp" />
     <ClCompile Include="src\game\nodes\stairsdown.cpp" />
     <ClCompile Include="src\game\nodes\stairsup.cpp" />
     <ClCompile Include="src\game\nodes\verticalcorridor.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="src\game\nodes\node.h" />
     <ClInclude Include="src\game\nodes\placeholder.h" />
     <ClInclude Include="src\game\nodes\room.h" />
+    <ClInclude Include="src\game\nodes\space.h" />
     <ClInclude Include="src\game\nodes\stairsdown.h" />
     <ClInclude Include="src\game\nodes\stairsup.h" />
     <ClInclude Include="src\game\nodes\type.h" />

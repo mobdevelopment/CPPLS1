@@ -97,7 +97,39 @@ bool Game::EnableRandomMonsters() const
 	return enableRandomMonsters;
 }
 
-const nodes::Room* Game::GetHeroLocation()
+nodes::Space* Game::GetHeroLocation()
 {
+	return heroLocation;
+}
+
+const nodes::Space* Game::MoveUp()
+{
+	if (heroLocation->southCorridor != nullptr && !heroLocation->southCorridor->collapsed)
+		heroLocation = heroLocation->southCorridor->GetSouthRoom();
+
+	return heroLocation;
+}
+
+const nodes::Space* Game::MoveDown()
+{
+	if (heroLocation->northCorridor != nullptr && !heroLocation->northCorridor->collapsed)
+		heroLocation = heroLocation->northCorridor->GetNorthRoom();
+
+	return heroLocation;
+}
+
+const nodes::Space* Game::MoveLeft()
+{
+	if (heroLocation->westCorridor != nullptr && !heroLocation->westCorridor->collapsed)
+		heroLocation = heroLocation->westCorridor->GetWestRoom();
+
+	return heroLocation;
+}
+
+const nodes::Space* Game::MoveRight()
+{
+	if (heroLocation->eastCorridor != nullptr && !heroLocation->eastCorridor->collapsed)
+		heroLocation = heroLocation->eastCorridor->GetEastRoom();
+
 	return heroLocation;
 }

@@ -21,7 +21,7 @@ namespace game
 		Dungeon			dungeon;
 		Hero			hero;
 
-		nodes::Room*	heroLocation;
+		nodes::Space*	heroLocation;
 		unsigned int	dungeonLayer;
 
 	public:
@@ -46,7 +46,11 @@ namespace game
 		void EnableRandomMonsters(const bool enable);
 		bool EnableRandomMonsters() const;
 
-		const nodes::Room* GetHeroLocation();
+		nodes::Space* GetHeroLocation();
+		const nodes::Space* MoveUp();
+		const nodes::Space* MoveDown();
+		const nodes::Space* MoveLeft();
+		const nodes::Space* MoveRight();
 	}; // class Game
 } // namespace game
 

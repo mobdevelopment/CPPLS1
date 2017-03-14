@@ -29,7 +29,7 @@ void Map::DrawConsole() const
 
 			auto type = node->GetType();
 
-			if (node == context.game.GetHeroLocation())
+			if (node == static_cast<game::nodes::Room*>(context.game.GetHeroLocation()))
 			{
 				std::cout << 'C';
 			}

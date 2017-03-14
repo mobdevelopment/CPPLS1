@@ -132,8 +132,8 @@ bool DungeonLayer::IsEverythingAccessible() const
 
 	const auto* const startingRoom = GetRandomRoom();
 
-	std::unordered_set<const nodes::Room*> unvisitedRooms;
-	std::unordered_set<const nodes::Room*> visitedRooms;
+	std::unordered_set<const nodes::Space*> unvisitedRooms;
+	std::unordered_set<const nodes::Space*> visitedRooms;
 
 	// Fill the unvisited vertices.
 	for (const auto& row : rows)
@@ -150,15 +150,15 @@ bool DungeonLayer::IsEverythingAccessible() const
 
 	while (true)
 	{
-		const nodes::Room*	cheapestRoom = nullptr;
+		const nodes::Space*	cheapestRoom = nullptr;
 		unsigned int		cheapestRoomWeight = std::numeric_limits<unsigned int>::max();
 
 		// Get the node/vertex with the cheapest edge to an unvisited node/vertex.
-		for (const nodes::Room* const visitedRoom : visitedRooms)
+		for (const nodes::Space* const visitedRoom : visitedRooms)
 		{
 			auto connectedRooms = visitedRoom->GetConnectedRooms();
 
-			for (const nodes::Room* const connectedRoom : connectedRooms)
+			for (const nodes::Space* const connectedRoom : connectedRooms)
 			{
 				// Check if we haven't already visited this room.
 				if (visitedRooms.count(connectedRoom) != 0)
@@ -203,8 +203,8 @@ std::vector<nodes::Corridor*> DungeonLayer::GetMinimalSpanningTree() const
 
 	const auto* const startingRoom = GetRandomRoom();
 
-	std::unordered_set<const nodes::Room*>	unvisitedRooms;
-	std::unordered_set<const nodes::Room*>	visitedRooms;
+	std::unordered_set<const nodes::Space*>	unvisitedRooms;
+	std::unordered_set<const nodes::Space*>	visitedRooms;
 	std::vector<nodes::Corridor*>			corridors;
 
 	// Fill the unvisited rooms.
@@ -226,13 +226,13 @@ std::vector<nodes::Corridor*> DungeonLayer::GetMinimalSpanningTree() const
 		unsigned int					cheapestCorridorsWeight = std::numeric_limits<unsigned int>::max();
 		std::vector<nodes::Corridor*>	cheapestCorridors;
 
-		for (const nodes::Room* const visitedRoom : visitedRooms)
+		for (const nodes::Space* const visitedRoom : visitedRooms)
 		{
 			const auto connectedCorridors = visitedRoom->GetConnectedCorridors();
 
 			for (nodes::Corridor* const connectedCorridor : connectedCorridors)
 			{
-				const nodes::Room* const connectedRoom = connectedCorridor->GetOther(visitedRoom);
+				const nodes::Space* const connectedRoom = connectedCorridor->GetOther(visitedRoom);
 
 				// Check if we haven't already visited the room on the other side of the corridor.
 				if (visitedRooms.count(connectedRoom) != 0)
@@ -258,7 +258,7 @@ std::vector<nodes::Corridor*> DungeonLayer::GetMinimalSpanningTree() const
 			std::uniform_int_distribution<int> dist(0, cheapestCorridors.size() - 1);
 
 			auto cheapestCorridor = cheapestCorridors[dist(generator)];
-			const nodes::Room* cheapestRoom;
+			const nodes::Space* cheapestRoom;
 			if (visitedRooms.count(cheapestCorridor->room1) == 0)
 				cheapestRoom = cheapestCorridor->room1;
 			else

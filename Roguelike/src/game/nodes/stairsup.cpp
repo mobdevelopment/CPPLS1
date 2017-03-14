@@ -1,3 +1,5 @@
+#include "horizontalcorridor.h"
+#include "verticalcorridor.h"
 #include "stairsup.h"
 
 using namespace game::nodes;
@@ -15,4 +17,13 @@ StairsDown* StairsUp::GetTopRoom()
 void StairsUp::SetTopRoom(StairsDown* const room)
 {
 	topRoom = room;
+}
+
+std::string StairsUp::GetDescription() const
+{
+	std::stringstream stream;
+
+	stream << "It's a stair going upstairs";
+
+	return stream.str();
 }

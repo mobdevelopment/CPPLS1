@@ -273,13 +273,25 @@ void Dungeon::Randomize(const unsigned int layerCount, const unsigned int width,
 
 		if (z > 0)
 		{
-			auto node = layer[y][x];
+			
 			auto x = 0 + (rand() % (int)((roomsWidth / 2) - 0 + 1)) * 2; // make sure it's even, then it's a room
 			auto y = 0 + (rand() % (int)((roomsHeight/ 2) - 0 + 1)) * 2; // make sure it's even, then it's a room
+			auto node = static_cast<nodes::Room*>(layer[y][x]);
 
+			auto stair = new nodes::StairsDown();
+
+			if (node->eastCorridor != nullptr)
+				node->eastCorridor->SetWestRoom(stair);
+			if (node->westCorridor != nullptr)
+				node->westCorridor->SetEastRoom(stair);
+			if (node->northCorridor != nullptr)
+				node->northCorridor->SetSouthRoom(stair);
+			if (node->southCorridor != nullptr)
+				node->southCorridor->SetNorthRoom(stair);
+			
 			//auto stairsDown = static_cast<nodes::StairsDown*>(layer[y][x]);
 
-			layer[y].SetNode(x, new nodes::StairsDown);
+			layer[y].SetNode(x, stair);
 		}
 
 		if (z < layerCount)
@@ -292,23 +304,19 @@ void Dungeon::Randomize(const unsigned int layerCount, const unsigned int width,
 			layer[y].SetNode(x, new nodes::StairsUp());
 		}
 	}
-	// TODO: Add a stair down at a random spot on the top layer.
-
-	// TODO: Add a stair up at a random spot on the lowest layer.
-
-	// TODO: Add a stair up and down at random spots on the other layers.
 }
 
-void Dungeon::BFS(nodes::Room room)
+/*void Dungeon::BFS(nodes::Room room)
 {
-	std::vector<nodes::Room*> visited;
-	std::queue<nodes::Room*> queue;
+	std::vector<nodes::Space*> visited;
+	std::queue<nodes::Space*> queue;
+	nodes::Space activeRoom;
 	queue.push(&room);
 	int steps = 0;
 
 	while (!queue.empty())
 	{
-		room = *queue.front();
+		activeRoom = *queue.front();
 		visited.push_back(&room);
 		queue.pop();
 
@@ -339,7 +347,7 @@ void Dungeon::BFS(nodes::Room room)
 
 		steps++; //probally not right, cannot test atm
 	}
-}
+}*/
 
 Dungeon::LayersContainer& Dungeon::GetLayers() noexcept
 {

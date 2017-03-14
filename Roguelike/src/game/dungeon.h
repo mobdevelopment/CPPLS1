@@ -57,7 +57,9 @@ namespace game
 		void Randomize(const unsigned int layerCount, const unsigned int width, const unsigned int height);
 		void Randomize(const unsigned int layerCount, const unsigned int width, const unsigned int height, const unsigned int seed);
 
-		void BFS(nodes::Room room);
+		/*void BFS(nodes::Room room);
+		void BFS(nodes::StairsDown room);
+		void BFS(nodes::StairsUp room);*/
 
 		LayersContainer& GetLayers() noexcept;
 		const LayersContainer& GetLayers() const noexcept;

@@ -4,13 +4,15 @@
 #include "node.h"
 #include "type.h"
 
+#include "space.h"
 #include "corridor.h"
 
 namespace game
 {
 namespace nodes
 {
-	class Room;
+	class Space;
+	class Corridor;
 
 	class HorizontalCorridor :
 		public Node<HorizontalCorridor, Type::HORIZONTAL_CORRIDOR>,
@@ -19,11 +21,11 @@ namespace nodes
 	public:
 		unsigned int GetWeight() const override;
 
-		Room* GetEastRoom();
-		Room* GetWestRoom();
+		Space* GetEastRoom();
+		Space* GetWestRoom();
 
-		void SetEastRoom(Room* const room);
-		void SetWestRoom(Room* const room);
+		void SetEastRoom(Space* const room);
+		void SetWestRoom(Space* const room);
 	}; // class HorizontalCorridor
 } // namespace nodes
 } // namespace game

@@ -6,7 +6,7 @@ Corridor::~Corridor() noexcept
 {
 }
 
-Room* Corridor::GetOther(const Room* const room) const
+Space* Corridor::GetOther(const Space* const room) const
 {
 	if (room1 == room)
 		return room2;

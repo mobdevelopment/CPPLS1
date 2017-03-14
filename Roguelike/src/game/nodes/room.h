@@ -8,6 +8,8 @@
 #include "node.h"
 #include "type.h"
 
+#include "space.h"
+
 namespace game
 {
 namespace nodes
@@ -15,6 +17,7 @@ namespace nodes
 	class Corridor;
 	class HorizontalCorridor;
 	class VerticalCorridor;
+	class Space;
 
 	enum class RoomSize
 	{
@@ -61,14 +64,10 @@ namespace nodes
 	const std::string& GetRoomFurnitureDescription(const RoomFurniture roomFurniture);
 
 	class Room :
-		public Node<Room, Type::ROOM>
+		public Node<Room, Type::ROOM>,
+		public Space
 	{
 	public:
-		VerticalCorridor*	northCorridor;
-		HorizontalCorridor*	eastCorridor;
-		VerticalCorridor*	southCorridor;
-		HorizontalCorridor*	westCorridor;
-
 		RoomSize			roomSize;
 		RoomCleanliness		roomCleanliness;
 		RoomFurniture		roomFurniture;
@@ -76,9 +75,6 @@ namespace nodes
 		Room();
 
 		unsigned int GetWeight() const override;
-
-		std::vector<Corridor*> GetConnectedCorridors() const;
-		std::vector<Room*> GetConnectedRooms() const;
 
 		std::string GetDescription() const;
 	};
