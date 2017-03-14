@@ -273,25 +273,32 @@ void Dungeon::Randomize(const unsigned int layerCount, const unsigned int width,
 
 		if (z > 0)
 		{
-			
 			auto x = 0 + (rand() % (int)((roomsWidth / 2) - 0 + 1)) * 2; // make sure it's even, then it's a room
 			auto y = 0 + (rand() % (int)((roomsHeight/ 2) - 0 + 1)) * 2; // make sure it's even, then it's a room
 			auto node = static_cast<nodes::Room*>(layer[y][x]);
 
 			auto stair = new nodes::StairsDown();
 
-			if (node->eastCorridor != nullptr)
+			if (node->eastCorridor != nullptr) {
 				node->eastCorridor->SetWestRoom(stair);
-			if (node->westCorridor != nullptr)
+				stair->eastCorridor = node->eastCorridor;
+			}
+			if (node->westCorridor != nullptr) {
 				node->westCorridor->SetEastRoom(stair);
-			if (node->northCorridor != nullptr)
+				stair->westCorridor = node->westCorridor;
+			}
+			if (node->northCorridor != nullptr) {
 				node->northCorridor->SetSouthRoom(stair);
-			if (node->southCorridor != nullptr)
+				stair->northCorridor = node->northCorridor;
+			}
+			if (node->southCorridor != nullptr) {
 				node->southCorridor->SetNorthRoom(stair);
-			
-			//auto stairsDown = static_cast<nodes::StairsDown*>(layer[y][x]);
+				stair->southCorridor = node->southCorridor;
+			}
 
 			layer[y].SetNode(x, stair);
+
+			delete node;
 		}
 
 		if (z < layerCount)
@@ -300,18 +307,28 @@ void Dungeon::Randomize(const unsigned int layerCount, const unsigned int width,
 			auto y = 0 + (rand() % (int)((roomsHeight / 2 ) - 0 + 1)) * 2;
 			auto node = static_cast<nodes::Room*>(layer[y][x]);
 
-			auto stair = new nodes::StairsDown();
+			auto stair = new nodes::StairsUp();
 
-			if (node->eastCorridor != nullptr)
+			if (node->eastCorridor != nullptr) {
 				node->eastCorridor->SetWestRoom(stair);
-			if (node->westCorridor != nullptr)
+				stair->eastCorridor = node->eastCorridor;
+			}
+			if (node->westCorridor != nullptr) {
 				node->westCorridor->SetEastRoom(stair);
-			if (node->northCorridor != nullptr)
+				stair->westCorridor = node->westCorridor;
+			}
+			if (node->northCorridor != nullptr) {
 				node->northCorridor->SetSouthRoom(stair);
-			if (node->southCorridor != nullptr)
+				stair->northCorridor = node->northCorridor;
+			}
+			if (node->southCorridor != nullptr) {
 				node->southCorridor->SetNorthRoom(stair);
+				stair->southCorridor = node->southCorridor;
+			}
 
 			layer[y].SetNode(x, stair);
+
+			delete node;
 		}
 	}
 }
