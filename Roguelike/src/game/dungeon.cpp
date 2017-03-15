@@ -267,6 +267,8 @@ void Dungeon::Randomize(const unsigned int layerCount, const unsigned int width,
 		}
 	}
 
+	nodes::StairsUp* prevStairUp = nullptr;
+
 	for (unsigned int z = 0; z < layerCount; z++)
 	{
 		auto& layer = layers[z];
@@ -277,28 +279,31 @@ void Dungeon::Randomize(const unsigned int layerCount, const unsigned int width,
 			auto y = 0 + (rand() % (int)((roomsHeight/ 2) - 0 + 1)) * 2; // make sure it's even, then it's a room
 			auto node = static_cast<nodes::Room*>(layer[y][x]);
 
-			auto stair = new nodes::StairsDown();
+			auto stairDown = new nodes::StairsDown();
 
 			if (node->eastCorridor != nullptr) {
-				node->eastCorridor->SetWestRoom(stair);
-				stair->eastCorridor = node->eastCorridor;
+				node->eastCorridor->SetWestRoom(stairDown);
+				stairDown->eastCorridor = node->eastCorridor;
 			}
 			if (node->westCorridor != nullptr) {
-				node->westCorridor->SetEastRoom(stair);
-				stair->westCorridor = node->westCorridor;
+				node->westCorridor->SetEastRoom(stairDown);
+				stairDown->westCorridor = node->westCorridor;
 			}
 			if (node->northCorridor != nullptr) {
-				node->northCorridor->SetSouthRoom(stair);
-				stair->northCorridor = node->northCorridor;
+				node->northCorridor->SetSouthRoom(stairDown);
+				stairDown->northCorridor = node->northCorridor;
 			}
 			if (node->southCorridor != nullptr) {
-				node->southCorridor->SetNorthRoom(stair);
-				stair->southCorridor = node->southCorridor;
+				node->southCorridor->SetNorthRoom(stairDown);
+				stairDown->southCorridor = node->southCorridor;
 			}
 
-			layer[y].SetNode(x, stair);
-
-			delete node;
+			layer[y].SetNode(x, stairDown);
+			if (prevStairUp != nullptr)
+			{
+				stairDown->SetBottomRoom(prevStairUp);
+				prevStairUp->SetTopRoom(stairDown);
+			}
 		}
 
 		if (z < layerCount)
@@ -307,28 +312,27 @@ void Dungeon::Randomize(const unsigned int layerCount, const unsigned int width,
 			auto y = 0 + (rand() % (int)((roomsHeight / 2 ) - 0 + 1)) * 2;
 			auto node = static_cast<nodes::Room*>(layer[y][x]);
 
-			auto stair = new nodes::StairsUp();
+			auto stairUp = new nodes::StairsUp();
 
 			if (node->eastCorridor != nullptr) {
-				node->eastCorridor->SetWestRoom(stair);
-				stair->eastCorridor = node->eastCorridor;
+				node->eastCorridor->SetWestRoom(stairUp);
+				stairUp->eastCorridor = node->eastCorridor;
 			}
 			if (node->westCorridor != nullptr) {
-				node->westCorridor->SetEastRoom(stair);
-				stair->westCorridor = node->westCorridor;
+				node->westCorridor->SetEastRoom(stairUp);
+				stairUp->westCorridor = node->westCorridor;
 			}
 			if (node->northCorridor != nullptr) {
-				node->northCorridor->SetSouthRoom(stair);
-				stair->northCorridor = node->northCorridor;
+				node->northCorridor->SetSouthRoom(stairUp);
+				stairUp->northCorridor = node->northCorridor;
 			}
 			if (node->southCorridor != nullptr) {
-				node->southCorridor->SetNorthRoom(stair);
-				stair->southCorridor = node->southCorridor;
+				node->southCorridor->SetNorthRoom(stairUp);
+				stairUp->southCorridor = node->southCorridor;
 			}
 
-			layer[y].SetNode(x, stair);
-
-			delete node;
+			layer[y].SetNode(x, stairUp);
+			prevStairUp = stairUp;
 		}
 	}
 }

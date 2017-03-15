@@ -24,6 +24,8 @@ namespace game
 		nodes::Space*	heroLocation;
 		unsigned int	dungeonLayer;
 
+		const void OnMove();
+
 	public:
 		Game();
 
@@ -34,6 +36,8 @@ namespace game
 		bool IsCleared() const;
 
 		void Clear();
+
+		int GetDungeonLayer();
 
 		void SetDungeon(const Dungeon& dungeon);
 		const Dungeon& GetDungeon() const;

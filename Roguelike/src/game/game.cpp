@@ -1,4 +1,5 @@
 #include "game.h"
+#include <typeinfo>
 
 using namespace game;
 
@@ -107,6 +108,8 @@ const nodes::Space* Game::MoveUp()
 	if (heroLocation->southCorridor != nullptr && !heroLocation->southCorridor->collapsed)
 		heroLocation = heroLocation->southCorridor->GetSouthRoom();
 
+	OnMove();
+
 	return heroLocation;
 }
 
@@ -114,6 +117,8 @@ const nodes::Space* Game::MoveDown()
 {
 	if (heroLocation->northCorridor != nullptr && !heroLocation->northCorridor->collapsed)
 		heroLocation = heroLocation->northCorridor->GetNorthRoom();
+
+	OnMove();
 
 	return heroLocation;
 }
@@ -123,6 +128,8 @@ const nodes::Space* Game::MoveLeft()
 	if (heroLocation->westCorridor != nullptr && !heroLocation->westCorridor->collapsed)
 		heroLocation = heroLocation->westCorridor->GetWestRoom();
 
+	OnMove();
+
 	return heroLocation;
 }
 
@@ -131,5 +138,26 @@ const nodes::Space* Game::MoveRight()
 	if (heroLocation->eastCorridor != nullptr && !heroLocation->eastCorridor->collapsed)
 		heroLocation = heroLocation->eastCorridor->GetEastRoom();
 
+	OnMove();
+
 	return heroLocation;
+}
+
+const void Game::OnMove()
+{
+	if (auto stairdown = dynamic_cast<nodes::StairsDown*>(heroLocation))
+	{
+		heroLocation = stairdown->GetBottomRoom();
+		dungeonLayer--;
+	}
+	else if (auto stairup = dynamic_cast<nodes::StairsUp*>(heroLocation))
+	{
+		heroLocation = stairup->GetTopRoom();
+		dungeonLayer++;
+	}
+}
+
+int Game::GetDungeonLayer()
+{
+	return dungeonLayer;
 }

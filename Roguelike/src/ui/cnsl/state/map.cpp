@@ -17,7 +17,7 @@ void Map::DrawConsole() const
 {
 	std::cout << "Map" << std::endl << std::endl;
 
-	for (const auto& dungeonRow : context.game.GetDungeon().GetLayers()[0])
+	for (const auto& dungeonRow : context.game.GetDungeon().GetLayers()[context.game.GetDungeonLayer()])
 	{
 		for (const auto* const node : dungeonRow.GetNodes())
 		{
