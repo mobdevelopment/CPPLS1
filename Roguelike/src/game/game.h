@@ -6,6 +6,7 @@
 #include "errorcategory.h"
 #include "dungeon.h"
 #include "hero.h"
+#include "monster.h"
 
 #include "nodes/room.h"
 
@@ -17,9 +18,13 @@ namespace game
 		bool			isRunning;
 		bool			isCleared;
 		bool			enableRandomMonsters;
+		bool			BossSpawned;
 
+		MonstersContainer container;
 		Dungeon			dungeon;
 		Hero			hero;
+
+		MonstersContainer monsterContainer;
 
 		nodes::Space*	heroLocation;
 		unsigned int	dungeonLayer;

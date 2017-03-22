@@ -50,3 +50,18 @@ std::string Room::GetDescription() const
 
 	return stream.str();
 }
+
+game::Monster Room::GetMonster() const
+{
+	return monster;
+}
+
+void Room::SetMonster(game::Monster m)
+{
+	monster = m;
+}
+
+bool Room::HasMonster()
+{
+	return !monster.name.empty();
+}

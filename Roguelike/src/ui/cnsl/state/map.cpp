@@ -15,7 +15,8 @@ void Map::Terminate()
 
 void Map::DrawConsole() const
 {
-	std::cout << "Map" << std::endl << std::endl;
+
+	std::cout << "Map" << std::endl << std::endl << "Current layer: " << context.game.GetDungeonLayer() << std::endl << std::endl;
 
 	for (const auto& dungeonRow : context.game.GetDungeon().GetLayers()[context.game.GetDungeonLayer()])
 	{

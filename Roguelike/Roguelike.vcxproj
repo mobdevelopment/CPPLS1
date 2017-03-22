@@ -168,6 +168,7 @@
     <ClCompile Include="src\game\items\talisman.cpp" />
     <ClCompile Include="src\game\items\weapon.cpp" />
     <ClCompile Include="src\game\hero.cpp" />
+    <ClCompile Include="src\game\monster.cpp" />
     <ClCompile Include="src\game\nodes\corridor.cpp" />
     <ClCompile Include="src\game\nodes\horizontalcorridor.cpp" />
     <ClCompile Include="src\game\nodes\node.cpp" />
@@ -204,6 +205,7 @@
     <ClInclude Include="src\game\items\talisman.h" />
     <ClInclude Include="src\game\items\weapon.h" />
     <ClInclude Include="src\game\hero.h" />
+    <ClInclude Include="src\game\monster.h" />
     <ClInclude Include="src\game\nodes\corridor.h" />
     <ClInclude Include="src\game\nodes\horizontalcorridor.h" />
     <ClInclude Include="src\game\nodes\node.h" />

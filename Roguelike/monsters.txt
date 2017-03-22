@@ -18,6 +18,6 @@ Opbouw per monster (gescheiden door puntkomma):
 [reuzespin;7;60x1;3-36;40;80]
 [manticore;8;45x3;2-20;45;120]
 [golem;9;50x2;5-50;20;300]
-[hydra;10;40x9;2-12;180]
+[hydra;10;40x9;2-12;0;180]
 [lich;BAAS;90x2;4-40;60;150]
 [draak;BAAS;65x4;3-30;50;500]

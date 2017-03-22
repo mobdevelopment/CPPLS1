@@ -9,9 +9,11 @@
 #include "type.h"
 
 #include "space.h"
+#include "../monster.h"
 
 namespace game
 {
+	class Monster;
 namespace nodes
 {
 	class Corridor;
@@ -71,12 +73,17 @@ namespace nodes
 		RoomSize			roomSize;
 		RoomCleanliness		roomCleanliness;
 		RoomFurniture		roomFurniture;
+		Monster				monster;
 
 		Room();
 
 		unsigned int GetWeight() const override;
 
 		std::string GetDescription() const;
+		
+		Monster GetMonster() const;
+		void SetMonster(Monster monster);
+		bool HasMonster();
 	};
 } // namespace nodes
 } // namespace game

@@ -16,12 +16,13 @@ void Game::Start()
 	if (IsRunning())
 		throw std::system_error(Error::GAME_ALREADY_RUNNING);
 
-	// TODO: Validate dungeon.
-
-	// TODO: Validate hero.
-
 	// Put the hero in a random room.
 	heroLocation = dungeon[dungeonLayer].GetRandomRoom();
+
+	if (enableRandomMonsters)
+	{
+		container = game::GetSavedMonsters();
+	}
 
 	isRunning = true;
 	isCleared = false;
@@ -51,6 +52,7 @@ void Game::Clear()
 		Stop();
 
 	dungeon.Clear();
+	container.clear();
 	heroLocation = nullptr;
 	dungeonLayer = 0;
 
@@ -90,6 +92,7 @@ const Hero& Game::GetHero() const
 
 void Game::EnableRandomMonsters(const bool enable)
 {
+	container = game::GetSavedMonsters();
 	enableRandomMonsters = enable;
 }
 
@@ -155,9 +158,55 @@ const void Game::OnMove()
 		heroLocation = stairup->GetTopRoom();
 		dungeonLayer++;
 	}
+	else if (enableRandomMonsters)
+	{
+		if (auto room = dynamic_cast<nodes::Room*>(heroLocation))
+		{
+			if (!room->HasMonster())
+			{
+				int min = 0;
+				int max = 100;
+				int perc = (rand() % (max - min + 1)) + min;
+
+				if (perc < 25)
+				{
+					Monster monster;
+					int sumWeight = 0;
+					for (auto mp : container)
+					{
+						Monster m = mp.second;
+						int level = (m.level == Monster::boss) ? 10 : m.level;
+						sumWeight += dungeon.GetLayers().size() - (dungeonLayer - level);
+					}
+
+					int mperc = (rand() % (sumWeight - 0 + 1)) + 0;
+
+					int curWeight = 0;
+					for (auto mp : container)
+					{
+						Monster m = mp.second;
+						int level = (m.level == Monster::boss) ? 10 : m.level;
+						curWeight += dungeon.GetLayers().size() - (dungeonLayer - level);
+
+						if (curWeight >= mperc)
+						{
+							monster = m;
+							break;
+						}
+					}
+
+					room->SetMonster(monster);
+				}
+			}
+		}
+		
+
+		// Get a monster if the chance is right
+	}
 }
 
 int Game::GetDungeonLayer()
 {
 	return dungeonLayer;
 }
+

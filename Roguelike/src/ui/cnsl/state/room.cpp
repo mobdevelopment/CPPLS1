@@ -62,7 +62,14 @@ void Room::DrawConsole() const
 	std::cout << "Room" << std::endl << std::endl
 
 		<< "Description: " << context.game.GetHeroLocation()->GetDescription() << std::endl;
-	
+
+	if (auto room = dynamic_cast<game::nodes::Room*>(context.game.GetHeroLocation()))
+	{
+		if (room->HasMonster() && room->GetMonster().lifePoints > 0)
+		{
+			std::cout << std::endl << "Monster: " << room->GetMonster().name << std::endl;
+		}
+	}
 }
 
 void Room::GetAvailableCommands(std::vector<CommandDescription>& commandDescriptionsBuffer) const
@@ -72,4 +79,21 @@ void Room::GetAvailableCommands(std::vector<CommandDescription>& commandDescript
 	mapCommandDescription.description = "Look at the map.";
 
 	commandDescriptionsBuffer.emplace_back(std::move(mapCommandDescription));
+
+	CommandDescription moveCommandDescription;
+	moveCommandDescription.command = "Move";
+	moveCommandDescription.description = "Move in a specific direction";
+
+	auto currentLocation = context.game.GetHeroLocation();
+
+	if (currentLocation->southCorridor != nullptr && !currentLocation->southCorridor->collapsed) // The y-axis is reversed
+		moveCommandDescription.parameters.emplace_back("up");
+	if (currentLocation->northCorridor != nullptr && !currentLocation->northCorridor->collapsed) // The y-axis is reversed
+		moveCommandDescription.parameters.emplace_back("down");
+	if (currentLocation->westCorridor != nullptr && !currentLocation->westCorridor->collapsed)
+		moveCommandDescription.parameters.emplace_back("left");
+	if (currentLocation->eastCorridor != nullptr && !currentLocation->eastCorridor->collapsed)
+		moveCommandDescription.parameters.emplace_back("right");
+
+	commandDescriptionsBuffer.emplace_back(std::move(moveCommandDescription));
 }
