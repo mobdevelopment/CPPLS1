@@ -180,6 +180,7 @@
     <ClCompile Include="src\game\nodes\visitor.cpp" />
     <ClCompile Include="src\ui\cnsl\state\context.cpp" />
     <ClCompile Include="src\ui\cnsl\state\dungeonselection.cpp" />
+    <ClCompile Include="src\ui\cnsl\state\fight.cpp" />
     <ClCompile Include="src\ui\cnsl\state\herocreation.cpp" />
     <ClCompile Include="src\ui\cnsl\state\heroselection.cpp" />
     <ClCompile Include="src\ui\cnsl\state\map.cpp" />
@@ -220,6 +221,7 @@
     <ClInclude Include="src\ui\cnsl\commanddescription.h" />
     <ClInclude Include="src\ui\cnsl\state\context.h" />
     <ClInclude Include="src\ui\cnsl\state\dungeonselection.h" />
+    <ClInclude Include="src\ui\cnsl\state\fight.h" />
     <ClInclude Include="src\ui\cnsl\state\room.h" />
     <ClInclude Include="src\ui\cnsl\state\herocreation.h" />
     <ClInclude Include="src\ui\cnsl\state\heroselection.h" />

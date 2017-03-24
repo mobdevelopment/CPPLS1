@@ -44,6 +44,7 @@ void DungeonSelection::Terminate()
 	context.userInterface.UnregisterCommand("Width");
 	context.userInterface.UnregisterCommand("Height");
 	context.userInterface.UnregisterCommand("Seed");
+	context.userInterface.UnregisterCommand("Start");
 }
 
 void DungeonSelection::DrawConsole() const

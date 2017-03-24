@@ -23,7 +23,7 @@ namespace state
 		public Base<Room>
 	{
 	private:
-		void SelectCommandHandler(utils::cmd::Command& command);
+		void MoveCommandHandler(utils::cmd::Command& command);
 	public:
 		static const Type TYPE;
 

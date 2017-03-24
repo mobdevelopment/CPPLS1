@@ -13,6 +13,7 @@ namespace state
 		HERO_CREATION,
 		HERO_SELECTION,
 		DUNGEON_SELECTION,
+		FIGHT,
 		MAP,
 		ROOM
 	}; // enum class Type

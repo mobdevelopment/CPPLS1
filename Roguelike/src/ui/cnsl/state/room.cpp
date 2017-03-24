@@ -5,7 +5,7 @@ using namespace ui::cnsl::state;
 
 const Type Room::TYPE(Type::ROOM);
 
-void Room::SelectCommandHandler(utils::cmd::Command& command)
+void Room::MoveCommandHandler(utils::cmd::Command& command)
 {
 	std::string direction = command.GetParameter<std::string>(0);
 
@@ -42,19 +42,23 @@ void Room::SelectCommandHandler(utils::cmd::Command& command)
 	}
 
 	// Go to the dungeon selection state.
-	context.userInterface.SetState(Type::ROOM);
+	//context.userInterface.SetState(Type::ROOM);
 }
 
 void Room::Initialize()
 {
 	context.userInterface.RegisterCommand("Map", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::MAP); });
 
-	context.userInterface.RegisterCommand<std::string>("Move", std::bind(&Room::SelectCommandHandler, this, std::placeholders::_1));
+	context.userInterface.RegisterCommand<std::string>("Move", std::bind(&Room::MoveCommandHandler, this, std::placeholders::_1));
+
+	context.userInterface.RegisterCommand<std::string>("Fight", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::FIGHT);  });
 }
 
 void Room::Terminate()
 {
 	context.userInterface.UnregisterCommand("Map");
+	context.userInterface.UnregisterCommand("Move");
+	context.userInterface.UnregisterCommand("Fight");
 }
 
 void Room::DrawConsole() const
@@ -65,9 +69,12 @@ void Room::DrawConsole() const
 
 	if (auto room = dynamic_cast<game::nodes::Room*>(context.game.GetHeroLocation()))
 	{
-		if (room->HasMonster() && room->GetMonster().lifePoints > 0)
+		if (room->HasMonster())
 		{
-			std::cout << std::endl << "Monster: " << room->GetMonster().name << std::endl;
+			if (room->GetMonster().lifePoints > 0)
+				std::cout << std::endl << "There is a : " << room->GetMonster().name << " in this room" << std::endl;
+			else
+				std::cout << std::endl << "There is a deceased " << room->GetMonster().name << " in this room" << std::endl;
 		}
 	}
 }
@@ -94,6 +101,18 @@ void Room::GetAvailableCommands(std::vector<CommandDescription>& commandDescript
 		moveCommandDescription.parameters.emplace_back("left");
 	if (currentLocation->eastCorridor != nullptr && !currentLocation->eastCorridor->collapsed)
 		moveCommandDescription.parameters.emplace_back("right");
+
+	if (auto room = dynamic_cast<game::nodes::Room*>(context.game.GetHeroLocation()))
+	{
+		if (room->HasMonster() && room->GetMonster().lifePoints > 0)
+		{
+			CommandDescription fightCommandDescription;
+			fightCommandDescription.command = "fight";
+			fightCommandDescription.description = "Fight the monster in this room";
+
+			commandDescriptionsBuffer.emplace_back(std::move(fightCommandDescription));
+		}
+	}
 
 	commandDescriptionsBuffer.emplace_back(std::move(moveCommandDescription));
 }

@@ -164,11 +164,10 @@ const void Game::OnMove()
 		{
 			if (!room->HasMonster())
 			{
-				int min = 0;
-				int max = 100;
-				int perc = (rand() % (max - min + 1)) + min;
+				int min = 0, max = 100;
+				double perc = (rand() % (max - min + 1)) + min;
 
-				if (perc < 25)
+				if (perc < 12.5)
 				{
 					Monster monster;
 					int sumWeight = 0;
@@ -176,23 +175,36 @@ const void Game::OnMove()
 					{
 						Monster m = mp.second;
 						int level = (m.level == Monster::boss) ? 10 : m.level;
-						sumWeight += dungeon.GetLayers().size() - (dungeonLayer - level);
+						sumWeight += dungeon.GetLayers().size() - (abs(int(dungeonLayer - level)));
 					}
 
 					int mperc = (rand() % (sumWeight - 0 + 1)) + 0;
 
 					int curWeight = 0;
+					Monster oldM;
 					for (auto mp : container)
 					{
 						Monster m = mp.second;
 						int level = (m.level == Monster::boss) ? 10 : m.level;
-						curWeight += dungeon.GetLayers().size() - (dungeonLayer - level);
+						curWeight += dungeon.GetLayers().size() - (abs(int(dungeonLayer - level)));
 
 						if (curWeight >= mperc)
 						{
+							if (m.level == Monster::boss)
+							{
+								if (!BossSpawned)
+									BossSpawned = true;
+								else
+									monster = oldM;
+								break;
+							}
+
 							monster = m;
 							break;
 						}
+
+						if (m.level != Monster::boss)
+							oldM = m;
 					}
 
 					room->SetMonster(monster);
