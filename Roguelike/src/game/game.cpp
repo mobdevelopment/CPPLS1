@@ -101,9 +101,15 @@ bool Game::EnableRandomMonsters() const
 	return enableRandomMonsters;
 }
 
-game::Monster Game::GetMonster()
+game::Monster& Game::GetMonster() const
 {
 	return dynamic_cast<nodes::Room*>(heroLocation)->GetMonster();
+}
+
+void Game::DoDamage(int damage)
+{
+	auto m = GetMonster();
+	m.lifePoints -= damage;
 }
 
 nodes::Space* Game::GetHeroLocation()
@@ -172,7 +178,7 @@ const void Game::OnMove()
 				int min = 0, max = 100;
 				double perc = (rand() % (max - min + 1)) + min;
 
-				if (perc < 18.5)
+				if (perc < 100)
 				{
 					Monster monster;
 					int sumWeight = 0;
