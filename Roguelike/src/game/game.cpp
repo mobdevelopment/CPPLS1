@@ -101,7 +101,17 @@ bool Game::EnableRandomMonsters() const
 	return enableRandomMonsters;
 }
 
-game::Monster& Game::GetMonster() const
+const bool Game::HasMonster() const
+{
+	if (auto room = dynamic_cast<nodes::Room*>(heroLocation))
+	{
+		return room->HasMonster();
+	}
+
+	return false;
+}
+
+const game::Monster& Game::GetMonster() const
 {
 	return dynamic_cast<nodes::Room*>(heroLocation)->GetMonster();
 }

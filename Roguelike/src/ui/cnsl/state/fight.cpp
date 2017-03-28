@@ -14,7 +14,7 @@ void Fight::FightCommandHandler(utils::cmd::Command& command)
 	{
 		if (room->HasMonster())
 		{
-			game::Monster monster = room->GetMonster();
+			/*game::Monster monster = room->GetMonster();
 			if (monster.lifePoints > 0)
 			{
 				std::vector<std::string> heroOutput, monsterOutput;
@@ -44,7 +44,7 @@ void Fight::FightCommandHandler(utils::cmd::Command& command)
 			else
 			{
 				context.userInterface.DrawConsole(monster.name + " is already deceased"); 
-			}
+			}*/
 		}
 	}
 
@@ -60,33 +60,33 @@ std::vector<std::string> Fight::AttackByEnemy()
 	
 	if (dynamic_cast<game::nodes::Room*>(context.game.GetHeroLocation())->HasMonster())
 	{
-		game::Monster* monster = &context.game.GetMonster();
-		if (monster->lifePoints > 0)
+		/*auto monster = context.game.GetMonster();
+		if (monster.lifePoints > 0)
 		{
-			for (int a = 0; a < monster->attackAmount; a++) {
+			for (int a = 0; a < monster.attackAmount; a++) {
 				int min = 0, max = 100;
 				double attackChance = (rand() % (max - min + 1)) + min;
 
-				if (monster->attackChance < attackChance)
+				if (monster.attackChance < attackChance)
 				{
 					double defendChance = (rand() % (max - min + 1)) + min;
 					if (hero.defenseChance < defendChance)
 					{
-						int damage = (rand() % (monster->maxDamage - monster->minDamage));
+						int damage = (rand() % (monster.maxDamage - monster.minDamage));
 						context.hero.lifePoints -= damage;
-						output.push_back("The " + monster->name + " attacked and did " + std::to_string(damage) + "hp damage");
+						output.push_back("The " + monster.name + " attacked and did " + std::to_string(damage) + "hp damage");
 					}
 					else
 					{
-						output.push_back(hero.name + " defended itself by an attack from the " + monster->name);
+						output.push_back(hero.name + " defended itself by an attack from the " + monster.name);
 					}
 				}
 				else
 				{
-					output.push_back("The " + monster->name + " tried to attack but missed");
+					output.push_back("The " + monster.name + " tried to attack but missed");
 				}
 			}
-		}
+		}*/
 	}
 
 	return output;
@@ -101,8 +101,8 @@ std::vector<std::string> Fight::AttackByHero()
 
 	if (dynamic_cast<game::nodes::Room*>(context.game.GetHeroLocation())->HasMonster())
 	{
-		game::Monster* monster = &context.game.GetMonster();
-		if (monster->lifePoints > 0)
+		auto monster = context.game.GetMonster();
+		if (monster.lifePoints > 0)
 		{
 			for (int a = 0; a < hero.attackAmount; a++) {
 				int min = 0, max = 100;
@@ -111,7 +111,7 @@ std::vector<std::string> Fight::AttackByHero()
 				if (hero.attackChance < attackChance)
 				{
 					double defendChance = (rand() % (max - min + 1)) + min;
-					if (monster->defenseChance < defendChance)
+					if (monster.defenseChance < defendChance)
 					{
 						int damage = (rand() % (hero.maxDamage - hero.minDamage + 1)) + hero.minDamage;
 						context.game.DoDamage(damage);
@@ -119,7 +119,7 @@ std::vector<std::string> Fight::AttackByHero()
 					}
 					else
 					{
-						output.push_back("The " + monster->name + " defended itself by an attack from " + hero.name);
+						output.push_back("The " + monster.name + " defended itself by an attack from " + hero.name);
 					}
 				}
 				else
@@ -140,10 +140,7 @@ void Fight::Initialize()
 	context.userInterface.RegisterCommand("Flee", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::ROOM); });
 
 	if (dynamic_cast<game::nodes::Room*>(context.game.GetHeroLocation())->HasMonster())
-	{
-		AttackByHero();
-		AttackByEnemy();
-	}
+		return;
 	else
 		context.userInterface.SetState(Type::ROOM);
 }
@@ -156,13 +153,13 @@ void Fight::Terminate()
 
 void Fight::DrawConsole() const
 {
-	if (dynamic_cast<game::nodes::Room*>(context.game.GetHeroLocation())->HasMonster())
+	if (context.game.HasMonster())
 	{
-		auto* m = &context.game.GetMonster();
-		if (m->lifePoints > 0)
-			std::cout << std::endl << "There is a " << m->name << " in this room with " << m->lifePoints << "hp" << std::endl;
+		auto m = context.game.GetMonster();
+		if (m.lifePoints > 0)
+			std::cout << std::endl << "There is a " << m.name << " in this room with " << m.lifePoints << "hp" << std::endl;
 		else
-			std::cout << std::endl << "There is a deceased " << m->name << " in this room" << std::endl;
+			std::cout << std::endl << "There is a deceased " << m.name << " in this room" << std::endl;
 	}
 }
 
