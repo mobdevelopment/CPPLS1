@@ -30,8 +30,9 @@ void HeroCreation::Initialize()
 	hero.level = 1;
 	hero.lifePoints = 10;
 	hero.experiencePoints = 0;
-	hero.attackPoints = 0;
-	hero.defensePoints = 0;
+	hero.attackChance = 20;
+	hero.attackAmount = 1;
+	hero.defenseChance = 5;
 
 	// Register commands.
 	context.userInterface.RegisterCommand<std::string>("Name", std::bind(&HeroCreation::NameCommandHandler, this, std::placeholders::_1));
@@ -55,8 +56,9 @@ void HeroCreation::DrawConsole() const
 		<< "Level: " << hero.level << std::endl
 		<< "Life points: " << hero.lifePoints << std::endl
 		<< "Experience points: " << hero.experiencePoints << std::endl
-		<< "Attack points: " << hero.attackPoints << std::endl
-		<< "Defense points: " << hero.defensePoints;
+		<< "Attack chance: " << hero.attackChance << std::endl
+		<< "Attack amount: " << hero.attackAmount << std::endl
+		<< "Defense points: " << hero.defenseChance;
 }
 
 void HeroCreation::GetAvailableCommands(std::vector<CommandDescription>& commandDescriptionsBuffer) const

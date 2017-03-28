@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <numeric>
 
 #include "../../../game/hero.h"
 #include "../../../game/nodes/room.h"
@@ -24,8 +25,8 @@ namespace ui
 			{
 			private:
 				void FightCommandHandler(utils::cmd::Command& command);
-				void AttackByEnemy();
-				void AttackByHero();
+				std::vector<std::string> AttackByEnemy();
+				std::vector<std::string> AttackByHero();
 			public:
 				static const Type TYPE;
 

@@ -42,7 +42,7 @@ void Room::MoveCommandHandler(utils::cmd::Command& command)
 	}
 
 	// Go to the dungeon selection state.
-	//context.userInterface.SetState(Type::ROOM);
+	context.userInterface.SetState(Type::ROOM);
 }
 
 void Room::Initialize()
@@ -51,7 +51,7 @@ void Room::Initialize()
 
 	context.userInterface.RegisterCommand<std::string>("Move", std::bind(&Room::MoveCommandHandler, this, std::placeholders::_1));
 
-	context.userInterface.RegisterCommand<std::string>("Fight", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::FIGHT);  });
+	context.userInterface.RegisterCommand("Fight", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::FIGHT);  });
 }
 
 void Room::Terminate()

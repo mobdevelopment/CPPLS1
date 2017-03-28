@@ -57,8 +57,11 @@ Hero game::ParseHero(std::istream& stream)
 	sstream >> hero.level;
 	sstream >> hero.lifePoints;
 	sstream >> hero.experiencePoints;
-	sstream >> hero.attackPoints;
-	sstream >> hero.defensePoints;
+	sstream >> hero.attackChance;
+	sstream >> hero.defenseChance;
+	sstream >> hero.attackAmount;
+	sstream >> hero.minDamage;
+	sstream >> hero.maxDamage;
 
 	// TODO: Items.
 	// All the following lines are items.
@@ -89,8 +92,11 @@ void game::WriteHero(std::ostream& stream, const Hero& hero)
 		hero.level << ' ' <<
 		hero.lifePoints << ' ' <<
 		hero.experiencePoints << ' ' <<
-		hero.attackPoints << ' ' <<
-		hero.defensePoints <<
+		hero.attackChance << ' ' <<
+		hero.defenseChance << ' ' <<
+		hero.attackAmount << ' ' <<
+		hero.minDamage << ' ' <<
+		hero.maxDamage << ' ' <<
 		'\n';
 
 	// TODO: Items.

@@ -23,10 +23,13 @@ namespace game
 	public:
 		std::string		name;
 		int				level;
-		int				lifePoints;
-		int				experiencePoints;
-		int				attackPoints;
-		int				defensePoints;
+		int				experiencePoints = 0;
+		int				minDamage = 0;
+		int				maxDamage = 0;
+		int				attackChance = 0;
+		int				attackAmount = 0;
+		int				defenseChance = 0;
+		int				lifePoints = 0;
 	}; // class Hero
 
 	const std::string& GetRandomHeroName() noexcept;
