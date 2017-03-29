@@ -24,6 +24,7 @@ namespace game
 		static const int boss = -1;
 
 		std::string		name;
+		int				rand			= 0;
 		int				level			= 0;
 		int				minDamage		= 0;
 		int				maxDamage		= 0;

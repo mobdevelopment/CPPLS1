@@ -56,7 +56,6 @@ namespace game
 		bool EnableRandomMonsters() const;
 		const bool HasMonster() const;
 		const game::Monster& GetMonster() const;
-		void DoDamage(int damage);
 
 		nodes::Space* GetHeroLocation();
 		const nodes::Space* MoveUp();

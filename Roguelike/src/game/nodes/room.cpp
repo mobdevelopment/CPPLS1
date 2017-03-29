@@ -51,7 +51,7 @@ std::string Room::GetDescription() const
 	return stream.str();
 }
 
-game::Monster Room::GetMonster() const
+const game::Monster& Room::GetMonster() const
 {
 	return monster;
 }

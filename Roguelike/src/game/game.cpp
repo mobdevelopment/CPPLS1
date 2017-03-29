@@ -113,13 +113,7 @@ const bool Game::HasMonster() const
 
 const game::Monster& Game::GetMonster() const
 {
-	return dynamic_cast<nodes::Room*>(heroLocation)->GetMonster();
-}
-
-void Game::DoDamage(int damage)
-{
-	auto m = GetMonster();
-	m.lifePoints -= damage;
+	return static_cast<nodes::Room*>(heroLocation)->GetMonster();
 }
 
 nodes::Space* Game::GetHeroLocation()

@@ -81,7 +81,7 @@ namespace nodes
 
 		std::string GetDescription() const;
 		
-		Monster GetMonster() const;
+		const Monster& GetMonster() const;
 		void SetMonster(Monster monster);
 		bool HasMonster();
 	};
