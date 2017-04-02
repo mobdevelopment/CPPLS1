@@ -71,10 +71,10 @@ void Room::DrawConsole() const
 	{
 		if (room->HasMonster())
 		{
-			if (room->GetMonster().lifePoints > 0)
-				std::cout << std::endl << "There is a : " << room->GetMonster().name << " in this room" << std::endl;
+			if (room->GetMonster()->lifePoints > 0)
+				std::cout << std::endl << "There is a : " << room->GetMonster()->name << " in this room" << std::endl;
 			else
-				std::cout << std::endl << "There is a deceased " << room->GetMonster().name << " in this room" << std::endl;
+				std::cout << std::endl << "There is a deceased " << room->GetMonster()->name << " in this room" << std::endl;
 		}
 	}
 }
@@ -104,7 +104,7 @@ void Room::GetAvailableCommands(std::vector<CommandDescription>& commandDescript
 
 	if (auto room = dynamic_cast<game::nodes::Room*>(context.game.GetHeroLocation()))
 	{
-		if (room->HasMonster() && room->GetMonster().lifePoints > 0)
+		if (room->HasMonster() && room->GetMonster()->lifePoints > 0)
 		{
 			CommandDescription fightCommandDescription;
 			fightCommandDescription.command = "fight";

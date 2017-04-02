@@ -111,7 +111,7 @@ const bool Game::HasMonster() const
 	return false;
 }
 
-const game::Monster& Game::GetMonster() const
+game::Monster* Game::GetMonster()
 {
 	return static_cast<nodes::Room*>(heroLocation)->GetMonster();
 }
