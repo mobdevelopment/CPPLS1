@@ -163,73 +163,85 @@ const nodes::Space* Game::MoveRight()
 
 const void Game::OnMove()
 {
+	bool movedLayer = false;
+
 	if (auto stairdown = dynamic_cast<nodes::StairsDown*>(heroLocation))
 	{
-		heroLocation = stairdown->GetBottomRoom();
-		dungeonLayer--;
+		if (stairdown->GetBottomRoom() != nullptr)
+		{
+			heroLocation = stairdown->GetBottomRoom();
+			dungeonLayer--;
+			movedLayer = true;
+		}
 	}
 	else if (auto stairup = dynamic_cast<nodes::StairsUp*>(heroLocation))
 	{
-		heroLocation = stairup->GetTopRoom();
-		dungeonLayer++;
-	}
-	else if (enableRandomMonsters)
-	{
-		if (auto room = dynamic_cast<nodes::Room*>(heroLocation))
+		if (stairup->GetTopRoom() != nullptr)
 		{
-			if (!room->HasMonster())
+			heroLocation = stairup->GetTopRoom();
+			dungeonLayer++;
+			movedLayer = true;
+		}	
+	}
+
+	if (!movedLayer)
+	{
+		if (enableRandomMonsters)
+		{
+			if (auto room = dynamic_cast<nodes::Room*>(heroLocation))
 			{
-				int min = 0, max = 100;
-				double perc = (rand() % (max - min + 1)) + min;
-
-				if (perc < 100)
+				if (!room->HasMonster())
 				{
-					Monster monster;
-					int sumWeight = 0;
-					for (auto mp : container)
+					int min = 0, max = 100;
+					double perc = (rand() % (max - min + 1)) + min;
+
+					if (perc < 100)
 					{
-						Monster m = mp.second;
-						int level = (m.level == Monster::boss) ? 10 : m.level;
-						sumWeight += dungeon.GetLayers().size() - (abs(int(dungeonLayer - level)));
-					}
-
-					int mperc = (rand() % (sumWeight - 0 + 1)) + 0;
-
-					int curWeight = 0;
-					Monster oldM;
-					for (auto mp : container)
-					{
-						Monster m = mp.second;
-						int level = (m.level == Monster::boss) ? 10 : m.level;
-						curWeight += dungeon.GetLayers().size() - (abs(int(dungeonLayer - level)));
-
-						if (curWeight >= mperc)
+						Monster monster;
+						int sumWeight = 0;
+						for (auto mp : container)
 						{
-							if (m.level == Monster::boss)
+							Monster m = mp.second;
+							int level = (m.level == Monster::boss) ? 10 : m.level;
+							sumWeight += dungeon.GetLayers().size() - (abs(int(dungeonLayer - level)));
+						}
+
+						int mperc = (rand() % (sumWeight - 0 + 1)) + 0;
+
+						int curWeight = 0;
+						Monster oldM;
+						for (auto mp : container)
+						{
+							Monster m = mp.second;
+							int level = (m.level == Monster::boss) ? 10 : m.level;
+							curWeight += dungeon.GetLayers().size() - (abs(int(dungeonLayer - level)));
+
+							if (curWeight >= mperc)
 							{
-								if (!BossSpawned)
-									BossSpawned = true;
-								else
-									monster = oldM;
+								if (m.level == Monster::boss)
+								{
+									if (!BossSpawned)
+										BossSpawned = true;
+									else
+										monster = oldM;
+									break;
+								}
+
+								monster = m;
 								break;
 							}
 
-							monster = m;
-							break;
+							if (m.level != Monster::boss)
+								oldM = m;
 						}
 
-						if (m.level != Monster::boss)
-							oldM = m;
+						room->SetMonster(monster);
 					}
-
-					room->SetMonster(monster);
 				}
 			}
 		}
-		
-
-		// Get a monster if the chance is right
 	}
+	
 }
 
 int Game::GetDungeonLayer()

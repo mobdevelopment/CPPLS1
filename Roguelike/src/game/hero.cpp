@@ -7,21 +7,18 @@ namespace
 {
 	const std::string HERO_NAMES[] =
 	{
-		"Salvatore Maranzano",
-		"Salvatore Bonanno",
-		"Joseph Bonanno",
-		"Charles Luciano",
-		"Nicola Schiro",
-		"Vito Bonventre",
-		"Gaspar DiGregorio",
-		"Philip Rastelli",
-		"Natale Evola",
-		"Philip Rastelli",
-		"Carmine Galante",
-		"Joseph Massino",
-		"Vincent Basciano",
-		"Michael Mancuso",
-		"Paul Sciacca"
+		"Carmine",
+		"Charles",
+		"Gaspar",
+		"Joseph",
+		"Michael",
+		"Natale",
+		"Nicola",
+		"Paul"
+		"Philip",
+		"Salvatore",
+		"Vincent",
+		"Vito",
 	};
 
 	const std::string HERO_FILES_FOLDER = "./heroes";

@@ -132,7 +132,7 @@ std::vector<std::string> Fight::AttackByHero()
 
 void Fight::Initialize()
 {
-	context.userInterface.RegisterCommand("fight", std::bind(&Fight::FightCommandHandler, this, std::placeholders::_1));
+	context.userInterface.RegisterCommand("Fight", std::bind(&Fight::FightCommandHandler, this, std::placeholders::_1));
 	
 	context.userInterface.RegisterCommand("Flee", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::ROOM); });
 

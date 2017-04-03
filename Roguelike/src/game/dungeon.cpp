@@ -306,7 +306,7 @@ void Dungeon::Randomize(const unsigned int layerCount, const unsigned int width,
 			}
 		}
 
-		if (z < layerCount)
+		if (z < layerCount - 1)
 		{
 			auto x = 0 + (rand() % (int)((roomsWidth / 2 ) - 0 + 1)) * 2;
 			auto y = 0 + (rand() % (int)((roomsHeight / 2 ) - 0 + 1)) * 2;
