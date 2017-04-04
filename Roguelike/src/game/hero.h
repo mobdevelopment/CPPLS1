@@ -30,7 +30,11 @@ namespace game
 		int				attackAmount = 0;
 		int				defenseChance = 0;
 		int				lifePoints = 0;
+
+		void AddExp(int exp);
 	}; // class Hero
+
+	const int getLevelExp(const int xplevel);
 
 	const std::string& GetRandomHeroName() noexcept;
 
