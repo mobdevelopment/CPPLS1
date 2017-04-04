@@ -17,7 +17,10 @@
 namespace game
 {
 	class Hero;
-	class Item;
+	namespace items {
+		class Item;
+	}
+	
 
 	typedef std::unordered_map<std::string, Hero> HeroesContainer;
 
@@ -34,12 +37,14 @@ namespace game
 		int				defenseChance = 0;
 		int				lifePoints = 0;
 
-		std::vector<Item*> items;
+		std::vector<items::Item*> items;
 		
 		
 		void Heal(int amount);
 
 		void AddExp(int exp);
+		std::vector<items::Item*> GetItems();
+		void AddItem(items::Item* item);
 	}; // class Hero
 
 	const int getLevelExp(const int xplevel);

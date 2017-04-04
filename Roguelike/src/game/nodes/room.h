@@ -92,8 +92,8 @@ namespace nodes
 		void SetMonster(Monster monster);
 		bool HasMonster();
 
-		items::Item * GetItem();
-		void SetItem(items::Item i);
+		items::Item* GetItem();
+		void SetItem(items::Item* i);
 		bool HasItem();
 
 

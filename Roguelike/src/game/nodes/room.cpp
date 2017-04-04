@@ -71,14 +71,14 @@ game::items::Item* Room::GetItem()
 	return &item;
 }
 
-void Room::SetItem(game::items::Item i)
+void Room::SetItem(game::items::Item* i)
 {
-	item = i
+	//item = i;
 }
 
 bool Room::HasItem()
 {
-	return !item.name.empy();
+	return !item.name.empty();
 }
 
 

@@ -12,7 +12,10 @@ namespace game
 		public:
 			Potion() noexcept;
 			~Potion() noexcept;
+			Potion(int amount) : Item(amount) {};
 
+			void SetName();
+			void SetEffect();
 			void Use(Hero* h);
 		};
 	}

@@ -2,11 +2,13 @@
 #define GAME_GAME_HEADER_INCLUDED
 
 #include <system_error>
+#include <vector>
 
 #include "errorcategory.h"
 #include "dungeon.h"
 #include "hero.h"
 #include "monster.h"
+#include "items/item.h"
 
 #include "nodes/room.h"
 
@@ -18,6 +20,7 @@ namespace game
 		bool			isRunning;
 		bool			isCleared;
 		bool			enableRandomMonsters;
+		bool			enableRandomItems;
 		bool			BossSpawned;
 
 		MonstersContainer container;
@@ -58,8 +61,11 @@ namespace game
 		game::Monster* GetMonster();
 
 		// TODO Item
+		std::vector<game::items::Item*> encounterableItems;
+		void EnableRandomItems(const bool enable);
+		bool EnableRandomItems() const;
 		const bool HasItem() const;
-		game::Item* GetItem();
+		game::items::Item* GetItem();
 
 		nodes::Space* GetHeroLocation();
 		const nodes::Space* MoveUp();

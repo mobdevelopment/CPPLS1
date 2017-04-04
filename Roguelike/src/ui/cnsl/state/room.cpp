@@ -76,9 +76,10 @@ void Room::DrawConsole() const
 			else
 				std::cout << std::endl << "There is a deceased " << room->GetMonster()->name << " in this room" << std::endl;
 		}
-		//TODO
+		//TODO::
+		// check if item was already picked up
 		if (room->HasItem()) {
-			std::cout << std::endl << "You found a : " << room.getItem()->name << " in this room" << std::endl;
+			std::cout << std::endl << "You found a : " << room->GetItem()->name << " in this room" << std::endl;
 		}
 	}
 }
@@ -116,7 +117,7 @@ void Room::GetAvailableCommands(std::vector<CommandDescription>& commandDescript
 
 			commandDescriptionsBuffer.emplace_back(std::move(fightCommandDescription));
 		}
-
+		// TODO
 		if (context.game.GetHero().items.size() == 0) {
 			CommandDescription itemCommandDescription;
 			itemCommandDescription.command = "Bag";

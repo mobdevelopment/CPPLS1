@@ -1,4 +1,6 @@
 #include "hero.h"
+#include <algorithm>
+
 
 using namespace game;
 using namespace boost;
@@ -198,4 +200,24 @@ void game::SaveHero(const Hero& hero, std::error_code& errorBuffer)
 void Hero::Heal(int amount)
 {
 	lifePoints += amount;
+}
+
+std::vector<items::Item*> Hero::GetItems() {
+	return items;
+}
+
+void Hero::AddItem(items::Item* item) {
+
+	if (std::find(items.begin(), items.end(), item) == items.end())	{
+		// item is already in bag, add quantity
+		for (auto i : items) {
+			if (i->name == item->name) {
+				i->amount++;
+			}
+		}
+	}
+	else {
+		items.push_back(item);
+		// item is not in bag, add
+	}
 }

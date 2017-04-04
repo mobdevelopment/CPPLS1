@@ -7,6 +7,7 @@ Game::Game() :
 	isRunning(false),
 	isCleared(true),
 	enableRandomMonsters(true),
+	enableRandomItems(true),
 	dungeonLayer(0)
 {
 }
@@ -22,6 +23,10 @@ void Game::Start()
 	if (enableRandomMonsters)
 	{
 		container = game::GetSavedMonsters();
+	}
+	if (enableRandomItems) {
+		//TODO
+		encounterableItems = items::GetSavedItems();
 	}
 
 	isRunning = true;
@@ -117,6 +122,15 @@ game::Monster* Game::GetMonster()
 }
 
 //TODO item
+void Game::EnableRandomItems(const bool enable) {
+	//itemContainer = /*list of items*/
+	enableRandomItems = enable;
+}
+
+bool Game::EnableRandomItems() const {
+	return enableRandomItems;
+}
+
 const bool Game::HasItem() const {
 	if (auto room = dynamic_cast<nodes::Room*>(heroLocation)) {
 		return room->HasItem();
@@ -124,7 +138,7 @@ const bool Game::HasItem() const {
 	return false;
 }
 
-game::Item* Game::GetItem() {
+game::items::Item* Game::GetItem() {
 	return static_cast<nodes::Room*>(heroLocation)->GetItem();
 }
 
@@ -266,12 +280,20 @@ const void Game::OnMove()
 				// generate item
 				if (!room->HasMonster())
 				{
-					int min = 0, max = 100;
+					int min = 0, max = encounterableItems.size()-1;
 					double itemSpawn = (rand() % (max - min + 1)) + min;
 
 					if (itemSpawn < 200)
 					{
-						//room->SetItem(item);
+						int min = 0, max = encounterableItems.size() - 1;
+						double randItem = (rand() % (max - min + 1)) + min;
+						
+						hero.AddItem(encounterableItems[randItem]);
+						room->SetItem(encounterableItems[randItem]);
+						std::cout << "You found a " << encounterableItems[randItem]->name << "! The " << encounterableItems[randItem]->name << " has been put in your bag." << std::endl;
+
+						
+
 					}
 				}
 			}

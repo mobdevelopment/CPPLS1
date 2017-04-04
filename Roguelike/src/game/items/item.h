@@ -1,6 +1,10 @@
 #ifndef _GAME_ITEMS_ITEM_H_
 #define _GAME_ITEMS_ITEM_H_
 
+#include <string>
+#include <vector>
+#include <unordered_map>
+
 #include "../hero.h"
 
 
@@ -10,19 +14,30 @@ namespace game {
 
 	namespace items {
 	
+		class Item;
+
+		/*typedef std::unordered_map<int, Item> ItemsContainer;*/
 
 		class Item
 		{
 		private:
 
 		public:
-			int amount;
+			std::string	name;
+			std::string effect;
+			int amount = 0;
 
 			Item() noexcept;
 			~Item() noexcept;
+			Item(int amount) noexcept;
+			virtual void SetName();
+			virtual void SetEffect();
 
 			virtual void Use(Hero* h);
 		};
+
+		//std::vector<game::items::Item*> encounterableItems;
+		std::vector<game::items::Item*> GetSavedItems();
 	}
 }
 
