@@ -57,6 +57,10 @@ namespace game
 		const bool HasMonster() const;
 		game::Monster* GetMonster();
 
+		// TODO Item
+		const bool HasItem() const;
+		game::Item* GetItem();
+
 		nodes::Space* GetHeroLocation();
 		const nodes::Space* MoveUp();
 		const nodes::Space* MoveDown();

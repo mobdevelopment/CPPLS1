@@ -10,10 +10,16 @@
 
 #include "space.h"
 #include "../monster.h"
+#include "../items/item.h"
 
 namespace game
 {
 	class Monster;
+
+	namespace items
+	{
+		class Item;
+	}
 namespace nodes
 {
 	class Corridor;
@@ -74,6 +80,7 @@ namespace nodes
 		RoomCleanliness		roomCleanliness;
 		RoomFurniture		roomFurniture;
 		Monster				monster;
+		items::Item			item;
 
 		Room();
 
@@ -84,6 +91,12 @@ namespace nodes
 		Monster* GetMonster();
 		void SetMonster(Monster monster);
 		bool HasMonster();
+
+		items::Item * GetItem();
+		void SetItem(items::Item i);
+		bool HasItem();
+
+
 	};
 } // namespace nodes
 } // namespace game

@@ -65,3 +65,20 @@ bool Room::HasMonster()
 {
 	return !monster.name.empty();
 }
+
+game::items::Item* Room::GetItem()
+{
+	return &item;
+}
+
+void Room::SetItem(game::items::Item i)
+{
+	item = i
+}
+
+bool Room::HasItem()
+{
+	return !item.name.empy();
+}
+
+

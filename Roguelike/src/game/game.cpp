@@ -116,6 +116,18 @@ game::Monster* Game::GetMonster()
 	return static_cast<nodes::Room*>(heroLocation)->GetMonster();
 }
 
+//TODO item
+const bool Game::HasItem() const {
+	if (auto room = dynamic_cast<nodes::Room*>(heroLocation)) {
+		return room->HasItem();
+	}
+	return false;
+}
+
+game::Item* Game::GetItem() {
+	return static_cast<nodes::Room*>(heroLocation)->GetItem();
+}
+
 nodes::Space* Game::GetHeroLocation()
 {
 	return heroLocation;

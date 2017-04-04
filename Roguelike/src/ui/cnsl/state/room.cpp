@@ -76,6 +76,10 @@ void Room::DrawConsole() const
 			else
 				std::cout << std::endl << "There is a deceased " << room->GetMonster()->name << " in this room" << std::endl;
 		}
+		//TODO
+		if (room->HasItem()) {
+			std::cout << std::endl << "You found a : " << room.getItem()->name << " in this room" << std::endl;
+		}
 	}
 }
 
