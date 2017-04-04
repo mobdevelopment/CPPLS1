@@ -161,6 +161,23 @@ Hero game::GetSavedHero(std::string heroName, std::error_code& errorBuffer)
 	}
 }
 
+void game::Hero::AddExp(int exp)
+{
+	experiencePoints += exp;
+
+	if (experiencePoints > getLevelExp(level + 1))
+	{
+		level++;
+	}
+}
+
+const int game::getLevelExp(const int xplevel)
+{
+	if (xplevel == 1)
+		return 100;
+	return getLevelExp(xplevel - 1) + (getLevelExp(xplevel - 1) * 1.1); // xp prev level + (xp prev level + 10%)
+}
+
 void game::SaveHero(const Hero& hero)
 {
 	WriteHero(std::ofstream(HERO_FILES_FOLDER + '/' + hero.name + HERO_FILE_EXTENSION), hero);
@@ -182,4 +199,3 @@ void Hero::Heal(int amount)
 {
 	lifePoints += amount;
 }
-
