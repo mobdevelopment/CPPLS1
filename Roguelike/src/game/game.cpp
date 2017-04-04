@@ -197,13 +197,24 @@ const void Game::OnMove()
 
 					if (perc < 100)
 					{
+						int maxLevel = 0;
+
+						for (auto m : container)
+						{
+							if (m.second.level != Monster::boss)
+								if (m.second.level > maxLevel)
+									maxLevel = m.second.level;
+						}
+						maxLevel++; // always count the boss as the lastlevel
+
 						Monster monster;
 						int sumWeight = 0;
 						for (auto mp : container)
 						{
 							Monster m = mp.second;
-							int level = (m.level == Monster::boss) ? 10 : m.level;
-							sumWeight += dungeon.GetLayers().size() - (abs(int(dungeonLayer - level)));
+							int level = (m.level == Monster::boss) ? maxLevel : m.level;
+							int correctedLevel = level * (dungeon.GetLayers().size() / maxLevel);
+							sumWeight += dungeon.GetLayers().size() - (abs(int(dungeonLayer - correctedLevel)));
 						}
 
 						int mperc = (rand() % (sumWeight - 0 + 1)) + 0;
@@ -214,7 +225,8 @@ const void Game::OnMove()
 						{
 							Monster m = mp.second;
 							int level = (m.level == Monster::boss) ? 10 : m.level;
-							curWeight += dungeon.GetLayers().size() - (abs(int(dungeonLayer - level)));
+							int correctedLevel = level * (dungeon.GetLayers().size() / maxLevel);
+							curWeight += dungeon.GetLayers().size() - (abs(int(dungeonLayer - correctedLevel)));
 
 							if (curWeight >= mperc)
 							{
