@@ -13,7 +13,7 @@ namespace game
 			Potion() noexcept;
 			~Potion() noexcept;
 
-			void Use();
+			void Use(Hero* h);
 		};
 	}
 

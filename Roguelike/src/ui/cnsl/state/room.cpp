@@ -112,6 +112,13 @@ void Room::GetAvailableCommands(std::vector<CommandDescription>& commandDescript
 
 			commandDescriptionsBuffer.emplace_back(std::move(fightCommandDescription));
 		}
+
+		if (context.game.GetHero().items.size() == 0) {
+			CommandDescription itemCommandDescription;
+			itemCommandDescription.command = "Bag";
+			itemCommandDescription.description = "Use an item from your bag";
+			commandDescriptionsBuffer.emplace_back(std::move(itemCommandDescription));
+		}
 	}
 
 	commandDescriptionsBuffer.emplace_back(std::move(moveCommandDescription));

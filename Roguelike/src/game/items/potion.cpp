@@ -8,9 +8,8 @@ game::items::Potion::~Potion() noexcept
 {
 }
 
-void game::items::Potion::Use()
+void game::items::Potion::Use(Hero* h)
 {
 	// increase hero health some way
-
-	delete this;
+	h->Heal(10);
 }

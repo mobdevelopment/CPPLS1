@@ -120,6 +120,9 @@
     <ClCompile Include="src\ui\cnsl\state\fight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\ui\cnsl\state\bag.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\main.h">
@@ -243,6 +246,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\ui\cnsl\state\fight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\cnsl\state\bag.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

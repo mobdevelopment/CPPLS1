@@ -3,11 +3,13 @@
 
 #include <system_error>
 #include <string>
+#include <vector>
 #include <fstream>
 #include <sstream>
 #include <unordered_map>
 #include <stdlib.h>
 
+#include "items/item.h"
 #include <boost/filesystem.hpp>
 
 #include "errorcategory.h"
@@ -15,6 +17,7 @@
 namespace game
 {
 	class Hero;
+	class Item;
 
 	typedef std::unordered_map<std::string, Hero> HeroesContainer;
 
@@ -30,6 +33,10 @@ namespace game
 		int				attackAmount = 0;
 		int				defenseChance = 0;
 		int				lifePoints = 0;
+		std::vector<Item*> items;
+		
+		
+		void Heal(int amount);
 	}; // class Hero
 
 	const std::string& GetRandomHeroName() noexcept;
@@ -47,6 +54,8 @@ namespace game
 
 	void SaveHero(const Hero& hero);
 	void SaveHero(const Hero& hero, std::error_code& errorBuffer);
+
+	
 }
 
 #endif // #ifndef GAME_HERO_HEADER_INCLUDED

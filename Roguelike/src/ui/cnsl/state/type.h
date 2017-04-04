@@ -15,7 +15,8 @@ namespace state
 		DUNGEON_SELECTION,
 		FIGHT,
 		MAP,
-		ROOM
+		ROOM,
+		BAG
 	}; // enum class Type
 } // namespace state
 } // namespace cnsl

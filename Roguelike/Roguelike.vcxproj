@@ -178,6 +178,7 @@
     <ClCompile Include="src\game\nodes\stairsup.cpp" />
     <ClCompile Include="src\game\nodes\verticalcorridor.cpp" />
     <ClCompile Include="src\game\nodes\visitor.cpp" />
+    <ClCompile Include="src\ui\cnsl\state\bag.cpp" />
     <ClCompile Include="src\ui\cnsl\state\context.cpp" />
     <ClCompile Include="src\ui\cnsl\state\dungeonselection.cpp" />
     <ClCompile Include="src\ui\cnsl\state\fight.cpp" />
@@ -219,6 +220,7 @@
     <ClInclude Include="src\game\nodes\verticalcorridor.h" />
     <ClInclude Include="src\game\nodes\visitor.h" />
     <ClInclude Include="src\ui\cnsl\commanddescription.h" />
+    <ClInclude Include="src\ui\cnsl\state\bag.h" />
     <ClInclude Include="src\ui\cnsl\state\context.h" />
     <ClInclude Include="src\ui\cnsl\state\dungeonselection.h" />
     <ClInclude Include="src\ui\cnsl\state\fight.h" />

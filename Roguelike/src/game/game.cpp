@@ -238,6 +238,18 @@ const void Game::OnMove()
 						room->SetMonster(monster);
 					}
 				}
+				// TODO
+				// generate item
+				if (!room->HasMonster())
+				{
+					int min = 0, max = 100;
+					double itemSpawn = (rand() % (max - min + 1)) + min;
+
+					if (itemSpawn < 200)
+					{
+						//room->SetItem(item);
+					}
+				}
 			}
 		}
 	}

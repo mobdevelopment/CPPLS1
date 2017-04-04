@@ -177,3 +177,9 @@ void game::SaveHero(const Hero& hero, std::error_code& errorBuffer)
 		errorBuffer = exception.code();
 	}
 }
+
+void Hero::Heal(int amount)
+{
+	lifePoints += amount;
+}
+
