@@ -8,6 +8,16 @@ const Type Bag::TYPE(Type::BAG);
 void Bag::BagCommandHandler(utils::cmd::Command& command)
 {
 	std::string itemName = command.GetParameter<std::string>(0);
+	auto hero = context.game.GetHero();
+	auto items = hero.GetItems();
+	for (auto i : items) {
+		if (i->amount > 0 && boost::iequals(i->name, itemName)) {
+			i->Use(&hero);
+			/*if (i->amount == 0) {
+
+			}*/
+		}
+	}
 
 	// Check if the hero exists.
 	/*if (items.find(itemName) == items.end())
@@ -40,36 +50,41 @@ void Bag::Initialize()
 	else
 		context.userInterface.SetState(Type::ROOM);*/
 
-	auto items = context.hero.items;
-
+	
 	// Register commands.
-	context.userInterface.RegisterCommand<std::string>("Select", std::bind(&Bag::BagCommandHandler, this, std::placeholders::_1));
+	context.userInterface.RegisterCommand<std::string>("Use", std::bind(&Bag::BagCommandHandler, this, std::placeholders::_1));
 }
 
 void Bag::Terminate()
 {
 	// Unregister commands.
-	context.userInterface.UnregisterCommand("Select");
+	context.userInterface.UnregisterCommand("Use");
 }
 
 void Bag::DrawConsole() const
 {
-	/*auto i = context.game.GetHero().items;
-	std::cout << std::endl << "You have " << i.size() << " items in your bag" << std::endl;*/
+	auto hero = context.game.GetHero();
+	auto items = hero.GetItems();
 
-	/*std::cout << "Item selection" << std::endl;
+	std::cout << "Bag" << std::endl << std::endl;
 
-	for (const auto& item : items)
-	{
-		std::cout << std::endl << item.name << ", amount: " << item.amount << ", effect: " << item.effect;
-	}*/
+	if (items.size() > 0) {
+		for (auto i : items) {
+			if (i->amount > 0) {
+				std::cout << "name: " << i->name << ", amount: " << i->amount << "x, effect: " << i->effect << std::endl;
+			}
+		}
+	}
+	else {
+		std::cout << "The bag is currently empty";
+	}
 }
 
 void Bag::GetAvailableCommands(std::vector<CommandDescription>& commandDescriptionsBuffer) const
 {
 	CommandDescription selectCommandDescription;
-	selectCommandDescription.command = "Select";
-	selectCommandDescription.description = "Select your item!";
+	selectCommandDescription.command = "Use";
+	selectCommandDescription.description = "Use your item!";
 	selectCommandDescription.parameters.emplace_back("item");
 
 	commandDescriptionsBuffer.emplace_back(std::move(selectCommandDescription));

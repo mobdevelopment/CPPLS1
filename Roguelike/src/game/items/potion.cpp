@@ -22,4 +22,5 @@ void game::items::Potion::Use(Hero* h)
 {
 	// increase hero health some way
 	h->Heal(10);
+	amount--;
 }

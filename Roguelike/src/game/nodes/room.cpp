@@ -66,14 +66,14 @@ bool Room::HasMonster()
 	return !monster.name.empty();
 }
 
-game::items::Item* Room::GetItem()
+game::items::Item Room::GetItem()
 {
-	return &item;
+	return item;
 }
 
-void Room::SetItem(game::items::Item* i)
+void Room::SetItem(game::items::Item i)
 {
-	//item = i;
+	item = i;
 }
 
 bool Room::HasItem()

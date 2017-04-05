@@ -52,6 +52,8 @@ void Room::Initialize()
 	context.userInterface.RegisterCommand<std::string>("Move", std::bind(&Room::MoveCommandHandler, this, std::placeholders::_1));
 
 	context.userInterface.RegisterCommand("Fight", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::FIGHT);  });
+
+	context.userInterface.RegisterCommand("Bag", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::BAG);  });
 }
 
 void Room::Terminate()
@@ -79,7 +81,7 @@ void Room::DrawConsole() const
 		//TODO::
 		// check if item was already picked up
 		if (room->HasItem()) {
-			std::cout << std::endl << "You found a : " << room->GetItem()->name << " in this room" << std::endl;
+			std::cout << std::endl << "You found a : " << room->GetItem().name << "! The " << room->GetItem().name << " has been put in your bag." << std::endl;
 		}
 	}
 }
@@ -118,12 +120,10 @@ void Room::GetAvailableCommands(std::vector<CommandDescription>& commandDescript
 			commandDescriptionsBuffer.emplace_back(std::move(fightCommandDescription));
 		}
 		// TODO
-		if (context.game.GetHero().items.size() == 0) {
 			CommandDescription itemCommandDescription;
 			itemCommandDescription.command = "Bag";
 			itemCommandDescription.description = "Use an item from your bag";
 			commandDescriptionsBuffer.emplace_back(std::move(itemCommandDescription));
-		}
 	}
 
 	commandDescriptionsBuffer.emplace_back(std::move(moveCommandDescription));

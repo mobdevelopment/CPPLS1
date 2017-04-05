@@ -208,7 +208,7 @@ std::vector<items::Item*> Hero::GetItems() {
 
 void Hero::AddItem(items::Item* item) {
 
-	if (std::find(items.begin(), items.end(), item) == items.end())	{
+	if (!items.empty() && std::find(items.begin(), items.end(), item) != items.end())	{
 		// item is already in bag, add quantity
 		for (auto i : items) {
 			if (i->name == item->name) {

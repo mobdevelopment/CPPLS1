@@ -10,6 +10,7 @@
 
 #include "../commanddescription.h"
 #include "../userinterface.h"
+#include <boost\algorithm\string.hpp>
 
 #include "base.h"
 #include "type.h"

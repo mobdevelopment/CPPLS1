@@ -138,7 +138,7 @@ const bool Game::HasItem() const {
 	return false;
 }
 
-game::items::Item* Game::GetItem() {
+game::items::Item Game::GetItem() {
 	return static_cast<nodes::Room*>(heroLocation)->GetItem();
 }
 
@@ -221,7 +221,7 @@ const void Game::OnMove()
 					int min = 0, max = 100;
 					double perc = (rand() % (max - min + 1)) + min;
 
-					if (perc < 100)
+					if (perc < MONSTER_SPAWN_CHANCE)
 					{
 						int maxLevel = 0;
 
@@ -278,21 +278,19 @@ const void Game::OnMove()
 				}
 				// TODO
 				// generate item
-				if (!room->HasMonster())
+				if (!room->HasItem())
 				{
-					int min = 0, max = encounterableItems.size()-1;
+					int min = 0, max = 100;
 					double itemSpawn = (rand() % (max - min + 1)) + min;
 
-					if (itemSpawn < 200)
+					if (itemSpawn < ITEM_SPAWN_CHANCE)
 					{
 						int min = 0, max = encounterableItems.size() - 1;
 						double randItem = (rand() % (max - min + 1)) + min;
 						
 						hero.AddItem(encounterableItems[randItem]);
-						room->SetItem(encounterableItems[randItem]);
-						std::cout << "You found a " << encounterableItems[randItem]->name << "! The " << encounterableItems[randItem]->name << " has been put in your bag." << std::endl;
 
-						
+						room->SetItem(*encounterableItems[randItem]);		
 
 					}
 				}

@@ -22,7 +22,7 @@ void game::items::Item::SetEffect()
 {
 }
 
-void game::items::Item::Use(Hero * h)
+void game::items::Item::Use(Hero* h)
 {
 }
 
