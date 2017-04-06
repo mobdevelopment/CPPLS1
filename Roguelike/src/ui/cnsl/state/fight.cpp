@@ -76,7 +76,7 @@ std::vector<std::string> Fight::AttackByEnemy()
 					{
 						int damage = (rand() % (monster->maxDamage - monster->minDamage));
 						context.hero.lifePoints -= damage;
-						if (hero->lifePoints <= 0) {
+						if (hero.lifePoints <= 0) {
 							output.push_back("The" + monster->name + " attacked and killed " + hero.name);
 							return output; // end the attack
 						}
