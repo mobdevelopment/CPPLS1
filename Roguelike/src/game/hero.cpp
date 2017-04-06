@@ -54,7 +54,7 @@ Hero game::ParseHero(std::istream& stream)
 
 	// Then its spaces seperating the values.
 	sstream >> hero.level;
-	sstream >> hero.lifePoints;
+	sstream >> hero.maxLifePoints;
 	sstream >> hero.experiencePoints;
 	sstream >> hero.attackChance;
 	sstream >> hero.defenseChance;
@@ -89,7 +89,7 @@ void game::WriteHero(std::ostream& stream, const Hero& hero)
 	// Stats on the first line.
 	stream << hero.name << ',' <<
 		hero.level << ' ' <<
-		hero.lifePoints << ' ' <<
+		hero.maxLifePoints << ' ' <<
 		hero.experiencePoints << ' ' <<
 		hero.attackChance << ' ' <<
 		hero.defenseChance << ' ' <<
@@ -170,6 +170,17 @@ void game::Hero::AddExp(int exp)
 	if (experiencePoints > getLevelExp(level + 1))
 	{
 		level++;
+
+		if (level % 2 == 0)
+			minDamage += (rand() % (1 - 0 + 1)) + 0;
+		if (level % 2 == 1)
+			maxDamage += (rand() % (1 - 0 + 1)) + 0;
+		if (level % 4 == 0)
+			attackChance += (rand() % (5 - 1 + 1)) + 1;
+		if (level % 5 == 0)
+			attackAmount += (rand() % (1 - 0 + 1)) + 0;
+		if (level % 10 == 0)
+			maxLifePoints += 10; // No chance, always add 10 
 	}
 }
 

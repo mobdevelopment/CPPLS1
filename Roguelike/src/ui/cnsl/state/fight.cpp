@@ -58,9 +58,10 @@ std::vector<std::string> Fight::AttackByEnemy()
 	if (context.game.HasMonster())
 	{
 		auto monster = context.game.GetMonster();
-		if (monster->lifePoints > 0)
-		{
-			for (int a = 0; a < monster->attackAmount; a++) {
+		
+		for (int a = 0; a < monster->attackAmount; a++) {
+			if (monster->lifePoints > 0 && hero.lifePoints > 0)
+			{
 				int min = 0, max = 100;
 				double attackChance = (rand() % (max - min + 1)) + min;
 
@@ -75,7 +76,13 @@ std::vector<std::string> Fight::AttackByEnemy()
 					{
 						int damage = (rand() % (monster->maxDamage - monster->minDamage));
 						context.hero.lifePoints -= damage;
-						output.push_back("The " + monster->name + " attacked and did " + std::to_string(damage) + "hp damage");
+						if (hero->lifePoints <= 0) {
+							output.push_back("The" + monster->name + " attacked and killed " + hero.name);
+							return output; // end the attack
+						}
+						else {
+							output.push_back("The " + monster->name + " attacked and did " + std::to_string(damage) + "hp damage");
+						}
 					}
 				}
 				else
@@ -101,7 +108,7 @@ std::vector<std::string> Fight::AttackByHero()
 		auto monster = context.game.GetMonster();
 		
 		for (int a = 0; a < hero.attackAmount; a++) {
-			if (monster->lifePoints > 0)
+			if (monster->lifePoints > 0 && hero.lifePoints > 0)
 			{
 				int min = 0, max = 100;
 				double attackChance = (rand() % (max - min + 1)) + min;
@@ -119,6 +126,7 @@ std::vector<std::string> Fight::AttackByHero()
 						monster->lifePoints -= damage;
 						if (monster->lifePoints <= 0) {
 							output.push_back(hero.name + " attacked and killed the " + monster->name);
+							return output; // end the attack
 						}
 						else {
 							output.push_back(hero.name + " attacked and did " + std::to_string(damage) + "hp damage");

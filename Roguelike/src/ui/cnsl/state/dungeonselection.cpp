@@ -7,6 +7,8 @@ const Type DungeonSelection::TYPE(Type::DUNGEON_SELECTION);
 
 void DungeonSelection::StartCommandHandler(utils::cmd::Command& command)
 {
+
+	context.hero.lifePoints = context.hero.maxLifePoints;
 	context.game.RandomizeDungeon(dungeonLayers, dungeonWidth, dungeonHeight, dungeonSeed);
 	context.game.SetHero(context.hero);
 	context.game.Start();
