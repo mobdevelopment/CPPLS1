@@ -15,7 +15,7 @@ void game::items::Potion::SetName()
 
 void game::items::Potion::SetEffect()
 {
-	effect = "Heals the players health by 10 hp";
+	effect = "A spray-type medicine for treating wounds. It can be used to restore 10 HP to an injured hero.";
 }
 
 void game::items::Potion::Use(Hero* h)

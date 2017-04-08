@@ -25,7 +25,7 @@ void Game::Start()
 		container = game::GetSavedMonsters();
 	}
 	if (enableRandomItems) {
-		//TODO
+
 		encounterableItems = items::GetSavedItems();
 	}
 
@@ -121,7 +121,6 @@ game::Monster* Game::GetMonster()
 	return static_cast<nodes::Room*>(heroLocation)->GetMonster();
 }
 
-//TODO item
 void Game::EnableRandomItems(const bool enable) {
 	//itemContainer = /*list of items*/
 	enableRandomItems = enable;
@@ -276,7 +275,6 @@ const void Game::OnMove()
 						room->SetMonster(monster);
 					}
 				}
-				// TODO
 				// generate item
 				if (!room->HasItem())
 				{

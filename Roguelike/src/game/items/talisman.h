@@ -12,8 +12,11 @@ namespace game
 		public:
 			Talisman() noexcept;
 			~Talisman() noexcept;
+			Talisman(int amount) : Item(amount) {};
 
-			void Use();
+			void SetName();
+			void SetEffect();
+			void Use(Hero* h);
 		};
 	}
 

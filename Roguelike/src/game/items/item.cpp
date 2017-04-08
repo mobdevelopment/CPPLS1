@@ -1,5 +1,7 @@
 #include "item.h"
 #include "potion.h"
+#include "talisman.h"
+#include "rarecandy.h"
 
 game::items::Item::Item() noexcept
 {
@@ -30,6 +32,8 @@ std::vector<game::items::Item*> game::items::GetSavedItems() {
 	// TODO add more items, update item classes
 	std::vector<game::items::Item*>encounterableItems; 
 	encounterableItems.push_back(new game::items::Potion(1));
+	encounterableItems.push_back(new game::items::Talisman(1));
+	encounterableItems.push_back(new game::items::RareCandy(1));
 
 	for (auto i : encounterableItems)
 	{
