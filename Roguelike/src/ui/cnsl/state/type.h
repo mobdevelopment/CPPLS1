@@ -14,6 +14,7 @@ namespace state
 		HERO_SELECTION,
 		DUNGEON_SELECTION,
 		FIGHT,
+		GAMEOVER,
 		MAP,
 		ROOM,
 		BAG

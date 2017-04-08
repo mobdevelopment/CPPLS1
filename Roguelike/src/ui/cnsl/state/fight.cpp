@@ -13,7 +13,7 @@ void Fight::FightCommandHandler(utils::cmd::Command& command)
 	if (context.game.HasMonster())
 	{
 		auto monster = context.game.GetMonster();
-		if (monster->lifePoints > 0)
+		if (monster->lifePoints > 0 && context.hero.lifePoints > 0)
 		{
 			std::vector<std::string> heroOutput, monsterOutput;
 
@@ -36,12 +36,23 @@ void Fight::FightCommandHandler(utils::cmd::Command& command)
 				secondOutput += value + "\n";
 			}
 
+			if (context.hero.lifePoints <= 0)
+			{
+				context.userInterface.SetState(Type::GAMEOVER);
+				return;
+			}
+
 			context.userInterface.DrawConsole(firstOutput + "\n" + secondOutput + "\n\nYou still have " + std::to_string(context.hero.lifePoints));
 			return;
 		}
 		else
 		{
-			context.userInterface.DrawConsole(monster->name + " is already deceased");
+			if (context.hero.lifePoints > 0)
+				context.userInterface.DrawConsole(monster->name + " is already deceased");
+			else
+			{
+				context.userInterface.SetState(Type::GAMEOVER);
+			}
 		}
 	}
 
@@ -125,7 +136,14 @@ std::vector<std::string> Fight::AttackByHero()
 						int damage = (rand() % (hero.maxDamage - hero.minDamage + 1)) + hero.minDamage;
 						monster->lifePoints -= damage;
 						if (monster->lifePoints <= 0) {
+							int oldLevel = context.hero.level;
+							context.hero.AddExp(100 + (monster->level * 10));
 							output.push_back(hero.name + " attacked and killed the " + monster->name);
+							if (context.hero.level > oldLevel)
+							{
+								output.push_back(hero.name + " leveled up");
+							}
+							
 							return output; // end the attack
 						}
 						else {
@@ -183,7 +201,7 @@ void Fight::GetAvailableCommands(std::vector<CommandDescription>& commandDescrip
 
 	commandDescriptionsBuffer.emplace_back(std::move(fleeCommandDescription));
 
-	if (context.game.HasMonster() && context.game.GetMonster()->lifePoints > 0)
+	if (context.game.HasMonster() && context.game.GetMonster()->lifePoints > 0 && context.hero.lifePoints > 0)
 	{
 		CommandDescription fightCommandDescription;
 		fightCommandDescription.command = "Fight";

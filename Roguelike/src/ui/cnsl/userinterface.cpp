@@ -4,6 +4,16 @@ using namespace ui::cnsl;
 
 void UserInterface::ExitCommandHandler(utils::cmd::Command& command)
 {
+	Exit();
+}
+
+void UserInterface::GameOver()
+{
+	gameOver = true;
+}
+
+void UserInterface::Exit() noexcept
+{
 	shouldExit = true;
 }
 
@@ -150,16 +160,19 @@ std::vector<CommandDescription> UserInterface::GetAvailableCommands() const
 	if (GetState() != nullptr)
 		GetState()->GetAvailableCommands(commandDescriptions);
 
-	CommandDescription backCommandDescription;
-	backCommandDescription.command = "Back";
-	backCommandDescription.description = "Go to the previous screen.";
+	if (!gameOver)
+	{
+		CommandDescription backCommandDescription;
+		backCommandDescription.command = "Back";
+		backCommandDescription.description = "Go to the previous screen.";
 
-	CommandDescription exitCommandDescription;
-	exitCommandDescription.command = "Exit";
-	exitCommandDescription.description = "Exit the game.";
-
-	commandDescriptions.emplace_back(std::move(backCommandDescription));
-	commandDescriptions.emplace_back(std::move(exitCommandDescription));
+		CommandDescription exitCommandDescription;
+		exitCommandDescription.command = "Exit";
+		exitCommandDescription.description = "Exit the game.";
+		
+		commandDescriptions.emplace_back(std::move(backCommandDescription));
+		commandDescriptions.emplace_back(std::move(exitCommandDescription));
+	}
 
 	return commandDescriptions;
 }

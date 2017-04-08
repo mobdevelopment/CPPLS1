@@ -179,8 +179,11 @@ void game::Hero::AddExp(int exp)
 			attackChance += (rand() % (5 - 1 + 1)) + 1;
 		if (level % 5 == 0)
 			attackAmount += (rand() % (1 - 0 + 1)) + 0;
-		if (level % 10 == 0)
+		if (level % 1 == 0)
+		{
 			maxLifePoints += 10; // No chance, always add 10 
+			lifePoints += 10;
+		}
 	}
 }
 

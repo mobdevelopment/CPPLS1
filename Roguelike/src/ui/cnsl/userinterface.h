@@ -41,6 +41,7 @@ namespace cnsl
 		state::Context		stateContext;
 
 		bool				shouldExit		= false;
+		bool				gameOver		= false;
 
 		void ExitCommandHandler(utils::cmd::Command& command);
 		void BackCommandHandler(utils::cmd::Command& command);
@@ -60,6 +61,8 @@ namespace cnsl
 		void ClearConsole() const noexcept;
 		void DrawConsole() const;
 		void DrawConsole(const std::string extraMessage) const;
+		void GameOver();
+		void Exit() noexcept;
 		std::vector<CommandDescription> GetAvailableCommands() const;
 	}; // class UserInterface
 } // namespace cnsl
