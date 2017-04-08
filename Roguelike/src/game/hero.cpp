@@ -213,7 +213,13 @@ void game::SaveHero(const Hero& hero, std::error_code& errorBuffer)
 
 void Hero::Heal(int amount)
 {
-	lifePoints += amount;
+	if ((lifePoints + amount) <= maxLifePoints) {
+		lifePoints += amount;
+	}
+	else {
+		lifePoints = maxLifePoints;
+	}
+	
 }
 
 std::vector<items::Item*> Hero::GetItems() {
