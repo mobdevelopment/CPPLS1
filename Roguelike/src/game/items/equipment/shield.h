@@ -17,7 +17,7 @@ namespace game
 			public:
 				Shield() noexcept;
 				~Shield() noexcept;
-				//Shield(int amount) : Equipment(amount) {};
+				Shield(int amount) : Equipment(amount) {};
 				int limit = 1;
 
 				void SetName();
