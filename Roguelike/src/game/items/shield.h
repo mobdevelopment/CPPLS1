@@ -13,7 +13,7 @@ namespace game
 			Shield() noexcept;
 			~Shield() noexcept;
 			Shield(int amount) : Item(amount) {};
-			const int limit = 1;
+			int limit = 1;
 
 			void SetName();
 			void SetEffect();

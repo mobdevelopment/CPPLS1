@@ -1,4 +1,5 @@
 #include "room.h"
+#include "../items/item.h"
 #include "horizontalcorridor.h"
 #include "verticalcorridor.h"
 

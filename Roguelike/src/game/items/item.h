@@ -26,7 +26,7 @@ namespace game {
 			std::string	name;
 			std::string effect;
 			int amount = 0;
-			const int limit = -1;
+			int limit = -1;
 
 			Item() noexcept;
 			~Item() noexcept;

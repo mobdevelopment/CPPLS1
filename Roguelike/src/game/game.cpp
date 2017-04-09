@@ -293,7 +293,7 @@ const void Game::OnMove()
 							hero.AddItem(item);
 						}
 
-						room->SetItem(*encounterableItems[randItem]);
+						room->SetItem(*item);
 
 					}
 				}

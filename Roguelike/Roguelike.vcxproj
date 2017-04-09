@@ -164,6 +164,7 @@
     <ClCompile Include="src\game\items\grenade.cpp" />
     <ClCompile Include="src\game\items\item.cpp" />
     <ClCompile Include="src\game\items\potion.cpp" />
+    <ClCompile Include="src\game\items\rarecandy.cpp" />
     <ClCompile Include="src\game\items\shield.cpp" />
     <ClCompile Include="src\game\items\talisman.cpp" />
     <ClCompile Include="src\game\items\weapon.cpp" />
@@ -204,6 +205,7 @@
     <ClInclude Include="src\game\items\grenade.h" />
     <ClInclude Include="src\game\items\item.h" />
     <ClInclude Include="src\game\items\potion.h" />
+    <ClInclude Include="src\game\items\rarecandy.h" />
     <ClInclude Include="src\game\items\shield.h" />
     <ClInclude Include="src\game\items\talisman.h" />
     <ClInclude Include="src\game\items\weapon.h" />
