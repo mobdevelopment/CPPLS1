@@ -167,6 +167,7 @@
     <ClCompile Include="src\game\items\rarecandy.cpp" />
     <ClCompile Include="src\game\items\shield.cpp" />
     <ClCompile Include="src\game\items\talisman.cpp" />
+    <ClCompile Include="src\game\items\useable.cpp" />
     <ClCompile Include="src\game\items\weapon.cpp" />
     <ClCompile Include="src\game\hero.cpp" />
     <ClCompile Include="src\game\monster.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="src\game\items\rarecandy.h" />
     <ClInclude Include="src\game\items\shield.h" />
     <ClInclude Include="src\game\items\talisman.h" />
+    <ClInclude Include="src\game\items\useable.h" />
     <ClInclude Include="src\game\items\weapon.h" />
     <ClInclude Include="src\game\hero.h" />
     <ClInclude Include="src\game\monster.h" />
