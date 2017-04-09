@@ -8,7 +8,18 @@ game::items::Weapon::~Weapon() noexcept
 {
 }
 
-void game::items::Weapon::Use()
+void game::items::Weapon::SetName()
 {
-	// decrease target health
+	name = "";
+}
+
+void game::items::Weapon::SetEffect()
+{
+	effect = "";
+
+}
+
+void game::items::Weapon::Use(Hero * h)
+{
+	amount--;
 }

@@ -5,14 +5,14 @@ namespace game
 {
 	namespace items
 	{
-		class Weapon : public Item
+		class RareCandy : public Item
 		{
 		private:
 
 		public:
-			Weapon() noexcept;
-			~Weapon() noexcept;
-			Weapon(int amount) : Item(amount) {};
+			RareCandy() noexcept;
+			~RareCandy() noexcept;
+			RareCandy(int amount) : Item(amount) {};
 
 			void SetName();
 			void SetEffect();
@@ -21,3 +21,4 @@ namespace game
 	}
 
 }
+#pragma once

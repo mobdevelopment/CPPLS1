@@ -55,6 +55,8 @@ namespace game
 		
 		
 		void Heal(int amount);
+		void DefUp(int amount);
+		void RareCandy();
 
 		void AddExp(int exp);
 		std::vector<items::Item*> GetItems();

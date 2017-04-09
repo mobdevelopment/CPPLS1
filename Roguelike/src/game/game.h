@@ -62,7 +62,6 @@ namespace game
 		const bool HasMonster() const;
 		game::Monster* GetMonster();
 
-		// TODO Item
 		std::vector<game::items::Item*> encounterableItems;
 		void EnableRandomItems(const bool enable);
 		bool EnableRandomItems() const;
