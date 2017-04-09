@@ -12,8 +12,12 @@ namespace game
 		public:
 			Shield() noexcept;
 			~Shield() noexcept;
+			Shield(int amount) : Item(amount) {};
+			const int limit = 1;
 
-			void Use();
+			void SetName();
+			void SetEffect();
+			void Use(Hero* h);
 		};
 	}
 

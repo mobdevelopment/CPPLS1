@@ -287,10 +287,15 @@ const void Game::OnMove()
 					{
 						int min = 0, max = encounterableItems.size() - 1;
 						double randItem = (rand() % (max - min + 1)) + min;
-						
-						hero.AddItem(encounterableItems[randItem]);
 
-						room->SetItem(*encounterableItems[randItem]);		
+						auto item = encounterableItems[randItem];
+						
+						if (item->limit < 0 || (item->limit > item->amount))
+						{
+							hero.AddItem(item);
+						}
+
+						room->SetItem(*encounterableItems[randItem]);
 
 					}
 				}

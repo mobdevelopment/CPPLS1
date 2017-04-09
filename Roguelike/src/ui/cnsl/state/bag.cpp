@@ -13,27 +13,11 @@ void Bag::BagCommandHandler(utils::cmd::Command& command)
 	for (auto i : items) {
 		if (i->amount > 0 && boost::iequals(i->name, itemName)) {
 			i->Use(&hero);
-			/*if (i->amount == 0) {
-
-			}*/
 		}
 	}
 
-	// Check if the hero exists.
-	/*if (items.find(itemName) == items.end())
-	{
-		context.userInterface.DrawConsole("Item '" + itemName + "' doesn't exist.");
-		return;
-	}*/
-
-	// use item
-	//context.hero.
-
 	// Go to the dungeon selection state.
-	//context.userInterface.SetState(Type::DUNGEON_SELECTION);
-
-	// Go to the dungeon selection state.
-	//context.userInterface.SetState(Type::BAG);
+	context.userInterface.SetState(Type::BAG);
 }
 
 
