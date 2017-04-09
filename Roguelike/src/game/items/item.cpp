@@ -1,9 +1,7 @@
 #include "item.h"
-#include "potion.h"
-#include "shield.h"
-#include "weapon.h"
-#include "rarecandy.h"
-#include "talisman.h"
+
+#include "consumable.h"
+#include "equipment.h"
 
 game::items::Item::Item() noexcept
 {
@@ -22,7 +20,7 @@ void game::items::Item::SetName()
 {
 }
 
-void game::items::Item::SetEffect()
+void game::items::Item::SetDescription()
 {
 }
 
@@ -32,16 +30,24 @@ void game::items::Item::Use(Hero* h)
 
 std::vector<game::items::Item*> game::items::GetSavedItems() {
 	// TODO add more items, update item classes
-	std::vector<game::items::Item*>encounterableItems; 
-	encounterableItems.push_back(new game::items::Potion(1));
-	encounterableItems.push_back(new game::items::Shield(1));
-	encounterableItems.push_back(new game::items::Talisman(1));
-	encounterableItems.push_back(new game::items::RareCandy(1));
+	std::vector<game::items::Item*>encounterableItems;
+
+	// add consumables to encounterableItems
+	auto consumables = GetConsumables();
+	for (auto c : consumables) {
+		encounterableItems.push_back(c);
+	}
+	// add equipment to encounterableItems
+	//encounterableItems.push_back(new game::items::Shield(1));
+	auto equipments = GetEquipments();
+	for (auto e : equipments) {
+		encounterableItems.push_back(e);
+	}
 
 	for (auto i : encounterableItems)
 	{
 		i->SetName();
-		i->SetEffect();
+		i->SetDescription();
 	}
 	return encounterableItems;
 }

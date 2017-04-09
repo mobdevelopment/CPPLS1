@@ -24,7 +24,7 @@ namespace game {
 
 		public:
 			std::string	name;
-			std::string effect;
+			std::string description;
 			int amount = 0;
 			int limit = -1;
 
@@ -32,7 +32,7 @@ namespace game {
 			~Item() noexcept;
 			Item(int amount) noexcept;
 			virtual void SetName();
-			virtual void SetEffect();
+			virtual void SetDescription();
 
 			virtual void Use(Hero* h);
 		};

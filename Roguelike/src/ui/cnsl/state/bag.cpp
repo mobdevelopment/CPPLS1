@@ -55,7 +55,7 @@ void Bag::DrawConsole() const
 	if (items.size() > 0) {
 		for (auto i : items) {
 			if (i->amount > 0) {
-				std::cout << "name: " << i->name << ", amount: " << i->amount << "x, effect: " << i->effect << std::endl;
+				std::cout << "name: " << i->name << ", amount: " << i->amount << "x, description: " << i->description << std::endl;
 			}
 		}
 	}
