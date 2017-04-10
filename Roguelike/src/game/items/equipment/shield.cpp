@@ -22,9 +22,14 @@ void game::items::equipment::Shield::SetDescription()
 	//description = "Add an extra 10% defence possibility";
 }
 
+void game::items::equipment::Shield::SetIType()
+{
+	
+}
+
 void game::items::equipment::Shield::Use(Hero* h)
 {
-	/*if (h->leftHandInUse)
+	if (h->leftHandInUse)
 	{
 		h->extraDefenseChance -= 10;
 		h->defenseChance -= 10;
@@ -35,7 +40,7 @@ void game::items::equipment::Shield::Use(Hero* h)
 		h->extraDefenseChance += 10;
 		h->defenseChance += 10;
 		h->leftHandInUse = true;
-	}*/
+	}
 }
 
 std::vector<game::items::equipment::Shield*> game::items::equipment::GetShields()

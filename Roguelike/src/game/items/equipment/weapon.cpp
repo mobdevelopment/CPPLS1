@@ -12,23 +12,21 @@ game::items::equipment::Weapon::~Weapon() noexcept
 
 void game::items::equipment::Weapon::SetName()
 {
-	name = "";
 }
 
 void game::items::equipment::Weapon::SetDescription()
 {
-	description = "";
-
 }
 
-void game::items::equipment::Weapon::Equip(Hero * h)
+void game::items::equipment::Weapon::SetIType()
+{
+}
+
+void game::items::equipment::Weapon::Use(Hero * h)
 {
 	//amount--;
 }
 
-void game::items::equipment::Weapon::UnEquip(Hero* h) {
-
-}
 
 std::vector<game::items::equipment::Weapon*> game::items::equipment::GetWeapons()
 {

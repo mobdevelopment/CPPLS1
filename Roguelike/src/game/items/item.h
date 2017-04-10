@@ -15,6 +15,8 @@ namespace game {
 	namespace items {
 	
 		class Item;
+		class Consumable;
+		class Equipment;
 
 		/*typedef std::unordered_map<int, Item> ItemsContainer;*/
 
@@ -25,14 +27,17 @@ namespace game {
 		public:
 			std::string	name;
 			std::string description;
+			std::string iType;
 			int amount = 0;
 			int limit = -1;
 
 			Item() noexcept;
 			~Item() noexcept;
 			Item(int amount) noexcept;
+
 			virtual void SetName();
 			virtual void SetDescription();
+			virtual void SetIType();
 
 			virtual void Use(Hero* h);
 		};

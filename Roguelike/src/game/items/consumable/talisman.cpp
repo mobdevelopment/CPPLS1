@@ -16,7 +16,11 @@ void game::items::consumable::Talisman::SetName()
 void game::items::consumable::Talisman::SetDescription()
 {
 	description = "A nutritious drink. It raises the Defense chance of the hero by 2%.";
-	
+}
+
+void game::items::consumable::Talisman::SetIType()
+{
+	iType = "Consumable";
 }
 
 void game::items::consumable::Talisman::Use(Hero * h)

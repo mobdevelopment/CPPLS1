@@ -18,10 +18,12 @@ void game::items::equipment::weapon::IronSword::SetDescription()
 	description = "A simple Iron Sword which boosts the hero's strength with 2.";
 }
 
-void game::items::equipment::weapon::IronSword::Equip(Hero * h)
+void game::items::equipment::weapon::IronSword::SetIType()
+{
+	iType = "Equipment";
+}
+
+void game::items::equipment::weapon::IronSword::Use(Hero * h)
 {
 }
 
-void game::items::equipment::weapon::IronSword::UnEquip(Hero * h)
-{
-}

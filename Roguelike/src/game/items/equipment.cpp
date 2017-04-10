@@ -19,11 +19,11 @@ void game::items::Equipment::SetDescription()
 {
 }
 
-void game::items::Equipment::Equip(Hero* h)
-{
+void game::items::Equipment::SetIType() {
+
 }
 
-void game::items::Equipment::UnEquip(Hero* h)
+void game::items::Equipment::Use(Hero* h)
 {
 }
 

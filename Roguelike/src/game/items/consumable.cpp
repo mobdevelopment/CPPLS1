@@ -25,6 +25,10 @@ void game::items::Consumable::SetDescription()
 {
 }
 
+void game::items::Consumable::SetIType()
+{
+}
+
 void game::items::Consumable::Use(Hero* h)
 {
 }

@@ -23,6 +23,7 @@ namespace game {
 
 			virtual void SetName();
 			virtual void SetDescription();
+			virtual void SetIType();
 
 			virtual void Use(Hero* h);
 		};

@@ -20,6 +20,8 @@ namespace game
 
 				void SetName();
 				void SetDescription();
+				void SetIType();
+
 				void Use(Hero* h);
 			};
 		}

@@ -24,6 +24,10 @@ void game::items::Item::SetDescription()
 {
 }
 
+void game::items::Item::SetIType() {
+
+}
+
 void game::items::Item::Use(Hero* h)
 {
 }
@@ -48,6 +52,7 @@ std::vector<game::items::Item*> game::items::GetSavedItems() {
 	{
 		i->SetName();
 		i->SetDescription();
+		i->SetIType();
 	}
 	return encounterableItems;
 }

@@ -19,8 +19,10 @@ namespace game
 
 					void SetName();
 					void SetDescription();
-					void Equip(Hero* h);
-					void UnEquip(Hero* h);
+					void SetIType();
+
+					void Use(Hero* h);
+
 				};
 			}
 		}

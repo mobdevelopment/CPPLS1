@@ -18,10 +18,11 @@ namespace game
 				~Weapon() noexcept;
 				//Weapon(int amount) : Equipment(amount) {};
 
-				void SetName();
-				void SetDescription();
-				void Equip(Hero* h);
-				void UnEquip(Hero* h);
+				virtual void SetName();
+				virtual void SetDescription();
+				virtual void SetIType();
+
+				void Use(Hero* h);
 			};
 			std::vector<game::items::equipment::Weapon*> GetWeapons();
 		}

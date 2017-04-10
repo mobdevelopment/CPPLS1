@@ -17,6 +17,10 @@ namespace game {
 		private:
 
 		public:
+			Equipment() noexcept;
+			~Equipment() noexcept;
+			Equipment(int amount) : Item(amount) {};
+
 			int lifePoints = 0;
 			int attackAmount = 1;
 			int attackChance = 0;
@@ -24,14 +28,11 @@ namespace game {
 			int minDamage = 0;
 			int maxDamage = 0;
 
-			Equipment() noexcept;
-			~Equipment() noexcept;
-
 			virtual void SetName();
 			virtual void SetDescription();
+			virtual void SetIType();
 
-			virtual void Equip(Hero* h);
-			virtual void UnEquip(Hero* h);
+			virtual void Use(Hero* h);
 		};
 		std::vector<game::items::Equipment*> GetEquipments();
 	}

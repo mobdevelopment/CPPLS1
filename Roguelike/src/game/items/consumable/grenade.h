@@ -16,6 +16,8 @@ namespace game
 				Grenade() noexcept;
 				~Grenade() noexcept;
 
+				void SetIType();
+
 				void Use();
 			};
 		}

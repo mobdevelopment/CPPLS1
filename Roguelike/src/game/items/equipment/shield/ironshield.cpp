@@ -18,10 +18,12 @@ void game::items::equipment::shield::IronShield::SetDescription()
 	description = "A simple Iron Shield which boosts the hero's defence chance with 5%.";
 }
 
-void game::items::equipment::shield::IronShield::Equip(Hero * h)
+void game::items::equipment::shield::IronShield::SetIType()
+{
+	iType = "Equipment";
+}
+
+void game::items::equipment::shield::IronShield::Use(Hero * h)
 {
 }
 
-void game::items::equipment::shield::IronShield::UnEquip(Hero * h)
-{
-}

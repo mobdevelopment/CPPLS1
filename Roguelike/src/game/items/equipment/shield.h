@@ -20,8 +20,10 @@ namespace game
 				Shield(int amount) : Equipment(amount) {};
 				int limit = 1;
 
-				void SetName();
-				void SetDescription();
+				virtual void SetName();
+				virtual void SetDescription();
+				virtual void SetIType();
+
 				void Use(Hero* h);
 			};
 			std::vector<game::items::equipment::Shield*> GetShields();
