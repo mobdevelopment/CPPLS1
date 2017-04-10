@@ -22,7 +22,7 @@ void game::items::equipment::Weapon::SetIType()
 {
 }
 
-void game::items::equipment::Weapon::Use(Hero * h)
+void game::items::equipment::Weapon::Use(Hero& h)
 {
 	//amount--;
 }
