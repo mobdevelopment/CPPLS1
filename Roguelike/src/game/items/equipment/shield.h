@@ -17,8 +17,6 @@ namespace game
 			public:
 				Shield() noexcept;
 				~Shield() noexcept;
-				Shield(int amount) : Equipment(amount) {};
-				int limit = 1;
 
 				virtual void SetName();
 				virtual void SetDescription();

@@ -14,7 +14,7 @@ void game::items::consumable::Grenade::SetIType()
 	iType = "Consumable";
 }
 
-void game::items::consumable::Grenade::Use()
+void game::items::consumable::Grenade::Use(Hero* h)
 {
 	// destroy multiple rooms but keep graph algorithm in mind
 

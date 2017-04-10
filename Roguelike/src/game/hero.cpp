@@ -236,18 +236,24 @@ std::vector<items::Item*> Hero::GetItems() {
 	return items;
 }
 
-void Hero::AddItem(items::Item* item) {
+void Hero::AddItem(items::Consumable* item) {
 
 	if (!items.empty() && std::find(items.begin(), items.end(), item) != items.end())	{
 		// item is already in bag, add quantity
 		for (auto i : items) {
-			if (i->name == item->name) {
-				i->amount++;
+			if (auto ci = dynamic_cast<items::Consumable*>(i))
+			{
+				if (ci->name == item->name) {
+					ci->amount++;
+				}
 			}
 		}
 	}
 	else {
 		items.push_back(item);
-		// item is not in bag, add
 	}
+}
+
+void Hero::AddItem(items::Equipment* item) {
+	items.push_back(item);
 }

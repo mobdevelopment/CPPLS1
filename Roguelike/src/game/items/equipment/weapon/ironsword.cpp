@@ -25,5 +25,16 @@ void game::items::equipment::weapon::IronSword::SetIType()
 
 void game::items::equipment::weapon::IronSword::Use(Hero * h)
 {
+	if (h->rightHand == nullptr)
+	{
+		h->rightHand = this;
+	}
+	else
+	{
+		if (h->rightHand->name == name)
+			h->rightHand == nullptr;
+		else
+			h->rightHand = this;
+	}
 }
 

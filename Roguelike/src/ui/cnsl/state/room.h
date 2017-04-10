@@ -6,6 +6,8 @@
 
 #include "../../../game/hero.h"
 #include "../../../game/nodes/room.h"
+#include "../../../game/items/consumable.h"
+#include "../../../game/items/equipment.h"
 
 #include "../commanddescription.h"
 #include "../userinterface.h"
@@ -23,6 +25,7 @@ namespace state
 		public Base<Room>
 	{
 	private:
+		void GrabCommandHandler(utils::cmd::Command& command);
 		void MoveCommandHandler(utils::cmd::Command& command);
 	public:
 		static const Type TYPE;

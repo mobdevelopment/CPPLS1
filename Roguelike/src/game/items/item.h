@@ -5,18 +5,19 @@
 #include <vector>
 #include <unordered_map>
 
-#include "../hero.h"
-
+//#include "../hero.h"
 
 namespace game { 
 	
-	class Hero;
-
 	namespace items {
-	
 		class Item;
 		class Consumable;
 		class Equipment;
+	}
+
+	class Hero;
+
+	namespace items {
 
 		/*typedef std::unordered_map<int, Item> ItemsContainer;*/
 
@@ -28,12 +29,9 @@ namespace game {
 			std::string	name;
 			std::string description;
 			std::string iType;
-			int amount = 0;
-			int limit = -1;
 
 			Item() noexcept;
 			~Item() noexcept;
-			Item(int amount) noexcept;
 
 			virtual void SetName();
 			virtual void SetDescription();

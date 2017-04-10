@@ -1,16 +1,21 @@
-#pragma once
+#ifndef _GAME_ITEMS_EQUIPMENT_H_
+#define _GAME_ITEMS_EQUIPMENT_H_
+
 #include <string>
 #include <vector>
 #include <unordered_map>
 
 #include "item.h"
-//#include "../hero.h"
+#include "../hero.h"
 
 namespace game {
 
-	//class Hero;
+	class Hero;
 
 	namespace items {
+
+		class Item;
+		class Consumable;
 
 		class Equipment : public Item
 		{
@@ -19,7 +24,6 @@ namespace game {
 		public:
 			Equipment() noexcept;
 			~Equipment() noexcept;
-			Equipment(int amount) : Item(amount) {};
 
 			int lifePoints = 0;
 			int attackAmount = 1;
@@ -28,12 +32,10 @@ namespace game {
 			int minDamage = 0;
 			int maxDamage = 0;
 
-			virtual void SetName();
-			virtual void SetDescription();
-			virtual void SetIType();
-
-			virtual void Use(Hero* h);
+			virtual void ImAEquipable();
 		};
 		std::vector<game::items::Equipment*> GetEquipments();
 	}
 }
+
+#endif // _GAME_ITEMS_EQUIPMENT_H_

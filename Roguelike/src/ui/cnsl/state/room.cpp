@@ -5,6 +5,44 @@ using namespace ui::cnsl::state;
 
 const Type Room::TYPE(Type::ROOM);
 
+void Room::GrabCommandHandler(utils::cmd::Command& command)
+{
+	if (auto* room = dynamic_cast<game::nodes::Room*>(context.game.GetHeroLocation()))
+	{
+		auto item = room->GetItem();
+		if (auto consumable = dynamic_cast<game::items::Consumable*>(item))
+		{
+			context.hero.AddItem(consumable);
+			room->ClearItem();
+		}
+		else if (auto equipable = dynamic_cast<game::items::Equipment*>(item))
+		{
+			bool hasItem = false;
+			for (auto i : context.hero.GetItems())
+			{
+				if (i->name == equipable->name)
+					hasItem = true;
+			}
+
+			if (!hasItem)
+			{
+				context.hero.AddItem(equipable);
+				room->ClearItem();
+			}
+			else
+			{
+				context.userInterface.DrawConsole("you already have a " + item->name + ", you don't have room for a second");
+				return;
+			}
+		}
+
+		context.userInterface.DrawConsole(item->name + " grabbed");
+		return;
+	}
+
+	context.userInterface.SetState(Type::ROOM);
+}
+
 void Room::MoveCommandHandler(utils::cmd::Command& command)
 {
 	std::string direction = command.GetParameter<std::string>(0);
@@ -51,6 +89,8 @@ void Room::Initialize()
 
 	context.userInterface.RegisterCommand<std::string>("Move", std::bind(&Room::MoveCommandHandler, this, std::placeholders::_1));
 
+	context.userInterface.RegisterCommand("Grab", std::bind(&Room::GrabCommandHandler, this, std::placeholders::_1));
+
 	context.userInterface.RegisterCommand("Fight", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::FIGHT);  });
 
 	context.userInterface.RegisterCommand("Bag", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::BAG);  });
@@ -69,7 +109,7 @@ void Room::DrawConsole() const
 
 		<< "Description: " << context.game.GetHeroLocation()->GetDescription() << std::endl;
 
-	if (auto room = dynamic_cast<game::nodes::Room*>(context.game.GetHeroLocation()))
+	if (auto* room = dynamic_cast<game::nodes::Room*>(context.game.GetHeroLocation()))
 	{
 		if (room->HasMonster())
 		{
@@ -81,7 +121,7 @@ void Room::DrawConsole() const
 		//TODO::
 		// check if item was already picked up
 		if (room->HasItem()) {
-			std::cout << std::endl << "You found a : " << room->GetItem().name << "! The " << room->GetItem().name << " has been put in your bag." << std::endl;
+			std::cout << std::endl << "You found a : " << room->GetItem()->name << "! The " << room->GetItem()->name << " has been put in your bag." << std::endl;
 		}
 	}
 }

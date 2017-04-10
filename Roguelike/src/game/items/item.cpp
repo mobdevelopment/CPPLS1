@@ -11,11 +11,6 @@ game::items::Item::~Item() noexcept
 {
 }
 
-game::items::Item::Item(int a) noexcept
-{
-	amount = a;
-}
-
 void game::items::Item::SetName()
 {
 }
@@ -30,6 +25,7 @@ void game::items::Item::SetIType() {
 
 void game::items::Item::Use(Hero* h)
 {
+
 }
 
 std::vector<game::items::Item*> game::items::GetSavedItems() {
@@ -54,5 +50,6 @@ std::vector<game::items::Item*> game::items::GetSavedItems() {
 		i->SetDescription();
 		i->SetIType();
 	}
+
 	return encounterableItems;
 }

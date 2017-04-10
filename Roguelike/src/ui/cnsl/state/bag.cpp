@@ -8,11 +8,20 @@ const Type Bag::TYPE(Type::BAG);
 void Bag::BagCommandHandler(utils::cmd::Command& command)
 {
 	std::string itemName = command.GetParameter<std::string>(0);
-	auto hero = context.game.GetHero();
+	auto hero = context.hero;
 	auto items = hero.GetItems();
+
 	for (auto i : items) {
-		if (i->amount > 0 && boost::iequals(i->name, itemName)) {
+		if (auto* ci = dynamic_cast<game::items::Consumable*>(i))
+		{
+			if (ci->amount > 0 && boost::iequals(ci->name, itemName)) {
+				i->Use(&hero);
+				break;
+			}
+		}
+		else if (auto* ci = dynamic_cast<game::items::Equipment*>(i)) {
 			i->Use(&hero);
+			break;
 		}
 	}
 
@@ -47,16 +56,24 @@ void Bag::Terminate()
 
 void Bag::DrawConsole() const
 {
-	auto hero = context.game.GetHero();
+	auto hero = context.hero;
 	auto items = hero.GetItems();
 
 	std::cout << "Bag" << std::endl << std::endl;
 
 	if (items.size() > 0) {
 		for (auto i : items) {
-			if (i->amount > 0) {
-				std::cout << "name: " << i->name << ", amount: " << i->amount << "x, description: " << i->description << std::endl;
+			if (auto* ci = dynamic_cast<game::items::Consumable*>(i))
+			{
+				if (ci->amount > 0) {
+					std::cout << "name: " << ci->name << ", amount: " << ci->amount << "x, description: " << ci->description << std::endl;
+				}
 			}
+			else if (auto* ci = dynamic_cast<game::items::Equipment*>(i))
+			{
+				std::cout << "name: " << ci->name << ", description: " << ci->description << std::endl;
+			}
+			
 		}
 	}
 	else {

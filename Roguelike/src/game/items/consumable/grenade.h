@@ -18,7 +18,7 @@ namespace game
 
 				void SetIType();
 
-				void Use();
+				void Use(Hero* h);
 			};
 		}
 	}

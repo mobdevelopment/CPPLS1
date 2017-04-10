@@ -9,18 +9,23 @@
 #include <unordered_map>
 #include <stdlib.h>
 
-#include "items/item.h"
+//#include "items/item.h"
+#include "items/consumable.h"
+#include "items/equipment.h"
 #include <boost/filesystem.hpp>
 
 #include "errorcategory.h"
 
 namespace game
 {
+
 	class Hero;
+
 	namespace items {
+		class Consumable;
+		class Equipment;
 		class Item;
 	}
-	
 
 	typedef std::unordered_map<std::string, Hero> HeroesContainer;
 
@@ -45,11 +50,11 @@ namespace game
 		int				extraMinDamage = 0;
 		int				extraMaxDamage = 0;
 
-		bool			leftHandInUse = false; // shield, defencechance
-		bool			rightHandInUse = false; // weapon, damage
-		bool			feetCovered = false; // shoes, attackAmount (kicking)
-		bool			legsCovered = false; // legs, defencechance
-		bool			bodyCovered = false; // plate, attackchance
+		items::Equipment*	leftHand = nullptr; // shield, defencechance
+		items::Equipment*	rightHand = nullptr; // weapon, damage
+		items::Equipment*	feet = nullptr; // shoes, attackAmount (kicking)
+		items::Equipment*	legs = nullptr; // legs, defencechance
+		items::Equipment*	body = nullptr; // plate, attackchance
 
 		std::vector<items::Item*> items;
 		
@@ -60,7 +65,8 @@ namespace game
 
 		void AddExp(int exp);
 		std::vector<items::Item*> GetItems();
-		void AddItem(items::Item* item);
+		void AddItem(items::Equipment* item);
+		void AddItem(items::Consumable* item);
 	}; // class Hero
 
 	const int getLevelExp(const int xplevel);

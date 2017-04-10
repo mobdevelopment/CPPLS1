@@ -17,19 +17,7 @@ game::items::Consumable::Consumable(int a) noexcept
 	amount = a;
 }
 
-void game::items::Consumable::SetName()
-{
-}
-
-void game::items::Consumable::SetDescription()
-{
-}
-
-void game::items::Consumable::SetIType()
-{
-}
-
-void game::items::Consumable::Use(Hero* h)
+void game::items::Consumable::ImAConsumable()
 {
 }
 
@@ -37,9 +25,9 @@ std::vector<game::items::Consumable*> game::items::GetConsumables()
 {
 	std::vector<game::items::Consumable*>consumableItems;
 
-	consumableItems.push_back(new game::items::consumable::Potion(1));
-	consumableItems.push_back(new game::items::consumable::RareCandy(1));
-	consumableItems.push_back(new game::items::consumable::Talisman(1));
+	consumableItems.push_back(new items::consumable::Potion(1));
+	consumableItems.push_back(new items::consumable::RareCandy(1));
+	consumableItems.push_back(new items::consumable::Talisman(1));
 
 	return consumableItems;
 }

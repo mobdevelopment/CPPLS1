@@ -80,7 +80,7 @@ namespace nodes
 		RoomCleanliness		roomCleanliness;
 		RoomFurniture		roomFurniture;
 		Monster				monster;
-		items::Item			item;
+		items::Item*		item;
 
 		Room();
 
@@ -92,8 +92,9 @@ namespace nodes
 		void SetMonster(Monster monster);
 		bool HasMonster();
 
-		items::Item GetItem();
-		void SetItem(items::Item i);
+		items::Item* GetItem();
+		void SetItem(items::Item& i);
+		void ClearItem();
 		bool HasItem();
 
 

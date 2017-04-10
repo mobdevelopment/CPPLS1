@@ -10,7 +10,7 @@ game::items::equipment::shield::IronShield::~IronShield() noexcept
 
 void game::items::equipment::shield::IronShield::SetName()
 {
-	name = "IronSword";
+	name = "IronShield";
 }
 
 void game::items::equipment::shield::IronShield::SetDescription()
@@ -25,5 +25,18 @@ void game::items::equipment::shield::IronShield::SetIType()
 
 void game::items::equipment::shield::IronShield::Use(Hero * h)
 {
+	if (h->leftHand == nullptr)
+	{
+		h->leftHand = this;
+	}
+	else
+	{
+		if (h->leftHand->name == name)
+			h->leftHand == nullptr;
+		else
+			h->leftHand = this;
+	}
+
+	int x = 5;
 }
 

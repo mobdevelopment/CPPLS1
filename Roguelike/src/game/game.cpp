@@ -25,7 +25,6 @@ void Game::Start()
 		container = game::GetSavedMonsters();
 	}
 	if (enableRandomItems) {
-
 		encounterableItems = items::GetSavedItems();
 	}
 
@@ -138,7 +137,7 @@ const bool Game::HasItem() const {
 }
 
 game::items::Item Game::GetItem() {
-	return static_cast<nodes::Room*>(heroLocation)->GetItem();
+	return *static_cast<nodes::Room*>(heroLocation)->GetItem();
 }
 
 nodes::Space* Game::GetHeroLocation()
@@ -286,15 +285,10 @@ const void Game::OnMove()
 						int min = 0, max = encounterableItems.size() - 1;
 						double randItem = (rand() % (max - min + 1)) + min;
 
-						auto item = encounterableItems[randItem];
+						auto* item = encounterableItems[randItem];
 						
-						if (item->limit < 0 || (item->limit > item->amount))
-						{
-							hero.AddItem(item);
-						}
-
+						//hero.AddItem(item);
 						room->SetItem(*item);
-
 					}
 				}
 			}

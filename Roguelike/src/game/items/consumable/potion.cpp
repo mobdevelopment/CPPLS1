@@ -29,3 +29,7 @@ void game::items::consumable::Potion::Use(Hero* h)
 	h->Heal(10);
 	amount--;
 }
+
+void game::items::consumable::Potion::ImAConsumable()
+{
+}

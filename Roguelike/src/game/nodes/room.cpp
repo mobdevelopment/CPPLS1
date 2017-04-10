@@ -67,19 +67,27 @@ bool Room::HasMonster()
 	return !monster.name.empty();
 }
 
-game::items::Item Room::GetItem()
+game::items::Item* Room::GetItem()
 {
 	return item;
 }
 
-void Room::SetItem(game::items::Item i)
+void Room::SetItem(game::items::Item& i)
 {
-	item = i;
+	item = &i;
+}
+
+void Room::ClearItem()
+{
+	item = nullptr;
 }
 
 bool Room::HasItem()
 {
-	return !item.name.empty();
+	if (item != nullptr)
+		return !item->name.empty();
+
+	return false;
 }
 
 

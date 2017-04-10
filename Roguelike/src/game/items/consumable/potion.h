@@ -8,7 +8,7 @@ namespace game
 	{
 		namespace consumable {
 
-			class Potion : public Consumable
+			class Potion : public virtual Consumable
 			{
 			private:
 
@@ -23,6 +23,8 @@ namespace game
 				void SetIType();
 
 				void Use(Hero* h);
+
+				void ImAConsumable();
 			};
 		}
 	}
