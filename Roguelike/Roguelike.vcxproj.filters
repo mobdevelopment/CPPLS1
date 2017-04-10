@@ -141,6 +141,24 @@
     <ClCompile Include="src\game\items\equipment\shield\ironshield.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\items\equipment\bodyplate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\items\equipment\legplate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\items\equipment\shoes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\items\equipment\shoes\leathershoes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\items\equipment\legplate\ironlegplate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\items\equipment\bodyplate\ironbodyplate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\main.h">
@@ -285,6 +303,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\game\items\equipment\shield\ironshield.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\items\equipment\legplate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\items\equipment\bodyplate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\items\equipment\shoes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\items\equipment\shoes\leathershoes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\items\equipment\legplate\ironlegplate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\items\equipment\bodyplate\ironbodyplate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

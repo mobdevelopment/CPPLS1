@@ -164,7 +164,13 @@
     <ClCompile Include="src\game\items\consumable.cpp" />
     <ClCompile Include="src\game\items\equipment.cpp" />
     <ClCompile Include="src\game\items\consumable\grenade.cpp" />
+    <ClCompile Include="src\game\items\equipment\bodyplate.cpp" />
+    <ClCompile Include="src\game\items\equipment\bodyplate\ironbodyplate.cpp" />
+    <ClCompile Include="src\game\items\equipment\legplate.cpp" />
+    <ClCompile Include="src\game\items\equipment\legplate\ironlegplate.cpp" />
     <ClCompile Include="src\game\items\equipment\shield\ironshield.cpp" />
+    <ClCompile Include="src\game\items\equipment\shoes.cpp" />
+    <ClCompile Include="src\game\items\equipment\shoes\leathershoes.cpp" />
     <ClCompile Include="src\game\items\equipment\weapon\ironsword.cpp" />
     <ClCompile Include="src\game\items\item.cpp" />
     <ClCompile Include="src\game\items\consumable\potion.cpp" />
@@ -209,7 +215,13 @@
     <ClInclude Include="src\game\items\consumable.h" />
     <ClInclude Include="src\game\items\equipment.h" />
     <ClInclude Include="src\game\items\consumable\grenade.h" />
+    <ClInclude Include="src\game\items\equipment\bodyplate.h" />
+    <ClInclude Include="src\game\items\equipment\bodyplate\ironbodyplate.h" />
+    <ClInclude Include="src\game\items\equipment\legplate.h" />
+    <ClInclude Include="src\game\items\equipment\legplate\ironlegplate.h" />
     <ClInclude Include="src\game\items\equipment\shield\ironshield.h" />
+    <ClInclude Include="src\game\items\equipment\shoes.h" />
+    <ClInclude Include="src\game\items\equipment\shoes\leathershoes.h" />
     <ClInclude Include="src\game\items\equipment\weapon\ironsword.h" />
     <ClInclude Include="src\game\items\item.h" />
     <ClInclude Include="src\game\items\consumable\potion.h" />
