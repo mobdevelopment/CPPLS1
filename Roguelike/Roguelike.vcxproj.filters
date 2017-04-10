@@ -126,12 +126,6 @@
     <ClCompile Include="src\game\items\consumable\rarecandy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\items\consumable\talisman.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\items\consumable\grenade.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\items\equipment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -284,16 +278,10 @@
     <ClInclude Include="src\game\items\equipment\shield.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\items\consumable\talisman.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\items\consumable\potion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\game\items\consumable\rarecandy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\items\consumable\grenade.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\game\items\equipment.h">

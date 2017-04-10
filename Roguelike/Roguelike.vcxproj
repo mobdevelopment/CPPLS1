@@ -163,7 +163,6 @@
     <ClCompile Include="src\game\errorcategory.cpp" />
     <ClCompile Include="src\game\items\consumable.cpp" />
     <ClCompile Include="src\game\items\equipment.cpp" />
-    <ClCompile Include="src\game\items\consumable\grenade.cpp" />
     <ClCompile Include="src\game\items\equipment\bodyplate.cpp" />
     <ClCompile Include="src\game\items\equipment\bodyplate\ironbodyplate.cpp" />
     <ClCompile Include="src\game\items\equipment\legplate.cpp" />
@@ -176,7 +175,6 @@
     <ClCompile Include="src\game\items\consumable\potion.cpp" />
     <ClCompile Include="src\game\items\consumable\rarecandy.cpp" />
     <ClCompile Include="src\game\items\equipment\shield.cpp" />
-    <ClCompile Include="src\game\items\consumable\talisman.cpp" />
     <ClCompile Include="src\game\items\equipment\weapon.cpp" />
     <ClCompile Include="src\game\hero.cpp" />
     <ClCompile Include="src\game\monster.cpp" />
@@ -214,7 +212,6 @@
     <ClInclude Include="src\game\errorcategory.h" />
     <ClInclude Include="src\game\items\consumable.h" />
     <ClInclude Include="src\game\items\equipment.h" />
-    <ClInclude Include="src\game\items\consumable\grenade.h" />
     <ClInclude Include="src\game\items\equipment\bodyplate.h" />
     <ClInclude Include="src\game\items\equipment\bodyplate\ironbodyplate.h" />
     <ClInclude Include="src\game\items\equipment\legplate.h" />
@@ -227,7 +224,6 @@
     <ClInclude Include="src\game\items\consumable\potion.h" />
     <ClInclude Include="src\game\items\consumable\rarecandy.h" />
     <ClInclude Include="src\game\items\equipment\shield.h" />
-    <ClInclude Include="src\game\items\consumable\talisman.h" />
     <ClInclude Include="src\game\items\equipment\weapon.h" />
     <ClInclude Include="src\game\hero.h" />
     <ClInclude Include="src\game\monster.h" />

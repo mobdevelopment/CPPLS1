@@ -25,6 +25,7 @@ namespace ui
 				public Base<Bag>
 			{
 			private:
+				void SaveCommandHandler(utils::cmd::Command& command);
 				void BagCommandHandler(utils::cmd::Command& command);
 			public:
 				static const Type TYPE;

@@ -2,7 +2,6 @@
 
 #include "consumable\potion.h"
 #include "consumable\rarecandy.h"
-#include "consumable\talisman.h"
 
 game::items::Consumable::Consumable() noexcept
 {
@@ -27,7 +26,6 @@ std::vector<game::items::Consumable*> game::items::GetConsumables()
 
 	consumableItems.push_back(new items::consumable::Potion(1));
 	consumableItems.push_back(new items::consumable::RareCandy(1));
-	consumableItems.push_back(new items::consumable::Talisman(1));
 
 	return consumableItems;
 }

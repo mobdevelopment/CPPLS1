@@ -7,6 +7,13 @@ using namespace ui::cnsl::state;
 
 const Type Bag::TYPE(Type::BAG);
 
+void Bag::SaveCommandHandler(utils::cmd::Command& command)
+{
+	game::SaveHero(context.hero);
+
+	context.userInterface.Exit();
+}
+
 void Bag::BagCommandHandler(utils::cmd::Command& command)
 {
 	std::string itemName = command.GetParameter<std::string>(0);
@@ -37,25 +44,18 @@ void Bag::BagCommandHandler(utils::cmd::Command& command)
 
 
 void Bag::Initialize()
-{
-	/*context.userInterface.RegisterCommand("Fight", std::bind(&Fight::FightCommandHandler, this, std::placeholders::_1));
-
-	context.userInterface.RegisterCommand("Flee", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::ROOM); });
-
-	if (context.game.HasMonster())
-		return;
-	else
-		context.userInterface.SetState(Type::ROOM);*/
-
-	
+{	
 	// Register commands.
 	context.userInterface.RegisterCommand<std::string>("Use", std::bind(&Bag::BagCommandHandler, this, std::placeholders::_1));
+
+	context.userInterface.RegisterCommand("Save", std::bind(&Bag::SaveCommandHandler, this, std::placeholders::_1));
 }
 
 void Bag::Terminate()
 {
 	// Unregister commands.
 	context.userInterface.UnregisterCommand("Use");
+	context.userInterface.UnregisterCommand("Save");
 }
 
 void Bag::DrawConsole() const
@@ -101,4 +101,10 @@ void Bag::GetAvailableCommands(std::vector<CommandDescription>& commandDescripti
 	selectCommandDescription.parameters.emplace_back("item");
 
 	commandDescriptionsBuffer.emplace_back(std::move(selectCommandDescription));
+
+	CommandDescription saveCommandDescription;
+	saveCommandDescription.command = "Save";
+	saveCommandDescription.description = "Save the hero stats and exit the game";
+
+	commandDescriptionsBuffer.emplace_back(std::move(saveCommandDescription));
 }

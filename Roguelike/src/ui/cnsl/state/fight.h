@@ -24,6 +24,7 @@ namespace ui
 				public Base<Fight>
 			{
 			private:
+				void SaveCommandHandler(utils::cmd::Command& command);
 				void FightCommandHandler(utils::cmd::Command& command);
 				std::vector<std::string> AttackByEnemy();
 				std::vector<std::string> AttackByHero();

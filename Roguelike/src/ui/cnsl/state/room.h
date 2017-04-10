@@ -25,6 +25,7 @@ namespace state
 		public Base<Room>
 	{
 	private:
+		void SaveCommandHandler(utils::cmd::Command& command);
 		void GrabCommandHandler(utils::cmd::Command& command);
 		void MoveCommandHandler(utils::cmd::Command& command);
 	public:

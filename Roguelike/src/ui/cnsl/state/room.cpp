@@ -5,6 +5,13 @@ using namespace ui::cnsl::state;
 
 const Type Room::TYPE(Type::ROOM);
 
+void Room::SaveCommandHandler(utils::cmd::Command& command)
+{
+	game::SaveHero(context.hero);
+
+	context.userInterface.Exit();
+}
+
 void Room::GrabCommandHandler(utils::cmd::Command& command)
 {
 	if (auto* room = dynamic_cast<game::nodes::Room*>(context.game.GetHeroLocation()))
@@ -94,6 +101,8 @@ void Room::Initialize()
 	context.userInterface.RegisterCommand("Fight", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::FIGHT);  });
 
 	context.userInterface.RegisterCommand("Bag", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::BAG);  });
+
+	context.userInterface.RegisterCommand("Save", std::bind(&Room::SaveCommandHandler, this, std::placeholders::_1));
 }
 
 void Room::Terminate()
@@ -102,6 +111,7 @@ void Room::Terminate()
 	context.userInterface.UnregisterCommand("Move");
 	context.userInterface.UnregisterCommand("Fight");
 	context.userInterface.UnregisterCommand("Bag");
+	context.userInterface.UnregisterCommand("Save");
 }
 
 void Room::DrawConsole() const
@@ -150,6 +160,8 @@ void Room::GetAvailableCommands(std::vector<CommandDescription>& commandDescript
 	if (currentLocation->eastCorridor != nullptr && !currentLocation->eastCorridor->collapsed)
 		moveCommandDescription.parameters.emplace_back("right");
 
+	commandDescriptionsBuffer.emplace_back(std::move(moveCommandDescription));
+
 	if (auto room = dynamic_cast<game::nodes::Room*>(context.game.GetHeroLocation()))
 	{
 		if (room->HasMonster() && room->GetMonster()->lifePoints > 0)
@@ -168,12 +180,16 @@ void Room::GetAvailableCommands(std::vector<CommandDescription>& commandDescript
 
 			commandDescriptionsBuffer.emplace_back(std::move(grabCommandDescription));
 		}
-		// TODO
-			CommandDescription itemCommandDescription;
-			itemCommandDescription.command = "Bag";
-			itemCommandDescription.description = "Use an item from your bag";
-			commandDescriptionsBuffer.emplace_back(std::move(itemCommandDescription));
 	}
+	
+	CommandDescription itemCommandDescription;
+	itemCommandDescription.command = "Bag";
+	itemCommandDescription.description = "Use an item from your bag";
+	commandDescriptionsBuffer.emplace_back(std::move(itemCommandDescription));
 
-	commandDescriptionsBuffer.emplace_back(std::move(moveCommandDescription));
+	CommandDescription saveCommandDescription;
+	saveCommandDescription.command = "Save";
+	saveCommandDescription.description = "Save the hero stats and exit the game";
+
+	commandDescriptionsBuffer.emplace_back(std::move(saveCommandDescription));
 }

@@ -5,6 +5,13 @@ using namespace ui::cnsl::state;
 
 const Type Fight::TYPE(Type::FIGHT);
 
+void Fight::SaveCommandHandler(utils::cmd::Command& command)
+{
+	game::SaveHero(context.hero);
+
+	context.userInterface.Exit();
+}
+
 void Fight::FightCommandHandler(utils::cmd::Command& command)
 {	
 	int min = 1, max = 2;
@@ -172,9 +179,9 @@ void Fight::Initialize()
 	
 	context.userInterface.RegisterCommand("Flee", [this](const utils::cmd::Command& command) { context.userInterface.SetState(Type::ROOM); });
 
-	if (context.game.HasMonster())
-		return;
-	else
+	context.userInterface.RegisterCommand("Save", std::bind(&Fight::SaveCommandHandler, this, std::placeholders::_1));
+
+	if (!context.game.HasMonster())
 		context.userInterface.SetState(Type::ROOM);
 }
 
@@ -182,6 +189,7 @@ void Fight::Terminate()
 {
 	context.userInterface.UnregisterCommand("Fight");
 	context.userInterface.UnregisterCommand("Flee");
+	context.userInterface.UnregisterCommand("Save");
 }
 
 void Fight::DrawConsole() const
@@ -212,4 +220,10 @@ void Fight::GetAvailableCommands(std::vector<CommandDescription>& commandDescrip
 
 		commandDescriptionsBuffer.emplace_back(std::move(fightCommandDescription));
 	}
+
+	CommandDescription saveCommandDescription;
+	saveCommandDescription.command = "Save";
+	saveCommandDescription.description = "Save the hero stats and exit the game";
+
+	commandDescriptionsBuffer.emplace_back(std::move(saveCommandDescription));
 }

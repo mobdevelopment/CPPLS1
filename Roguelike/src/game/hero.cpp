@@ -222,10 +222,6 @@ void Hero::Heal(int amount)
 	
 }
 
-void Hero::DefUp(int amount)
-{
-	defenseChance += amount;
-}
 void Hero::RareCandy()
 {
 	int neededExp = (getLevelExp(level + 1) - experiencePoints);
