@@ -1,4 +1,6 @@
 #include "bag.h"
+#include "../../../game/items/consumable.h"
+#include "../../../game/items/equipment.h"
 
 using namespace ui::cnsl;
 using namespace ui::cnsl::state;
