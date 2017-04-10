@@ -101,6 +101,7 @@ void Room::Terminate()
 	context.userInterface.UnregisterCommand("Map");
 	context.userInterface.UnregisterCommand("Move");
 	context.userInterface.UnregisterCommand("Fight");
+	context.userInterface.UnregisterCommand("Bag");
 }
 
 void Room::DrawConsole() const
@@ -120,8 +121,8 @@ void Room::DrawConsole() const
 		}
 		//TODO::
 		// check if item was already picked up
-		if (room->HasItem()) {
-			std::cout << std::endl << "You found a : " << room->GetItem()->name << "! The " << room->GetItem()->name << " has been put in your bag." << std::endl;
+		if (room->HasItem() && !room->IsItemPickedUp()) {
+			std::cout << std::endl << "You found a : " << room->GetItem()->name << "!" << std::endl;
 		}
 	}
 }
@@ -158,6 +159,14 @@ void Room::GetAvailableCommands(std::vector<CommandDescription>& commandDescript
 			fightCommandDescription.description = "Fight the monster in this room";
 
 			commandDescriptionsBuffer.emplace_back(std::move(fightCommandDescription));
+		}
+		if (room->HasItem() && !room->IsItemPickedUp())
+		{
+			CommandDescription grabCommandDescription;
+			grabCommandDescription.command = "Grab";
+			grabCommandDescription.description = "Grab the item in this room";
+
+			commandDescriptionsBuffer.emplace_back(std::move(grabCommandDescription));
 		}
 		// TODO
 			CommandDescription itemCommandDescription;

@@ -81,6 +81,7 @@ namespace nodes
 		RoomFurniture		roomFurniture;
 		Monster				monster;
 		items::Item*		item;
+		bool				itemPickedUp = false;
 
 		Room();
 
@@ -96,6 +97,8 @@ namespace nodes
 		void SetItem(items::Item& i);
 		void ClearItem();
 		bool HasItem();
+		void SetItemPickedUp(bool i);
+		bool IsItemPickedUp();
 
 
 	};

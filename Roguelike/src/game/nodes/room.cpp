@@ -90,4 +90,14 @@ bool Room::HasItem()
 	return false;
 }
 
+void Room::SetItemPickedUp(bool i)
+{
+	 itemPickedUp = i;
+}
+
+bool Room::IsItemPickedUp()
+{
+	return itemPickedUp;
+}
+
 
