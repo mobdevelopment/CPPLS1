@@ -215,7 +215,7 @@ const void Game::OnMove()
 		{
 			if (auto room = dynamic_cast<nodes::Room*>(heroLocation))
 			{
-				if (!room->HasMonster())
+				if (!room->HasMonster() || room->GetMonster()->lifePoints <= 0)
 				{
 					int min = 0, max = 100;
 					double perc = (rand() % (max - min + 1)) + min;
