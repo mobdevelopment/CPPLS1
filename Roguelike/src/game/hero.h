@@ -44,12 +44,6 @@ namespace game
 
 		int				lifePoints = 0;
 
-		int				extraDefenseChance = 0;
-		int				extraAttackChance = 0;
-		int				extraAttackAmount = 0;
-		int				extraMinDamage = 0;
-		int				extraMaxDamage = 0;
-
 		items::Equipment*	leftHand = nullptr; // shield, defencechance
 		items::Equipment*	rightHand = nullptr; // weapon, damage
 		items::Equipment*	feet = nullptr; // shoes, attackAmount (kicking)
