@@ -32,6 +32,8 @@ namespace game {
 			int minDamage = 0;
 			int maxDamage = 0;
 
+			virtual int GetEffect();
+
 			virtual void ImAEquipable();
 		};
 		std::vector<game::items::Equipment*> GetEquipments();

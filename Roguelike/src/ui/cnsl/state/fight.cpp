@@ -79,7 +79,8 @@ std::vector<std::string> Fight::AttackByEnemy()
 				if (attackChance < monster->attackChance)
 				{
 					double defenseChance = (rand() % (max - min + 1)) + min;
-					if (defenseChance < hero.defenseChance)
+					int hDefenseChance = hero.defenseChance + (hero.leftHand != nullptr ? hero.leftHand->GetEffect() : 0) + (hero.legs != nullptr ? hero.legs->GetEffect() : 0);
+					if (defenseChance < hDefenseChance)
 					{
 						output.push_back(hero.name + " defended itself by an attack from the " + monster->name);
 					}
@@ -118,13 +119,13 @@ std::vector<std::string> Fight::AttackByHero()
 	{
 		auto monster = context.game.GetMonster();
 		
-		for (int a = 0; a < hero.attackAmount; a++) {
+		for (int a = 0; a < hero.attackAmount + (hero.feet != nullptr ? hero.feet->GetEffect() : 0); a++) {
 			if (monster->lifePoints > 0 && hero.lifePoints > 0)
 			{
 				int min = 0, max = 100;
 				double attackChance = (rand() % (max - min + 1)) + min;
 
-				if (attackChance < hero.attackChance)
+				if (attackChance < hero.attackChance + (hero.body != nullptr ? hero.body->GetEffect() : 0))
 				{
 					double defenseChance = (rand() % (max - min + 1)) + min;
 					if (defenseChance < monster->defenseChance)
@@ -133,7 +134,9 @@ std::vector<std::string> Fight::AttackByHero()
 					}
 					else
 					{
-						int damage = (rand() % (hero.maxDamage - hero.minDamage + 1)) + hero.minDamage;
+						int minDamage = hero.minDamage + (hero.rightHand != nullptr ? hero.rightHand->GetEffect() : 0);
+						int maxDamage = hero.maxDamage + (hero.rightHand != nullptr ? hero.rightHand->GetEffect() : 0);
+						int damage = (rand() % (maxDamage - minDamage + 1)) + minDamage;
 						monster->lifePoints -= damage;
 						if (monster->lifePoints <= 0) {
 							int oldLevel = context.hero.level;

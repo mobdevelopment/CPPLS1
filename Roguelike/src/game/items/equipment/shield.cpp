@@ -32,6 +32,11 @@ void game::items::equipment::Shield::Use(Hero& h)
 
 }
 
+int game::items::equipment::Shield::GetEffect()
+{
+	return 0;
+}
+
 std::vector<game::items::equipment::Shield*> game::items::equipment::GetShields()
 {
 	std::vector<game::items::equipment::Shield*>equipableShields;

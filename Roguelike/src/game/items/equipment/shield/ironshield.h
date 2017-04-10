@@ -21,6 +21,8 @@ namespace game
 					void SetDescription();
 					void SetIType();
 
+					int GetEffect();
+
 					void Use(Hero& h);
 				};
 			}

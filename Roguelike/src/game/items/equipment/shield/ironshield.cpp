@@ -23,6 +23,11 @@ void game::items::equipment::shield::IronShield::SetIType()
 	iType = "Equipment";
 }
 
+int game::items::equipment::shield::IronShield::GetEffect()
+{
+	return 5;
+}
+
 void game::items::equipment::shield::IronShield::Use(Hero& h)
 {
 	if (h.leftHand == nullptr)

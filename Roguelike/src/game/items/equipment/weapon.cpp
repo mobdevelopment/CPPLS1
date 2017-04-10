@@ -27,6 +27,10 @@ void game::items::equipment::Weapon::Use(Hero& h)
 	//amount--;
 }
 
+int game::items::equipment::Weapon::GetEffect()
+{
+	return 0;
+}
 
 std::vector<game::items::equipment::Weapon*> game::items::equipment::GetWeapons()
 {

@@ -11,6 +11,11 @@ game::items::Equipment::~Equipment() noexcept
 {
 }
 
+int game::items::Equipment::GetEffect()
+{
+	return 0;
+}
+
 void game::items::Equipment::ImAEquipable()
 {
 }

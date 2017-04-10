@@ -15,12 +15,17 @@ void game::items::equipment::weapon::IronSword::SetName()
 
 void game::items::equipment::weapon::IronSword::SetDescription()
 {
-	description = "A simple Iron Sword which boosts the hero's strength with 2.";
+	description = "A simple Iron Sword which boosts the hero's damage with 2.";
 }
 
 void game::items::equipment::weapon::IronSword::SetIType()
 {
 	iType = "Equipment";
+}
+
+int game::items::equipment::weapon::IronSword::GetEffect()
+{
+	return 2;
 }
 
 void game::items::equipment::weapon::IronSword::Use(Hero& h)
