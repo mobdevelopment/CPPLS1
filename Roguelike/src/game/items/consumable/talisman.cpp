@@ -23,8 +23,8 @@ void game::items::consumable::Talisman::SetIType()
 	iType = "Consumable";
 }
 
-void game::items::consumable::Talisman::Use(Hero * h)
+void game::items::consumable::Talisman::Use(Hero& h)
 {
-	h->DefUp(2);
+	h.DefUp(2);
 	amount--;
 }

@@ -23,18 +23,18 @@ void game::items::equipment::shield::IronShield::SetIType()
 	iType = "Equipment";
 }
 
-void game::items::equipment::shield::IronShield::Use(Hero * h)
+void game::items::equipment::shield::IronShield::Use(Hero& h)
 {
-	if (h->leftHand == nullptr)
+	if (h.leftHand == nullptr)
 	{
-		h->leftHand = this;
+		h.leftHand = this;
 	}
 	else
 	{
-		if (h->leftHand->name == name)
-			h->leftHand == nullptr;
+		if (h.leftHand->name == name)
+			h.leftHand == nullptr;
 		else
-			h->leftHand = this;
+			h.leftHand = this;
 	}
 
 	int x = 5;

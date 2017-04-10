@@ -23,18 +23,18 @@ void game::items::equipment::weapon::IronSword::SetIType()
 	iType = "Equipment";
 }
 
-void game::items::equipment::weapon::IronSword::Use(Hero * h)
+void game::items::equipment::weapon::IronSword::Use(Hero& h)
 {
-	if (h->rightHand == nullptr)
+	if (h.rightHand == nullptr)
 	{
-		h->rightHand = this;
+		h.rightHand = this;
 	}
 	else
 	{
-		if (h->rightHand->name == name)
-			h->rightHand == nullptr;
+		if (h.rightHand->name == name)
+			h.rightHand == nullptr;
 		else
-			h->rightHand = this;
+			h.rightHand = this;
 	}
 }
 

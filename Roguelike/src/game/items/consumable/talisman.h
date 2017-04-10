@@ -22,7 +22,7 @@ namespace game
 				void SetDescription();
 				void SetIType();
 
-				void Use(Hero* h);
+				void Use(Hero& h);
 			};
 		}
 	}

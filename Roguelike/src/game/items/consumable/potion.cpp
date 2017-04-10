@@ -23,10 +23,10 @@ void game::items::consumable::Potion::SetIType()
 	iType = "Consumable";
 }
 
-void game::items::consumable::Potion::Use(Hero* h)
+void game::items::consumable::Potion::Use(Hero& h)
 {
 	// increase hero health some way
-	h->Heal(10);
+	h.Heal(10);
 	amount--;
 }
 

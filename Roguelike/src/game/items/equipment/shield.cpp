@@ -27,7 +27,7 @@ void game::items::equipment::Shield::SetIType()
 	
 }
 
-void game::items::equipment::Shield::Use(Hero* h)
+void game::items::equipment::Shield::Use(Hero& h)
 {
 
 }

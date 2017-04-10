@@ -22,7 +22,7 @@ namespace game
 				virtual void SetDescription();
 				virtual void SetIType();
 
-				void Use(Hero* h);
+				void Use(Hero& h);
 			};
 			std::vector<game::items::equipment::Shield*> GetShields();
 		}

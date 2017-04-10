@@ -10,22 +10,24 @@ const Type Bag::TYPE(Type::BAG);
 void Bag::BagCommandHandler(utils::cmd::Command& command)
 {
 	std::string itemName = command.GetParameter<std::string>(0);
-	auto hero = context.hero;
+	auto &hero = context.hero;
 	auto items = hero.GetItems();
 
 	for (auto i : items) {
 		if (auto* ci = dynamic_cast<game::items::Consumable*>(i))
 		{
 			if (ci->amount > 0 && boost::iequals(ci->name, itemName)) {
-				i->Use(&hero);
+				i->Use(hero);
 				break;
 			}
 		}
 		else if (auto* ci = dynamic_cast<game::items::Equipment*>(i)) {
-			i->Use(&hero);
+			i->Use(hero);
 			break;
 		}
 	}
+
+	//context.hero = hero;
 
 	// Go to the dungeon selection state.
 	context.userInterface.SetState(Type::BAG);
@@ -73,7 +75,15 @@ void Bag::DrawConsole() const
 			}
 			else if (auto* ci = dynamic_cast<game::items::Equipment*>(i))
 			{
-				std::cout << "name: " << ci->name << ", description: " << ci->description << std::endl;
+				if (i == hero.leftHand || i == hero.rightHand || i == hero.legs || i == hero.body || i == hero.feet)
+				{
+					std::cout << "You're using a " << ci->name << ", description: " << ci->description << std::endl;
+				}
+				else
+				{
+					std::cout << "name: " << ci->name << ", description: " << ci->description << std::endl;
+				}
+				
 			}
 			
 		}

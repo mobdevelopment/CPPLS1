@@ -23,8 +23,8 @@ void game::items::consumable::RareCandy::SetIType()
 	iType = "Consumable";
 }
 
-void game::items::consumable::RareCandy::Use(Hero* h)
+void game::items::consumable::RareCandy::Use(Hero& h)
 {
-	h->RareCandy();
+	h.RareCandy();
 	amount--;
 }

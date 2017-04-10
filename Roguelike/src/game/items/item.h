@@ -37,7 +37,7 @@ namespace game {
 			virtual void SetDescription();
 			virtual void SetIType();
 
-			virtual void Use(Hero* h);
+			virtual void Use(Hero& h);
 		};
 
 		//std::vector<game::items::Item*> encounterableItems;
