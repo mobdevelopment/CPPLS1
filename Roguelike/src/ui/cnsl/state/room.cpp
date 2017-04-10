@@ -10,6 +10,7 @@ void Room::SaveCommandHandler(utils::cmd::Command& command)
 	game::SaveHero(context.hero);
 
 	context.userInterface.Exit();
+	context.game.Clear();
 }
 
 void Room::GrabCommandHandler(utils::cmd::Command& command)

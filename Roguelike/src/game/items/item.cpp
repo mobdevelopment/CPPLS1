@@ -37,6 +37,7 @@ std::vector<game::items::Item*> game::items::GetSavedItems() {
 	for (auto c : consumables) {
 		encounterableItems.push_back(c);
 	}
+
 	// add equipment to encounterableItems
 	//encounterableItems.push_back(new game::items::Shield(1));
 	auto equipments = GetEquipments();

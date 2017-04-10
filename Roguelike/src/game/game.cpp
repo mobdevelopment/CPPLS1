@@ -57,6 +57,7 @@ void Game::Clear()
 
 	dungeon.Clear();
 	container.clear();
+	encounterableItems.clear();
 	heroLocation = nullptr;
 	dungeonLayer = 0;
 

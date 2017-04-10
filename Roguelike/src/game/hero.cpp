@@ -167,7 +167,7 @@ void game::Hero::AddExp(int exp)
 {
 	experiencePoints += exp;
 
-	if (experiencePoints > getLevelExp(level + 1))
+	if (experiencePoints >= getLevelExp(level + 1))
 	{
 		level++;
 
@@ -224,7 +224,7 @@ void Hero::Heal(int amount)
 
 void Hero::RareCandy()
 {
-	int neededExp = (getLevelExp(level + 1) - experiencePoints);
+	int neededExp = (getLevelExp(level + 1) - experiencePoints) + 1;
 	AddExp(neededExp);
 }
 

@@ -23,7 +23,7 @@ namespace game
 		bool			enableRandomItems;
 		bool			BossSpawned;
 		const double	MONSTER_SPAWN_CHANCE = 20;
-		const double	ITEM_SPAWN_CHANCE = 100;
+		const double	ITEM_SPAWN_CHANCE = 20;
 
 		MonstersContainer container;
 		Dungeon			dungeon;
