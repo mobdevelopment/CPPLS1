@@ -12,8 +12,8 @@ void ShowErrorMessage(const char* const message)
 
 void Initialize()
 {
-	game::Game game;
-	ui::UserInterfaceBase* userInterface = new ui::cnsl::UserInterface(game);
+	game::Game* game = new game::Game();
+	ui::UserInterfaceBase* userInterface = new ui::cnsl::UserInterface(*game);
 
 	try
 	{
@@ -26,6 +26,7 @@ void Initialize()
 	}
 
 	delete userInterface;
+	delete game;
 }
 
 int main()

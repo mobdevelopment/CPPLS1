@@ -38,6 +38,7 @@ namespace game
 
 	public:
 		Game();
+		~Game() noexcept;
 
 		void Start();
 		void Stop();

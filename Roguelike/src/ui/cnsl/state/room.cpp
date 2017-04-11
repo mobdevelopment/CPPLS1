@@ -9,8 +9,10 @@ void Room::SaveCommandHandler(utils::cmd::Command& command)
 {
 	game::SaveHero(context.hero);
 
+
+	//for_each(context.game.encounterableItems.begin(), context.game.encounterableItems.end(), std::default_delete<game::items::Item>());
+
 	context.userInterface.Exit();
-	context.game.Clear();
 }
 
 void Room::GrabCommandHandler(utils::cmd::Command& command)

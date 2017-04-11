@@ -12,6 +12,11 @@ Game::Game() :
 {
 }
 
+
+Game::~Game() noexcept
+{
+	Clear();
+}
 void Game::Start()
 {
 	if (IsRunning())
@@ -34,7 +39,7 @@ void Game::Start()
 
 void Game::Stop()
 {
-	if (IsRunning())
+	if (!IsRunning())
 		throw std::system_error(Error::GAME_NOT_RUNNING);
 
 	isRunning = false;
@@ -57,6 +62,7 @@ void Game::Clear()
 
 	dungeon.Clear();
 	container.clear();
+	for_each(encounterableItems.begin(), encounterableItems.end(), std::default_delete<items::Item>());
 	encounterableItems.clear();
 	heroLocation = nullptr;
 	dungeonLayer = 0;
