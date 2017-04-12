@@ -12,11 +12,35 @@ Game::Game() :
 {
 }
 
+/** Copy assignment operator */
+Game & game::Game::operator=(const Game & other)
+{
+	Game tmp(other);         // re-use copy-constructor
+	*this = std::move(tmp); // re-use move-assignment
+	return *this;
+}
 
 Game::~Game() noexcept
 {
 	Clear();
 }
+
+game::Game::Game(const Game & other)
+{
+	isRunning = &other.isRunning;
+	isCleared = &other.isCleared;
+	enableRandomMonsters = &other.enableRandomMonsters;
+	enableRandomItems = &other.enableRandomItems;
+	dungeon = other.dungeon;
+	dungeonLayer = other.dungeonLayer;
+	heroLocation = other.heroLocation;
+	container = other.container;
+	BossSpawned = &other.BossSpawned;
+	encounterableItems = other.encounterableItems;
+	hero = other.hero;
+	monsterContainer = other.monsterContainer;
+}
+
 void Game::Start()
 {
 	if (IsRunning())
@@ -63,6 +87,10 @@ void Game::Clear()
 	dungeon.Clear();
 	container.clear();
 	for_each(encounterableItems.begin(), encounterableItems.end(), std::default_delete<items::Item>());
+	//for (auto* i : encounterableItems)
+	//{
+	//	delete i;
+	//}
 	encounterableItems.clear();
 	heroLocation = nullptr;
 	dungeonLayer = 0;

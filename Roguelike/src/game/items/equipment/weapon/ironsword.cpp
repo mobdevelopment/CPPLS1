@@ -6,6 +6,9 @@ game::items::equipment::weapon::IronSword::IronSword() noexcept
 
 game::items::equipment::weapon::IronSword::~IronSword() noexcept
 {
+	name.clear();
+	description.clear();
+	iType.clear();
 }
 
 void game::items::equipment::weapon::IronSword::SetName()

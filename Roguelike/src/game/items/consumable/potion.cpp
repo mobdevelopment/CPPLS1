@@ -6,6 +6,9 @@ game::items::consumable::Potion::Potion() noexcept
 
 game::items::consumable::Potion::~Potion() noexcept
 {
+	name.clear();
+	description.clear();
+	iType.clear();
 }
 
 void game::items::consumable::Potion::SetName()

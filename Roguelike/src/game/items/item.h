@@ -31,7 +31,7 @@ namespace game {
 			std::string iType;
 
 			Item() noexcept;
-			~Item() noexcept;
+			virtual ~Item() noexcept;
 
 			virtual void SetName();
 			virtual void SetDescription();

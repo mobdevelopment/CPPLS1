@@ -6,6 +6,9 @@ game::items::equipment::bodyplate::IronBodyplate::IronBodyplate() noexcept
 
 game::items::equipment::bodyplate::IronBodyplate::~IronBodyplate() noexcept
 {
+	name.clear();
+	description.clear();
+	iType.clear();
 }
 
 void game::items::equipment::bodyplate::IronBodyplate::SetName()

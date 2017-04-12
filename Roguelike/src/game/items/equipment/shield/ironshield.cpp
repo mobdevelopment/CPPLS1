@@ -6,6 +6,9 @@ game::items::equipment::shield::IronShield::IronShield() noexcept
 
 game::items::equipment::shield::IronShield::~IronShield() noexcept
 {
+	name.clear();
+	description.clear();
+	iType.clear();
 }
 
 void game::items::equipment::shield::IronShield::SetName()

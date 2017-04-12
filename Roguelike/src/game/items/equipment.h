@@ -23,7 +23,7 @@ namespace game {
 
 		public:
 			Equipment() noexcept;
-			~Equipment() noexcept;
+			virtual ~Equipment() noexcept;
 
 			int lifePoints = 0;
 			int attackAmount = 1;

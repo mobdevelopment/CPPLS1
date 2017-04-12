@@ -25,7 +25,7 @@ namespace game {
 			int amount = 0;
 
 			Consumable() noexcept;
-			~Consumable() noexcept;
+			virtual ~Consumable() noexcept;
 			Consumable(int amount) noexcept;
 
 			virtual void ImAConsumable();

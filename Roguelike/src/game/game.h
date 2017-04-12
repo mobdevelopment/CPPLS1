@@ -39,6 +39,8 @@ namespace game
 	public:
 		Game();
 		~Game() noexcept;
+		Game(const Game& other);
+		Game &operator =(const Game& other);
 
 		void Start();
 		void Stop();

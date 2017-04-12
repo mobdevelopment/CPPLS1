@@ -6,6 +6,9 @@ game::items::equipment::legplate::IronLegplate::IronLegplate() noexcept
 
 game::items::equipment::legplate::IronLegplate::~IronLegplate() noexcept
 {
+	name.clear();
+	description.clear();
+	iType.clear();
 }
 
 void game::items::equipment::legplate::IronLegplate::SetName()

@@ -6,6 +6,9 @@ game::items::equipment::shoes::LeatherShoes::LeatherShoes() noexcept
 
 game::items::equipment::shoes::LeatherShoes::~LeatherShoes() noexcept
 {
+	name.clear();
+	description.clear();
+	iType.clear();
 }
 
 void game::items::equipment::shoes::LeatherShoes::SetName()

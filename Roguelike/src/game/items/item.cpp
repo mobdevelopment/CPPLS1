@@ -9,6 +9,9 @@ game::items::Item::Item() noexcept
 
 game::items::Item::~Item() noexcept
 {
+	name.clear();
+	description.clear();
+	iType.clear();
 }
 
 void game::items::Item::SetName()

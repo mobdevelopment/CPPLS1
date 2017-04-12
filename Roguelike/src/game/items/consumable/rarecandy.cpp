@@ -6,6 +6,9 @@ game::items::consumable::RareCandy::RareCandy() noexcept
 
 game::items::consumable::RareCandy::~RareCandy() noexcept
 {
+	name.clear();
+	description.clear();
+	iType.clear();
 }
 
 void game::items::consumable::RareCandy::SetName()
