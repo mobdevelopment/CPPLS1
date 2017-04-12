@@ -87,10 +87,6 @@ void Game::Clear()
 	dungeon.Clear();
 	container.clear();
 	for_each(encounterableItems.begin(), encounterableItems.end(), std::default_delete<items::Item>());
-	//for (auto* i : encounterableItems)
-	//{
-	//	delete i;
-	//}
 	encounterableItems.clear();
 	heroLocation = nullptr;
 	dungeonLayer = 0;
