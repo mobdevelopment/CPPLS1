@@ -1,5 +1,7 @@
 #include "ironlegplate.h"
 
+#include <boost\algorithm\string.hpp>
+
 game::items::equipment::legplate::IronLegplate::IronLegplate() noexcept
 {
 }
@@ -39,10 +41,14 @@ void game::items::equipment::legplate::IronLegplate::Use(Hero& h)
 	}
 	else
 	{
-		if (h.legs->name == name)
-			h.legs == nullptr;
+		if (boost::iequals(h.legs->name, name))
+		{
+			h.legs = nullptr;
+		}
 		else
+		{
 			h.legs = this;
+		}
 	}
 }
 

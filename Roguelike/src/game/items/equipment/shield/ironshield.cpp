@@ -1,5 +1,7 @@
 #include "ironshield.h"
 
+#include <boost\algorithm\string.hpp>
+
 game::items::equipment::shield::IronShield::IronShield() noexcept
 {
 }
@@ -39,8 +41,8 @@ void game::items::equipment::shield::IronShield::Use(Hero& h)
 	}
 	else
 	{
-		if (h.leftHand->name == name)
-			h.leftHand == nullptr;
+		if (boost::iequals(h.leftHand->name, name))
+			h.leftHand = nullptr;
 		else
 			h.leftHand = this;
 	}

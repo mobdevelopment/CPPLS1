@@ -1,5 +1,7 @@
 #include "ironsword.h"
 
+#include <boost\algorithm\string.hpp>
+
 game::items::equipment::weapon::IronSword::IronSword() noexcept
 {
 }
@@ -39,7 +41,7 @@ void game::items::equipment::weapon::IronSword::Use(Hero& h)
 	}
 	else
 	{
-		if (h.rightHand->name == name)
+		if (boost::iequals(h.rightHand->name, name))
 			h.rightHand == nullptr;
 		else
 			h.rightHand = this;

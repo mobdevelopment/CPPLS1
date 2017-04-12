@@ -1,5 +1,7 @@
 #include "leathershoes.h"
 
+#include <boost\algorithm\string.hpp>
+
 game::items::equipment::shoes::LeatherShoes::LeatherShoes() noexcept
 {
 }
@@ -39,7 +41,7 @@ void game::items::equipment::shoes::LeatherShoes::Use(Hero& h)
 	}
 	else
 	{
-		if (h.feet->name == name)
+		if (boost::iequals(h.feet->name, name))
 			h.feet == nullptr;
 		else
 			h.feet = this;

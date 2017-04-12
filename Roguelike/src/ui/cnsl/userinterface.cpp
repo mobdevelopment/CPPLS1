@@ -102,6 +102,7 @@ void UserInterface::GoToPreviousState()
 		return;
 	}
 
+	states.back()->Terminate();
 	delete states.back();
 	states.pop_back();
 

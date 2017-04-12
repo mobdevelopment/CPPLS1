@@ -1,5 +1,7 @@
 #include "ironbodyplate.h"
 
+#include <boost\algorithm\string.hpp>
+
 game::items::equipment::bodyplate::IronBodyplate::IronBodyplate() noexcept
 {
 }
@@ -39,8 +41,8 @@ void game::items::equipment::bodyplate::IronBodyplate::Use(Hero& h)
 	}
 	else
 	{
-		if (h.body->name == name)
-			h.body == nullptr;
+		if (boost::iequals(h.body->name, name))
+			h.body = nullptr;
 		else
 			h.body = this;
 	}

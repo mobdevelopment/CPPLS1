@@ -29,8 +29,11 @@ void Bag::BagCommandHandler(utils::cmd::Command& command)
 			}
 		}
 		else if (auto* ci = dynamic_cast<game::items::Equipment*>(i)) {
-			i->Use(hero);
-			break;
+			if (boost::iequals(ci->name, itemName))
+			{
+				i->Use(hero);
+				break;
+			}
 		}
 	}
 
