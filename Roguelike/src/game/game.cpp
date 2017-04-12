@@ -7,7 +7,7 @@ Game::Game() :
 	isRunning(false),
 	isCleared(true),
 	enableRandomMonsters(true),
-	enableRandomItems(true),
+	enableRandomItems(false),
 	dungeonLayer(0)
 {
 }
@@ -84,10 +84,10 @@ void Game::Clear()
 	if (IsRunning())
 		Stop();
 
-	dungeon.Clear();
-	container.clear();
 	for_each(encounterableItems.begin(), encounterableItems.end(), std::default_delete<items::Item>());
 	encounterableItems.clear();
+	dungeon.Clear();
+	container.clear();
 	heroLocation = nullptr;
 	dungeonLayer = 0;
 

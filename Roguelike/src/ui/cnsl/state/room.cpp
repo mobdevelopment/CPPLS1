@@ -8,10 +8,6 @@ const Type Room::TYPE(Type::ROOM);
 void Room::SaveCommandHandler(utils::cmd::Command& command)
 {
 	game::SaveHero(context.hero);
-
-
-	//for_each(context.game.encounterableItems.begin(), context.game.encounterableItems.end(), std::default_delete<game::items::Item>());
-
 	context.userInterface.Exit();
 }
 
@@ -114,6 +110,7 @@ void Room::Terminate()
 	context.userInterface.UnregisterCommand("Move");
 	context.userInterface.UnregisterCommand("Fight");
 	context.userInterface.UnregisterCommand("Bag");
+	context.userInterface.UnregisterCommand("Grab");
 	context.userInterface.UnregisterCommand("Save");
 }
 

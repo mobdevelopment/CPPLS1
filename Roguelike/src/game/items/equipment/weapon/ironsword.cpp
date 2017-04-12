@@ -42,7 +42,7 @@ void game::items::equipment::weapon::IronSword::Use(Hero& h)
 	else
 	{
 		if (boost::iequals(h.rightHand->name, name))
-			h.rightHand == nullptr;
+			h.rightHand = nullptr;
 		else
 			h.rightHand = this;
 	}

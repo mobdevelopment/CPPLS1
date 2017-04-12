@@ -42,7 +42,7 @@ void game::items::equipment::shoes::LeatherShoes::Use(Hero& h)
 	else
 	{
 		if (boost::iequals(h.feet->name, name))
-			h.feet == nullptr;
+			h.feet = nullptr;
 		else
 			h.feet = this;
 	}

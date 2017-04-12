@@ -27,6 +27,29 @@ namespace
 	const std::string HERO_FILE_EXTENSION = ".hero";
 }
 
+game::Hero::Hero()
+{
+}
+
+game::Hero::~Hero()
+{
+
+	if (legs != nullptr)
+		delete legs;
+
+	if (feet != nullptr)
+		delete feet;
+
+	if (body != nullptr)
+		delete body;
+
+	if (leftHand != nullptr)
+		delete leftHand;
+
+	if (rightHand != nullptr)
+		delete rightHand;
+}
+
 const std::string& game::GetRandomHeroName() noexcept
 {
 	int numberOfHeroNames = (sizeof(HERO_NAMES) / sizeof(*HERO_NAMES));

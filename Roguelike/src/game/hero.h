@@ -32,6 +32,9 @@ namespace game
 	class Hero
 	{
 	public:
+		Hero();
+		~Hero();
+
 		std::string		name;
 		int				level;
 		int				experiencePoints = 0;
