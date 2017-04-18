@@ -7,7 +7,7 @@ Game::Game() :
 	isRunning(false),
 	isCleared(true),
 	enableRandomMonsters(true),
-	enableRandomItems(false),
+	enableRandomItems(true),
 	dungeonLayer(0)
 {
 }
@@ -247,7 +247,7 @@ const void Game::OnMove()
 			{
 				if (!room->HasMonster() || room->GetMonster()->lifePoints <= 0)
 				{
-					int min = 0, max = 100;
+					int min = 1, max = 100;
 					double perc = (rand() % (max - min + 1)) + min;
 
 					if (perc < MONSTER_SPAWN_CHANCE)
@@ -305,6 +305,14 @@ const void Game::OnMove()
 						room->SetMonster(monster);
 					}
 				}
+				
+			}
+		}
+
+		if (enableRandomItems)
+		{
+			if (auto room = dynamic_cast<nodes::Room*>(heroLocation))
+			{
 				// generate item
 				if (!room->HasItem())
 				{
@@ -313,7 +321,7 @@ const void Game::OnMove()
 
 					if (itemSpawn < ITEM_SPAWN_CHANCE)
 					{
-						int min = 0, max = encounterableItems.size() - 1;
+						int min = 1, max = encounterableItems.size() - 1;
 						double randItem = (rand() % (max - min + 1)) + min;
 
 						auto* item = encounterableItems[randItem];
@@ -324,6 +332,7 @@ const void Game::OnMove()
 				}
 			}
 		}
+				
 	}
 	
 }
