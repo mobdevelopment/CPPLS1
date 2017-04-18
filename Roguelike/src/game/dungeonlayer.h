@@ -53,7 +53,7 @@ namespace game
 
 		bool IsEverythingAccessible() const;
 
-		std::vector<nodes::Corridor*> GetMinimalSpanningTree() const;
+		std::vector<nodes::Corridor*> GetMinimalSpanningTree(const int seed) const;
 	}; // class DungeonLayer
 } // namespace game
 

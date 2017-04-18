@@ -193,13 +193,14 @@ bool DungeonLayer::IsEverythingAccessible() const
 	return true;
 }
 
-std::vector<nodes::Corridor*> DungeonLayer::GetMinimalSpanningTree() const
+std::vector<nodes::Corridor*> DungeonLayer::GetMinimalSpanningTree(const int seed) const
 {
 	// With Prim's minimum cost tree algorithm.
 
 	// Rng stuff
 	std::default_random_engine generator;
-	generator.seed(std::random_device()());
+	//generator.seed(std::random_device()());
+	generator.seed(seed);
 
 	const auto* const startingRoom = GetRandomRoom();
 

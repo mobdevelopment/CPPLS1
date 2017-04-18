@@ -205,7 +205,7 @@ void Dungeon::Randomize(const unsigned int layerCount, const unsigned int width,
 
 		// Construct a minimal spanning tree to see which corridors we can not remove.
 		// TODO: Use a set instead for performance.
-		auto mstCorridors = layer.GetMinimalSpanningTree();
+		auto mstCorridors = layer.GetMinimalSpanningTree(seed);
 
 		// TODO: Something better than a random number.
 		// Remove a number of corridors.
@@ -275,8 +275,8 @@ void Dungeon::Randomize(const unsigned int layerCount, const unsigned int width,
 
 		if (z > 0)
 		{
-			auto x = 0 + (rand() % (int)((roomsWidth / 2) - 0 + 1)) * 2; // make sure it's even, then it's a room
-			auto y = 0 + (rand() % (int)((roomsHeight/ 2) - 0 + 1)) * 2; // make sure it's even, then it's a room
+			auto x = 0 + (rand() % ((int)(roomsWidth / 2) - 0 + 1)) * 2; // make sure it's even, then it's a room
+			auto y = 0 + (rand() % ((int)(roomsHeight/ 2) - 0 + 1)) * 2; // make sure it's even, then it's a room
 			auto node = static_cast<nodes::Room*>(layer[y][x]);
 
 			auto stairDown = new nodes::StairsDown();
@@ -308,9 +308,14 @@ void Dungeon::Randomize(const unsigned int layerCount, const unsigned int width,
 
 		if (z < layerCount - 1)
 		{
-			auto x = 0 + (rand() % (int)((roomsWidth / 2 ) - 0 + 1)) * 2;
-			auto y = 0 + (rand() % (int)((roomsHeight / 2 ) - 0 + 1)) * 2;
-			auto node = static_cast<nodes::Room*>(layer[y][x]);
+			unsigned int x = xDist(generator);
+			unsigned int y = yDist(generator);
+
+			if (x % 2 != 0) x++;
+			if (y % 2 != 0) y++;
+
+			//auto node = static_cast<nodes::Room*>(layer[y][x]);
+			auto node = static_cast<nodes::Room*>(layer[0][0]);
 
 			auto stairUp = new nodes::StairsUp();
 
