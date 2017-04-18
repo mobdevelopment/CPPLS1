@@ -275,8 +275,10 @@ void Dungeon::Randomize(const unsigned int layerCount, const unsigned int width,
 
 		if (z > 0)
 		{
-			auto x = 0 + (rand() % ((int)(roomsWidth / 2) - 0 + 1)) * 2; // make sure it's even, then it's a room
-			auto y = 0 + (rand() % ((int)(roomsHeight/ 2) - 0 + 1)) * 2; // make sure it's even, then it's a room
+			unsigned int x = xDist(generator);
+			unsigned int y = yDist(generator);
+			if (x % 2 != 0) x++;
+			if (y % 2 != 0) y++;
 			auto node = static_cast<nodes::Room*>(layer[y][x]);
 
 			auto stairDown = new nodes::StairsDown();
