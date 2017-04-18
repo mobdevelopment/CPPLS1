@@ -47,7 +47,7 @@ void Game::Start()
 		throw std::system_error(Error::GAME_ALREADY_RUNNING);
 
 	// Put the hero in a random room.
-	heroLocation = dungeon[dungeonLayer].GetRandomRoom();
+	heroLocation = dungeon[dungeonLayer].GetRandomRoom(dungeonSeed);
 
 	if (enableRandomMonsters)
 	{
@@ -110,6 +110,7 @@ const Dungeon& Game::GetDungeon() const
 void Game::RandomizeDungeon(const unsigned int layerCount, const unsigned int width, const unsigned int height, const unsigned int seed)
 {
 	dungeon.Randomize(layerCount, width, height, seed);
+	dungeonSeed = seed;
 }
 
 void Game::SetHero(const Hero& hero)

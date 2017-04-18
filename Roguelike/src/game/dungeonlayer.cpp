@@ -73,11 +73,11 @@ const DungeonLayer::RowsContainer& DungeonLayer::GetRows() const noexcept
 	return rows;
 }
 
-nodes::Room* DungeonLayer::GetRandomRoom() const noexcept
+nodes::Room* DungeonLayer::GetRandomRoom(const int seed) const noexcept
 {
 	// Rng stuff.
 	std::default_random_engine generator;
-	generator.seed(std::random_device()());
+	generator.seed(seed);
 	std::uniform_int_distribution<int> xDist(0, width - 1);
 	std::uniform_int_distribution<int> yDist(0, height - 1);
 
@@ -126,11 +126,11 @@ void DungeonLayer::SetHeight(const unsigned int height)
 	this->height = height;
 }
 
-bool DungeonLayer::IsEverythingAccessible() const
+bool DungeonLayer::IsEverythingAccessible(const int seed) const
 {
 	// With Prim's minimum cost tree algorithm.
 
-	const auto* const startingRoom = GetRandomRoom();
+	const auto* const startingRoom = GetRandomRoom(seed);
 
 	std::unordered_set<const nodes::Space*> unvisitedRooms;
 	std::unordered_set<const nodes::Space*> visitedRooms;
@@ -202,7 +202,7 @@ std::vector<nodes::Corridor*> DungeonLayer::GetMinimalSpanningTree(const int see
 	//generator.seed(std::random_device()());
 	generator.seed(seed);
 
-	const auto* const startingRoom = GetRandomRoom();
+	const auto* const startingRoom = GetRandomRoom(seed);
 
 	std::unordered_set<const nodes::Space*>	unvisitedRooms;
 	std::unordered_set<const nodes::Space*>	visitedRooms;

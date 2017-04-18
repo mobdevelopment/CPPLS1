@@ -46,12 +46,12 @@ namespace game
 		RowsContainer& GetRows() noexcept;
 		const RowsContainer& GetRows() const noexcept;
 
-		nodes::Room* GetRandomRoom() const noexcept;
+		nodes::Room* GetRandomRoom(const int seed) const noexcept;
 
 		void SetWidth(const unsigned int width);
 		void SetHeight(const unsigned int height);
 
-		bool IsEverythingAccessible() const;
+		bool IsEverythingAccessible(const int seed) const;
 
 		std::vector<nodes::Corridor*> GetMinimalSpanningTree(const int seed) const;
 	}; // class DungeonLayer
