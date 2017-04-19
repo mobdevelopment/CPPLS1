@@ -16,17 +16,18 @@ void SaveSelection::SelectCommandHandler(utils::cmd::Command& command)
 		return;
 	}
 
-	// Load the active hero into the context.
-	context.game = saves[saveName].game;
-	context.hero = saves[saveName].game.GetHero();
+	context.hero.lifePoints = context.hero.maxLifePoints;
+	context.game.RandomizeDungeon(saves[saveName].layers, saves[saveName].width, saves[saveName].height, saves[saveName].seed);
+	context.game.SetHero(context.hero);
+	context.game.Start();
 
 	// Go to the dungeon selection state.
-	context.userInterface.SetState(Type::DUNGEON_SELECTION);
+	context.userInterface.SetState(Type::ROOM);
 }
 
 void SaveSelection::Initialize()
 {
-	//saves = game::GetSavedSaves();
+	saves = game::GetSavedSaves();
 
 	// Register commands.
 	context.userInterface.RegisterCommand<std::string>("Select", std::bind(&SaveSelection::SelectCommandHandler, this, std::placeholders::_1));
@@ -40,12 +41,12 @@ void SaveSelection::Terminate()
 
 void SaveSelection::DrawConsole() const
 {
-	/*std::cout << "Save selection" << std::endl;
+	std::cout << "Save selection" << std::endl;
 
 	for (const auto& save : saves)
 	{
-		std::cout << std::endl << save.first << ", seed " << save.second.name; //.seed;
-	}*/
+		std::cout << std::endl << save.first << ", seed " << save.second.name;
+	}
 }
 
 void SaveSelection::GetAvailableCommands(std::vector<CommandDescription>& commandDescriptionsBuffer) const

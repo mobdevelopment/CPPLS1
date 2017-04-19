@@ -22,7 +22,7 @@ game::Save::~Save()
 Save game::ParseSave(std::istream& stream)
 {
 	Save save;
-	/*
+	
 	// First line are hero name and stats
 	std::string statsLine;
 	std::getline(stream, statsLine);
@@ -31,19 +31,15 @@ Save game::ParseSave(std::istream& stream)
 
 	// Parse the name and stats.
 	std::stringstream sstream(statsLine);
-
+	std::string seed;
 	// Name is until the first comma.
-	std::getline(sstream, hero.name, ',');
+	std::getline(sstream, seed, ',');
+	save.seed = std::stoi(seed);
 
 	// Then its spaces seperating the values.
-	sstream >> hero.level;
-	sstream >> hero.maxLifePoints;
-	sstream >> hero.experiencePoints;
-	sstream >> hero.attackChance;
-	sstream >> hero.defenseChance;
-	sstream >> hero.attackAmount;
-	sstream >> hero.minDamage;
-	sstream >> hero.maxDamage;
+	sstream >> save.width;
+	sstream >> save.height;
+	sstream >> save.layers;
 
 	// TODO: Items.
 	// All the following lines are items.
@@ -51,7 +47,7 @@ Save game::ParseSave(std::istream& stream)
 	// Check for stream error.
 	if (!stream)
 		throw std::system_error(Error::STREAM_ERROR);
-		*/
+		
 	return save;
 }
 
@@ -122,7 +118,8 @@ SavesContainer game::GetSavedSaves()
 			if (errorBuffer)
 				continue;
 
-			saves.emplace(save.name, save);
+			std::string basename = iterator->path().filename().string();
+			saves.emplace(basename.substr(0, basename.find_last_of(".")), save);
 		}
 	}
 

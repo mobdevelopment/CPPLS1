@@ -39,7 +39,10 @@ namespace game
 		~Save();
 
 		std::string		name;
-		Game			game;
+		int				seed;
+		int				height;
+		int				width;
+		int				layers;
 	}; // class Hero
 
 	Save ParseSave(std::istream& stream);
