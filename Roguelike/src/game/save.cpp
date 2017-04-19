@@ -19,9 +19,9 @@ game::Save::~Save()
 {
 }
 
-Game game::ParseSave(std::istream& stream)
+Save game::ParseSave(std::istream& stream)
 {
-	Game save;
+	Save save;
 	/*
 	// First line are hero name and stats
 	std::string statsLine;

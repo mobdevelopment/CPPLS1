@@ -187,6 +187,7 @@
     <ClCompile Include="src\game\nodes\stairsup.cpp" />
     <ClCompile Include="src\game\nodes\verticalcorridor.cpp" />
     <ClCompile Include="src\game\nodes\visitor.cpp" />
+    <ClCompile Include="src\game\save.cpp" />
     <ClCompile Include="src\ui\cnsl\state\bag.cpp" />
     <ClCompile Include="src\ui\cnsl\state\context.cpp" />
     <ClCompile Include="src\ui\cnsl\state\dungeonselection.cpp" />
@@ -198,6 +199,7 @@
     <ClCompile Include="src\ui\cnsl\state\menu.cpp" />
     <ClCompile Include="src\ui\cnsl\state\factory.cpp" />
     <ClCompile Include="src\ui\cnsl\state\room.cpp" />
+    <ClCompile Include="src\ui\cnsl\state\saveselection.cpp" />
     <ClCompile Include="src\ui\cnsl\userinterface.cpp" />
     <ClCompile Include="src\game\game.cpp" />
     <ClCompile Include="src\ui\cnsl\state\base.cpp" />
@@ -238,6 +240,7 @@
     <ClInclude Include="src\game\nodes\type.h" />
     <ClInclude Include="src\game\nodes\verticalcorridor.h" />
     <ClInclude Include="src\game\nodes\visitor.h" />
+    <ClInclude Include="src\game\save.h" />
     <ClInclude Include="src\ui\cnsl\commanddescription.h" />
     <ClInclude Include="src\ui\cnsl\state\bag.h" />
     <ClInclude Include="src\ui\cnsl\state\context.h" />
@@ -251,6 +254,7 @@
     <ClInclude Include="src\ui\cnsl\state\menu.h" />
     <ClInclude Include="src\ui\cnsl\state\factory.h" />
     <ClInclude Include="src\ui\cnsl\state\registrar.hpp" />
+    <ClInclude Include="src\ui\cnsl\state\saveselection.h" />
     <ClInclude Include="src\ui\cnsl\state\type.h" />
     <ClInclude Include="src\ui\cnsl\userinterface.h" />
     <ClInclude Include="src\game\game.h" />
@@ -266,6 +270,9 @@
     <ProjectReference Include="..\Utilities\Utilities.vcxproj">
       <Project>{0e25ffdf-13fa-4005-87fe-f6db5387d9b2}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="saves\201704191354.save" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

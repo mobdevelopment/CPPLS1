@@ -22,7 +22,7 @@ namespace game
 {
 
 	class Game;
-	class Hero;
+	class Save;
 
 	namespace items {
 		class Consumable;

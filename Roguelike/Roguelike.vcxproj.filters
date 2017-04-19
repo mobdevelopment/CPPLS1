@@ -153,6 +153,12 @@
     <ClCompile Include="src\game\items\equipment\bodyplate\ironbodyplate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\ui\cnsl\state\saveselection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\save.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\main.h">
@@ -311,9 +317,18 @@
     <ClInclude Include="src\game\items\equipment\bodyplate\ironbodyplate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\ui\cnsl\state\saveselection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\save.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="heroes\Bear Dalton.hero" />
     <Text Include="heroes\Manly Man.hero" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="saves\201704191354.save" />
   </ItemGroup>
 </Project>
