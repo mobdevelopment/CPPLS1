@@ -79,6 +79,8 @@ namespace game
 
 		void OnChange();
 	}; // class Game
+
+
 } // namespace game
 
 #endif // #ifndef GAME_GAME_HEADER_INCLUDED

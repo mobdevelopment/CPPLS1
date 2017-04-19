@@ -344,49 +344,6 @@ void Dungeon::Randomize(const unsigned int layerCount, const unsigned int width,
 	}
 }
 
-/*void Dungeon::BFS(nodes::Room room)
-{
-	std::vector<nodes::Space*> visited;
-	std::queue<nodes::Space*> queue;
-	nodes::Space activeRoom;
-	queue.push(&room);
-	int steps = 0;
-
-	while (!queue.empty())
-	{
-		activeRoom = *queue.front();
-		visited.push_back(&room);
-		queue.pop();
-
-		if (typeid(room) == typeid(nodes::HorizontalCorridor*)) // Replace by stairs soon
-		{
-			std::cout << "The stairs up is " << steps << " rooms away."; // stepcount
-		}
-
-		if (room.northCorridor != nullptr)
-			if (room.northCorridor->GetNorthRoom() != nullptr)
-				if (std::find(visited.begin(), visited.end(), room.northCorridor->GetNorthRoom()) != visited.end())
-					queue.push(room.northCorridor->GetNorthRoom());
-
-		if (room.southCorridor != nullptr)
-			if (room.southCorridor->GetSouthRoom() != nullptr)
-				if (std::find(visited.begin(), visited.end(), room.southCorridor->GetSouthRoom()) != visited.end())
-					queue.push(room.southCorridor->GetSouthRoom());
-
-		if (room.eastCorridor != nullptr)
-			if (room.eastCorridor->GetEastRoom() != nullptr)
-				if (std::find(visited.begin(), visited.end(), room.eastCorridor->GetEastRoom()) != visited.end())
-					queue.push(room.eastCorridor->GetEastRoom());
-
-		if (room.westCorridor != nullptr)
-			if (room.westCorridor->GetWestRoom() != nullptr)
-				if (std::find(visited.begin(), visited.end(), room.westCorridor->GetWestRoom()) != visited.end())
-					queue.push(room.westCorridor->GetWestRoom());
-
-		steps++; //probally not right, cannot test atm
-	}
-}*/
-
 Dungeon::LayersContainer& Dungeon::GetLayers() noexcept
 {
 	return layers;
