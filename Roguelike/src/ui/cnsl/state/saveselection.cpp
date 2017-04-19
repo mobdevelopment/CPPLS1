@@ -3,7 +3,7 @@
 using namespace ui::cnsl;
 using namespace ui::cnsl::state;
 
-const Type SaveSelection::TYPE(Type::HERO_SELECTION);
+const Type SaveSelection::TYPE(Type::SAVE_SELECTION);
 
 void SaveSelection::SelectCommandHandler(utils::cmd::Command& command)
 {
@@ -40,12 +40,12 @@ void SaveSelection::Terminate()
 
 void SaveSelection::DrawConsole() const
 {
-	std::cout << "Save selection" << std::endl;
+	/*std::cout << "Save selection" << std::endl;
 
 	for (const auto& save : saves)
 	{
 		std::cout << std::endl << save.first << ", seed " << save.second.name; //.seed;
-	}
+	}*/
 }
 
 void SaveSelection::GetAvailableCommands(std::vector<CommandDescription>& commandDescriptionsBuffer) const

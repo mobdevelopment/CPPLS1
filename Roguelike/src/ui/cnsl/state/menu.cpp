@@ -32,13 +32,13 @@ void Menu::GetAvailableCommands(std::vector<CommandDescription>& commandDescript
 	newHeroCommandDescription.command = "NewHero";
 	newHeroCommandDescription.description = "Create a new hero.";
 
-	CommandDescription selectSaveCommandDescription;
-	selectSaveCommandDescription.command = "SelectHero";
-	selectSaveCommandDescription.description = "Select a hero.";
-
 	CommandDescription selectHeroCommandDescription;
-	selectHeroCommandDescription.command = "SelectSave";
-	selectHeroCommandDescription.description = "Select a save.";
+	selectHeroCommandDescription.command = "SelectHero";
+	selectHeroCommandDescription.description = "Select a hero.";
+
+	CommandDescription selectSaveCommandDescription;
+	selectSaveCommandDescription.command = "SelectSave";
+	selectSaveCommandDescription.description = "Select a save.";
 
 	commandDescriptionsBuffer.emplace_back(std::move(newHeroCommandDescription));
 	commandDescriptionsBuffer.emplace_back(std::move(selectHeroCommandDescription));
