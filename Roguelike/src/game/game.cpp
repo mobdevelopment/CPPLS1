@@ -342,7 +342,7 @@ void Game::OnMove()
 
 void Game::OnChange()
 {
-	// Todo: Parse game data
+	WriteHero(std::ofstream(HERO_FILES_FOLDER + '/' + hero.name + HERO_FILE_EXTENSION), hero);
 }
 
 int Game::GetDungeonLayer()
