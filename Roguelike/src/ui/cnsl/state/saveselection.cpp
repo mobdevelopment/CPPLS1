@@ -40,7 +40,7 @@ void SaveSelection::Terminate()
 
 void SaveSelection::DrawConsole() const
 {
-	std::cout << "Hero selection" << std::endl;
+	std::cout << "Save selection" << std::endl;
 
 	for (const auto& save : saves)
 	{

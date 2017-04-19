@@ -55,11 +55,11 @@ Save game::ParseSave(std::istream& stream)
 	return save;
 }
 
-Hero game::ParseHero(std::istream& stream, std::error_code& errorBuffer)
+Save game::ParseSave(std::istream& stream, std::error_code& errorBuffer)
 {
 	try
 	{
-		return ParseHero(stream);
+		return ParseSave(stream);
 	}
 	catch (std::system_error exception)
 	{
