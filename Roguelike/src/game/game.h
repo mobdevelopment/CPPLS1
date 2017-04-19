@@ -35,8 +35,7 @@ namespace game
 		nodes::Space*	heroLocation;
 		unsigned int	dungeonLayer;
 
-		const void OnMove();
-
+		void OnMove();
 	public:
 		Game();
 		~Game() noexcept;
@@ -77,6 +76,8 @@ namespace game
 		const nodes::Space* MoveDown();
 		const nodes::Space* MoveLeft();
 		const nodes::Space* MoveRight();
+
+		void OnChange();
 	}; // class Game
 } // namespace game
 

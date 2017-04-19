@@ -43,6 +43,7 @@ void Room::GrabCommandHandler(utils::cmd::Command& command)
 		}
 
 		context.userInterface.DrawConsole(item->name + " grabbed");
+		context.game.OnChange();
 		return;
 	}
 

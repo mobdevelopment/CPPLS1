@@ -50,6 +50,7 @@ void Fight::FightCommandHandler(utils::cmd::Command& command)
 			}
 
 			context.userInterface.DrawConsole(firstOutput + "\n" + secondOutput + "\n\nYou still have " + std::to_string(context.hero.lifePoints));
+			context.game.OnChange();
 			return;
 		}
 		else

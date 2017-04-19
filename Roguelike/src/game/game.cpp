@@ -217,7 +217,7 @@ const nodes::Space* Game::MoveRight()
 	return heroLocation;
 }
 
-const void Game::OnMove()
+void Game::OnMove()
 {
 	bool movedLayer = false;
 
@@ -228,6 +228,7 @@ const void Game::OnMove()
 			heroLocation = stairdown->GetBottomRoom();
 			dungeonLayer--;
 			movedLayer = true;
+
 		}
 	}
 	else if (auto stairup = dynamic_cast<nodes::StairsUp*>(heroLocation))
@@ -335,7 +336,13 @@ const void Game::OnMove()
 		}
 				
 	}
-	
+
+	OnChange(); // It's outside the if so will always be called after a movement
+}
+
+void Game::OnChange()
+{
+	// Todo: Parse game data
 }
 
 int Game::GetDungeonLayer()
