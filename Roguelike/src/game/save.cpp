@@ -69,6 +69,18 @@ Save game::ParseSave(std::istream& stream)
 
 			save.monsters.emplace(save.monsters.size(), sm);
 		}
+		else if (boost::iequals(lineType, "item"))
+		{
+			items::SaveItem si;
+
+			sstream >> si.name;
+			sstream >> si.x;
+			sstream >> si.y;
+			sstream >> si.z;
+			sstream >> si.amount;
+
+			save.items.emplace(save.items.size(), si);
+		}
 
 		if (!stream)
 			throw std::system_error(Error::STREAM_ERROR);

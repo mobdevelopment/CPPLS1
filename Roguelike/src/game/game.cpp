@@ -197,7 +197,16 @@ void game::Game::AddItems(SavedItemsContainer items)
 {
 	for (auto i : items)
 	{
-		// Add item by type
+		auto ti = i.second;
+		for (auto ic : encounterableItems)
+		{
+			if (boost::iequals(ti.name, ic->name))
+			{
+				auto room = dungeon[ti.z].GetRoom(ti.x, ti.y);
+				
+				room->SetItem(*ic);
+			}
+		}
 	}
 }
 

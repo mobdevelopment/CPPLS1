@@ -5,5 +5,5 @@ bag, ironshield
 bag, rarecandy 12
 monster, ork 2 0 0 3
 monster, draak 2 4 0 65
-item, potion 12 16 0 45
-item, ironsword 4 2 0
+item, potion 2 0 0
+item, ironsword 2 4 0

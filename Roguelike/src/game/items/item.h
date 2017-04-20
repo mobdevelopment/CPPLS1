@@ -42,6 +42,7 @@ namespace game {
 
 		class SaveItem
 		{
+		public:
 			std::string name;
 			int			x;
 			int			y;
