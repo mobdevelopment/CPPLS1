@@ -3,7 +3,7 @@ hero, Henk 2 2 0
 leg, ironlegplate
 bag, ironshield
 bag, rarecandy 12
-monster, ork 4 12 3
-monster, draak 8 14 65
-item, potion 12 16 45
-item, ironsword 4 2
+monster, ork 4 12 0 3
+monster, draak 8 14 0 65
+item, potion 12 16 0 45
+item, ironsword 4 2 0
