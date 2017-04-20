@@ -10,6 +10,7 @@
 #include <stdlib.h>
 
 #include "game.h"
+#include "monster.h"
 
 //#include "items/item.h"
 #include "items/consumable.h"
@@ -48,6 +49,10 @@ namespace game
 		int				startX;
 		int				startY;
 		int				startZ;
+
+		MonstersContainer	monsters;
+		ItemsContainer		bag;
+
 	}; // class Hero
 
 	Save ParseSave(std::istream& stream);
