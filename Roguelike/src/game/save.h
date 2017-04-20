@@ -9,7 +9,6 @@
 #include <unordered_map>
 #include <stdlib.h>
 
-#include "game.h"
 #include "monster.h"
 
 #include "items/item.h"

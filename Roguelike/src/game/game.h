@@ -8,6 +8,7 @@
 #include "dungeon.h"
 #include "hero.h"
 #include "monster.h"
+#include "save.h"
 #include "items/item.h"
 
 #include "nodes/room.h"
@@ -61,11 +62,13 @@ namespace game
 		void SetHero(const Hero& hero);
 		const Hero& GetHero() const;
 
+		void AddMonsters(SavedMonstersContainer monsters);
 		void EnableRandomMonsters(const bool enable);
 		bool EnableRandomMonsters() const;
 		const bool HasMonster() const;
 		game::Monster* GetMonster();
 
+		void AddItems(SavedItemsContainer items);
 		std::vector<game::items::Item*> encounterableItems;
 		void EnableRandomItems(const bool enable);
 		bool EnableRandomItems() const;

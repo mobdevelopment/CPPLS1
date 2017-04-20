@@ -59,18 +59,15 @@ Save game::ParseSave(std::istream& stream)
 		}
 		else if (boost::iequals(lineType, "monster"))
 		{
-			std::string mname;
-			sstream >> mname;
+			SaveMonster sm;
 
-			Monster m;
-			for (auto tm : posMonsters)
-			{
-				if (tm.second.name == mname)
-				{
-					m = tm.second;
-					
-				}
-			}
+			sstream >> sm.name;
+			sstream >> sm.x;
+			sstream >> sm.y;
+			sstream >> sm.z;
+			sstream >> sm.hp;
+
+			save.monsters.emplace(save.monsters.size(), sm);
 		}
 
 		if (!stream)

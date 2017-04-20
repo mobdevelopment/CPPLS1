@@ -30,6 +30,8 @@ void SaveSelection::SelectCommandHandler(utils::cmd::Command& command)
 	context.game.SetHero(context.hero);
 	context.game.Start(saves[saveName].startX, saves[saveName].startY, saves[saveName].startZ);
 
+	context.game.AddMonsters(saves[saveName].monsters);
+
 	// Go to the dungeon selection state.
 	context.userInterface.SetState(Type::ROOM);
 }

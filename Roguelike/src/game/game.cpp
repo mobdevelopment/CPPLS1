@@ -1,6 +1,8 @@
 #include "game.h"
 #include <typeinfo>
 
+#include <boost\algorithm\string.hpp>
+
 using namespace game;
 
 Game::Game() :
@@ -147,6 +149,24 @@ const Hero& Game::GetHero() const
 	return hero;
 }
 
+void Game::AddMonsters(SavedMonstersContainer monsters)
+{
+	for (auto m : monsters)
+	{
+		auto tm = m.second;
+		for (auto mc : container)
+		{
+			auto tmc = mc.second;
+			if (boost::iequals(tmc.name, tm.name))
+			{
+				auto room = dungeon[tm.z].GetRoom(tm.x, tm.y);
+				tmc.lifePoints = tm.hp;
+				room->SetMonster(tmc);
+			}
+		}
+	}
+}
+
 void Game::EnableRandomMonsters(const bool enable)
 {
 	container = game::GetSavedMonsters();
@@ -171,6 +191,14 @@ const bool Game::HasMonster() const
 game::Monster* Game::GetMonster()
 {
 	return static_cast<nodes::Room*>(heroLocation)->GetMonster();
+}
+
+void game::Game::AddItems(SavedItemsContainer items)
+{
+	for (auto i : items)
+	{
+		// Add item by type
+	}
 }
 
 void Game::EnableRandomItems(const bool enable) {
@@ -359,7 +387,7 @@ void Game::OnMove()
 
 						auto* item = encounterableItems[randItem];
 						
-						hero.AddItem(item);
+						//hero.AddItem(item);
 						room->SetItem(*item);
 					}
 				}
