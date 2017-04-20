@@ -16,6 +16,15 @@ void SaveSelection::SelectCommandHandler(utils::cmd::Command& command)
 		return;
 	}
 
+	game::HeroesContainer heroes = game::GetSavedHeroes();
+	if (heroes.find(saves[saveName].heroName) == heroes.end())
+	{
+		context.userInterface.DrawConsole("Save data is corrupt! Hero '" + saves[saveName].heroName + "' doesn't exist.");
+		return;
+	}
+
+	// Load the active hero into the context.
+	context.hero = heroes[saves[saveName].heroName];
 	context.hero.lifePoints = context.hero.maxLifePoints;
 	context.game.RandomizeDungeon(saves[saveName].layers, saves[saveName].width, saves[saveName].height, saves[saveName].seed);
 	context.game.SetHero(context.hero);
