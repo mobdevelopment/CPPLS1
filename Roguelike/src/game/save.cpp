@@ -85,9 +85,6 @@ Save game::ParseSave(std::istream& stream)
 			items::SaveItem si;
 
 			sstream >> si.name;
-			sstream >> si.x;
-			sstream >> si.y;
-			sstream >> si.z;
 			sstream >> si.amount;
 
 			save.bag.emplace(save.bag.size(), si);

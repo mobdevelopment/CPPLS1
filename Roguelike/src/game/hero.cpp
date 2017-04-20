@@ -1,6 +1,7 @@
 #include "hero.h"
 #include <algorithm>
 
+#include <boost\algorithm\string.hpp>
 
 using namespace game;
 using namespace boost;
@@ -168,6 +169,63 @@ Hero game::GetSavedHero(std::string heroName, std::error_code& errorBuffer)
 	catch (std::system_error exception)
 	{
 		errorBuffer = exception.code();
+	}
+}
+
+void game::Hero::AddEquipables(SavedItemsContainer items)
+{
+	for (auto i : items)
+	{
+		auto ti = i.second;
+		for (auto ic : items::GetSavedItems())
+		{
+			if (boost::iequals(ti.name, ic->name))
+			{
+				if (auto equipable = dynamic_cast<game::items::Equipment*>(ic))
+				{
+					bool hasItem = false;
+					for (auto i : GetItems())
+						if (i->name == equipable->name)
+							hasItem = true;
+
+					if (!hasItem)
+					{
+						AddItem(equipable);
+						equipable->Use(*this);
+					}
+						
+				}
+			}
+		}
+	}
+}
+
+void game::Hero::AddItems(SavedItemsContainer items)
+{
+	for (auto i : items)
+	{
+		auto ti = i.second;
+		for (auto ic : items::GetSavedItems())
+		{
+			if (boost::iequals(ti.name, ic->name))
+			{
+				if (auto consumable = dynamic_cast<game::items::Consumable*>(ic))
+				{
+					consumable->amount = ti.amount;
+					AddItem(consumable);
+				}
+				else if (auto equipable = dynamic_cast<game::items::Equipment*>(ic))
+				{
+					bool hasItem = false;
+					for (auto i : GetItems())
+						if (i->name == equipable->name)
+							hasItem = true;
+
+					if (!hasItem)
+						AddItem(equipable);
+				}
+			}
+		}
 	}
 }
 

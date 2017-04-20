@@ -26,6 +26,9 @@ void SaveSelection::SelectCommandHandler(utils::cmd::Command& command)
 	// Load the active hero into the context.
 	context.hero = heroes[saves[saveName].heroName];
 	context.hero.lifePoints = context.hero.maxLifePoints;
+	context.hero.AddItems(saves[saveName].bag);
+	context.hero.AddEquipables(saves[saveName].equipment);
+
 	context.game.RandomizeDungeon(saves[saveName].layers, saves[saveName].width, saves[saveName].height, saves[saveName].seed);
 	context.game.SetHero(context.hero);
 	context.game.Start(saves[saveName].startX, saves[saveName].startY, saves[saveName].startZ);

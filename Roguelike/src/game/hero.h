@@ -9,7 +9,7 @@
 #include <unordered_map>
 #include <stdlib.h>
 
-//#include "items/item.h"
+#include "save.h"
 #include "items/consumable.h"
 #include "items/equipment.h"
 #include <boost/filesystem.hpp>
@@ -55,10 +55,11 @@ namespace game
 
 		std::vector<items::Item*> items;
 		
-		
 		void Heal(int amount);
 		void RareCandy();
 
+		void AddEquipables(SavedItemsContainer items);
+		void AddItems(SavedItemsContainer items);
 		void AddExp(int exp);
 		std::vector<items::Item*> GetItems();
 		void AddItem(items::Equipment* item);

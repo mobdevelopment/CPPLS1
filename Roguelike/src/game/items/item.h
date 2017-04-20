@@ -47,7 +47,7 @@ namespace game {
 			int			x;
 			int			y;
 			int			z;
-			int			amount;
+			unsigned int			amount = 0;
 		};
 
 
