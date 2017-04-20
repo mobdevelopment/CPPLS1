@@ -1,6 +1,7 @@
 #include "save.h"
 #include <algorithm>
 
+#include <boost\algorithm\string.hpp>
 
 using namespace game;
 using namespace boost;
@@ -41,12 +42,30 @@ Save game::ParseSave(std::istream& stream)
 	sstream >> save.height;
 	sstream >> save.layers;
 
+	std::string lineType;
+	while (std::getline(stream, statsLine))
+	{
+		std::stringstream sstream(statsLine);
+		// Name is until the first comma.
+		std::getline(sstream, lineType, ',');
+		if (boost::iequals(lineType, "hero"))
+		{
+			sstream >> save.heroName;
+			sstream >> save.startX;
+			sstream >> save.startY;
+			sstream >> save.startZ;
+		}
+
+		if (!stream)
+			throw std::system_error(Error::STREAM_ERROR);
+	}
+
 	// TODO: Items.
 	// All the following lines are items.
 
 	// Check for stream error.
-	if (!stream)
-		throw std::system_error(Error::STREAM_ERROR);
+	//if (!stream)
+	//	throw std::system_error(Error::STREAM_ERROR);
 		
 	return save;
 }

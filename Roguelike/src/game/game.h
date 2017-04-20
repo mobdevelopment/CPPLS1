@@ -42,6 +42,7 @@ namespace game
 		Game(const Game& other);
 		Game &operator =(const Game& other);
 
+		void Start(const int x, const int y, const int z);
 		void Start();
 		void Stop();
 
@@ -71,6 +72,8 @@ namespace game
 		const bool HasItem() const;
 		game::items::Item GetItem();
 
+		void SetHeroLocation(const int x, const int y);
+		void SetHeroLocation(game::nodes::Space* room);
 		nodes::Space* GetHeroLocation();
 		const nodes::Space* MoveUp();
 		const nodes::Space* MoveDown();

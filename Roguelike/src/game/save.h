@@ -43,6 +43,11 @@ namespace game
 		int				height;
 		int				width;
 		int				layers;
+
+		std::string		heroName;
+		int				startX;
+		int				startY;
+		int				startZ;
 	}; // class Hero
 
 	Save ParseSave(std::istream& stream);

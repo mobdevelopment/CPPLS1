@@ -41,6 +41,27 @@ game::Game::Game(const Game & other)
 	monsterContainer = other.monsterContainer;
 }
 
+void Game::Start(const int x, const int y, const int z)
+{
+	if (IsRunning())
+		throw std::system_error(Error::GAME_ALREADY_RUNNING);
+
+	// Put the hero in a random room.
+	dungeonLayer = z;
+	heroLocation = dungeon[dungeonLayer].GetRoom(x, y);
+
+	if (enableRandomMonsters)
+	{
+		container = game::GetSavedMonsters();
+	}
+	if (enableRandomItems) {
+		encounterableItems = items::GetSavedItems();
+	}
+
+	isRunning = true;
+	isCleared = false;
+}
+
 void Game::Start()
 {
 	if (IsRunning())
@@ -175,6 +196,16 @@ game::items::Item Game::GetItem() {
 nodes::Space* Game::GetHeroLocation()
 {
 	return heroLocation;
+}
+
+void Game::SetHeroLocation(const int x, const int y)
+{
+	heroLocation = dungeon[dungeonLayer].GetRoom(x, y);
+}
+
+void Game::SetHeroLocation(game::nodes::Space* room)
+{
+	heroLocation = room;
 }
 
 const nodes::Space* Game::MoveUp()

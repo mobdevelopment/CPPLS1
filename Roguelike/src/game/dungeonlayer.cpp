@@ -95,6 +95,14 @@ nodes::Room* DungeonLayer::GetRandomRoom(const int seed) const noexcept
 	return room;
 }
 
+nodes::Room* DungeonLayer::GetRoom(const int x, const int y) const noexcept
+{
+	if (x % 2 != 0 || y % 2 != 0)
+		return nullptr;
+
+	return (nodes::Room*)rows[y][x];
+}
+
 void DungeonLayer::SetWidth(const unsigned int width)
 {
 	for (auto& row : rows)

@@ -19,7 +19,7 @@ void SaveSelection::SelectCommandHandler(utils::cmd::Command& command)
 	context.hero.lifePoints = context.hero.maxLifePoints;
 	context.game.RandomizeDungeon(saves[saveName].layers, saves[saveName].width, saves[saveName].height, saves[saveName].seed);
 	context.game.SetHero(context.hero);
-	context.game.Start();
+	context.game.Start(saves[saveName].startX, saves[saveName].startY, saves[saveName].startZ);
 
 	// Go to the dungeon selection state.
 	context.userInterface.SetState(Type::ROOM);
