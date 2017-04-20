@@ -77,9 +77,31 @@ Save game::ParseSave(std::istream& stream)
 			sstream >> si.x;
 			sstream >> si.y;
 			sstream >> si.z;
-			sstream >> si.amount;
 
 			save.items.emplace(save.items.size(), si);
+		}
+		else if (boost::iequals(lineType, "bag"))
+		{
+			items::SaveItem si;
+
+			sstream >> si.name;
+			sstream >> si.x;
+			sstream >> si.y;
+			sstream >> si.z;
+			sstream >> si.amount;
+
+			save.bag.emplace(save.bag.size(), si);
+		}
+		else if (boost::iequals(lineType, "feet") || boost::iequals(lineType, "leg") || boost::iequals(lineType, "body") || boost::iequals(lineType, "leftHand") || boost::iequals(lineType, "rightHand"))
+		{
+			items::SaveItem si;
+
+			sstream >> si.name;
+			sstream >> si.x;
+			sstream >> si.y;
+			sstream >> si.z;
+
+			save.equipment.emplace(save.equipment.size(), si);
 		}
 
 		if (!stream)
