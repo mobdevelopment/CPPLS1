@@ -43,6 +43,8 @@ Save game::ParseSave(std::istream& stream)
 	sstream >> save.layers;
 
 	std::string lineType;
+	MonstersContainer posMonsters = game::GetSavedMonsters();
+
 	while (std::getline(stream, statsLine))
 	{
 		std::stringstream sstream(statsLine);
@@ -54,6 +56,21 @@ Save game::ParseSave(std::istream& stream)
 			sstream >> save.startX;
 			sstream >> save.startY;
 			sstream >> save.startZ;
+		}
+		else if (boost::iequals(lineType, "monster"))
+		{
+			std::string mname;
+			sstream >> mname;
+
+			Monster m;
+			for (auto tm : posMonsters)
+			{
+				if (tm.second.name == mname)
+				{
+					m = tm.second;
+					
+				}
+			}
 		}
 
 		if (!stream)

@@ -40,6 +40,16 @@ namespace game {
 			virtual void Use(Hero& h);
 		};
 
+		class SaveItem
+		{
+			std::string name;
+			int			x;
+			int			y;
+			int			z;
+			int			amount;
+		};
+
+
 		//std::vector<game::items::Item*> encounterableItems;
 		std::vector<game::items::Item*> GetSavedItems();
 	}

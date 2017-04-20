@@ -12,9 +12,9 @@
 #include "game.h"
 #include "monster.h"
 
-//#include "items/item.h"
-#include "items/consumable.h"
-#include "items/equipment.h"
+#include "items/item.h"
+//#include "items/consumable.h"
+//#include "items/equipment.h"
 #include <boost/filesystem.hpp>
 
 #include "errorcategory.h"
@@ -25,13 +25,9 @@ namespace game
 	class Game;
 	class Save;
 
-	namespace items {
-		class Consumable;
-		class Equipment;
-		class Item;
-	}
-
 	typedef std::unordered_map<std::string, Save> SavesContainer;
+	typedef std::unordered_map<int, SaveMonster> SavedMonstersContainer;
+	typedef std::unordered_map<int, items::SaveItem> SavedItemsContainer;
 
 	class Save
 	{
@@ -50,8 +46,10 @@ namespace game
 		int				startY;
 		int				startZ;
 
-		MonstersContainer	monsters;
-		ItemsContainer		bag;
+		SavedMonstersContainer	monsters;
+		SavedItemsContainer		bag;
+		SavedItemsContainer		equipment;
+		SavedItemsContainer		items;
 
 	}; // class Hero
 

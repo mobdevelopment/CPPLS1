@@ -359,7 +359,7 @@ void Game::OnMove()
 
 						auto* item = encounterableItems[randItem];
 						
-						//hero.AddItem(item);
+						hero.AddItem(item);
 						room->SetItem(*item);
 					}
 				}

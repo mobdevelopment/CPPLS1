@@ -34,6 +34,16 @@ namespace game
 		int				lifePoints		= 0;
 	}; // class Hero
 
+	class SaveMonster
+	{
+	public:
+		std::string		name;
+		int				x;
+		int				y;
+		int				z;
+		int				hp;
+	};
+
 	MonstersContainer ParseMonster(std::istream& stream);
 	MonstersContainer ParseMonster(std::istream& stream, std::error_code& errorBuffer);
 
