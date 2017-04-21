@@ -34,6 +34,11 @@ game::Hero::Hero()
 
 game::Hero::~Hero()
 {
+	if (legs != nullptr)
+		legs = nullptr;
+
+	for_each(itemsList.begin(), itemsList.end(), std::default_delete<items::Item>());
+	itemsList.clear();
 }
 
 const std::string& game::GetRandomHeroName() noexcept
@@ -174,10 +179,13 @@ Hero game::GetSavedHero(std::string heroName, std::error_code& errorBuffer)
 
 void game::Hero::AddEquipables(SavedItemsContainer items)
 {
+	if (itemsList.empty())
+		itemsList = items::GetSavedItems();
+
 	for (auto i : items)
 	{
 		auto ti = i.second;
-		for (auto ic : items::GetSavedItems())
+		for (auto ic : itemsList)
 		{
 			if (boost::iequals(ti.name, ic->name))
 			{
@@ -202,10 +210,13 @@ void game::Hero::AddEquipables(SavedItemsContainer items)
 
 void game::Hero::AddItems(SavedItemsContainer items)
 {
+	if (itemsList.empty())
+		itemsList = items::GetSavedItems();
+
 	for (auto i : items)
 	{
 		auto ti = i.second;
-		for (auto ic : items::GetSavedItems())
+		for (auto ic : itemsList)
 		{
 			if (boost::iequals(ti.name, ic->name))
 			{

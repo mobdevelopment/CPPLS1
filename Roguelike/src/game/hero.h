@@ -65,6 +65,7 @@ namespace game
 		void AddItem(items::Equipment* item);
 		void AddItem(items::Consumable* item);
 		std::unordered_map<int, items::SaveItem> equipedItems();
+		std::vector<items::Item*> itemsList;
 	}; // class Hero
 
 	const int getLevelExp(const int xplevel);
