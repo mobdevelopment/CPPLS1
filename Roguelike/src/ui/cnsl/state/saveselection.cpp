@@ -31,7 +31,7 @@ void SaveSelection::SelectCommandHandler(utils::cmd::Command& command)
 	context.hero.AddEquipables(saves[saveName].equipment);
 
 	context.game.RandomizeDungeon(saves[saveName].layers, saves[saveName].width, saves[saveName].height, saves[saveName].seed);
-	context.game.SetHero(context.hero);
+	context.game.SetHero(&context.hero);
 	context.game.Start(saves[saveName].startX, saves[saveName].startY, saves[saveName].startZ);
 
 	context.game.AddMonsters(saves[saveName].monsters);

@@ -37,7 +37,12 @@ game::Hero::~Hero()
 	if (legs != nullptr)
 		legs = nullptr;
 
-	for_each(itemsList.begin(), itemsList.end(), std::default_delete<items::Item>());
+	for (auto i : itemsList)
+	{
+		if (&i->name)
+			delete i;
+	}
+	//for_each(itemsList.begin(), itemsList.end(), std::default_delete<items::Item>());
 	itemsList.clear();
 }
 
