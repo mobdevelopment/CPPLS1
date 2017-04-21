@@ -132,7 +132,7 @@ void game::WriteSave(std::ostream& stream, const Save& save)
 	// Write Seed: Seed number, x y z (width, length, height)
 	stream << save.seed << ', ' << save.height << ' ' << save.width << ' ' << save.layers << '\n';
 	// Write Hero: 'hero, ' name x y z (location)
-	stream << "hero, " << save.heroName << ' ' << save.heroHp << ' ' << save.startX << ' ' << save.startY << ' ' << save.startZ << '\n';
+	stream << "hero, " << save.heroName << ' ' << save.heroHp << ' ' << save.heroExp << ' ' << save.startX << ' ' << save.startY << ' ' << save.startZ << '\n';
 	// Write Equips: 'leg, ' name
 	for (auto ei : save.equipment) {
 		stream << "equip, " << ei.second.name << '\n';
