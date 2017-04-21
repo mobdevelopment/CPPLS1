@@ -332,5 +332,7 @@
     <None Include="saves\201704191354.save" />
     <None Include="saves\Dalton.save" />
     <None Include="saves\Henk.save" />
+    <None Include="saves\Salvatore.save" />
+    <None Include="heroes\Salvatore.hero" />
   </ItemGroup>
 </Project>

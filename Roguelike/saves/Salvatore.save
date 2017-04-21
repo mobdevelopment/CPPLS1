@@ -1,0 +1,10 @@
+1991936922, 6 4 5
+hero, Salvatore 25 1157 2 6 1
+equip, IronSword
+bag, IronSword
+bag, LeatherShoes
+bag, IronBodyplate
+item, IronSword 0 4 0
+item, IronSword 0 6 0
+item, LeatherShoes 2 6 0
+item, IronSword 2 6 1

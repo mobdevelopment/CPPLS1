@@ -63,7 +63,7 @@ void Bag::Terminate()
 
 void Bag::DrawConsole() const
 {
-	auto hero = context.hero;
+	auto& hero = context.hero;
 	auto items = hero.GetItems();
 
 	std::cout << "Bag" << std::endl << std::endl;

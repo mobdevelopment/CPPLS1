@@ -29,7 +29,7 @@ void SaveSelection::SelectCommandHandler(utils::cmd::Command& command)
 	context.hero.experiencePoints = saves[saveName].heroExp;
 	context.hero.maxLifePoints = context.hero.maxLifePoints;// saved hp
 	context.hero.AddItems(saves[saveName].bag);
-	context.hero.AddEquipables(saves[saveName].equipment);
+	//context.hero.AddEquipables(saves[saveName].equipment);
 
 	context.game.RandomizeDungeon(saves[saveName].layers, saves[saveName].width, saves[saveName].height, saves[saveName].seed);
 	context.game.SetHero(&context.hero);
