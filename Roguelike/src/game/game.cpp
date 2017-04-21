@@ -136,7 +136,7 @@ void Game::RandomizeDungeon(const unsigned int layerCount, const unsigned int wi
 	dungeonSeed = seed;
 }
 
-void Game::SetHero(const Hero& hero)
+void Game::SetHero(Hero* hero)
 {
 	if (!IsCleared())
 		throw std::system_error(Error::GAME_NOT_CLEARED);
@@ -146,7 +146,7 @@ void Game::SetHero(const Hero& hero)
 
 const Hero& Game::GetHero() const
 {
-	return hero;
+	return *hero;
 }
 
 void Game::AddMonsters(SavedMonstersContainer monsters)
@@ -417,24 +417,23 @@ void Game::OnChange()
 	// SAVESTATE::
 	game::Save save;
 	// set dungeon info
-	save.name = hero.name;
+	save.name = hero->name;
 	save.seed = dungeonSeed;
 	save.height = dungeon.GetRoomsHeight();
 	save.width = dungeon.GetRoomsWidth();
 	save.layers = dungeon.GetLayers().size();
 	// set hero info 
-	save.heroName = hero.name;
-	save.name = hero.name;
-	save.heroHp = hero.lifePoints;
-	save.heroExp = hero.experiencePoints;
+	save.heroName = hero->name;
+	save.name = hero->name;
+	save.heroHp = hero->lifePoints;
+	save.heroExp = hero->experiencePoints;
 	// set equiped items
-	save.equipment = hero.equipedItems();
+	save.equipment = hero->equipedItems();
 	// set bag items
 	std::unordered_map<int, items::SaveItem> bagItems;
-	auto bagInventory = hero.GetItems();
+	auto bagInventory = hero->GetItems();
 
 	if (bagInventory.size() > 0) {
-		int bagCount = 1;
 		items::SaveItem si;
 		for (auto i : bagInventory) {
 			if (auto* ci = dynamic_cast<game::items::Consumable*>(i)) {
@@ -444,7 +443,7 @@ void Game::OnChange()
 			else if (auto* ci = dynamic_cast<game::items::Equipment*>(i)) {
 				si.name = ci->name;
 			}
-			bagItems[bagCount] = si;
+			bagItems.emplace(bagItems.size(), si);
 		}
 	}
 	save.bag = bagItems;

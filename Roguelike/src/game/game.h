@@ -29,7 +29,7 @@ namespace game
 
 		MonstersContainer container;
 		Dungeon			dungeon;
-		Hero			hero;
+		Hero*			hero;
 
 		MonstersContainer monsterContainer;
 
@@ -59,7 +59,7 @@ namespace game
 
 		void RandomizeDungeon(const unsigned int layerCount, const unsigned int width, const unsigned int height, const unsigned int seed);
 
-		void SetHero(const Hero& hero);
+		void SetHero(Hero* hero);
 		const Hero& GetHero() const;
 
 		void AddMonsters(SavedMonstersContainer monsters);
