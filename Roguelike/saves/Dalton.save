@@ -1,9 +1,13 @@
-1696105871, 10 10 5
-hero, Dalton 3 4 16 2 0
-equip, IronShield
-bag, IronShield
-monster, trol 16 0 0 100
-monster, golem 16 6 0 300
-item, LeatherShoes 14 0 0
-item, RareCandy 16 0 0
-item, LeatherShoes 16 2 0
+3396775411, 10 10 5
+hero, Dalton 3 4 18 6 1
+equip, IronSword
+bag, LeatherShoes
+bag, RareCandy 2
+bag, IronSword
+monster, golem 14 10 0 300
+monster, trol 14 16 0 100
+monster, rat 18 8 1 2
+item, LeatherShoes 14 14 0
+item, LeatherShoes 14 18 0
+item, RareCandy 18 6 1
+item, RareCandy 18 8 1

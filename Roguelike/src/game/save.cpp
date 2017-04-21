@@ -141,7 +141,7 @@ void game::WriteSave(std::ostream& stream, const Save& save)
 	}
 	// Write Bag items: 'bag, ' name (possible amount) in case of consumables
 	for (auto b : save.bag) {
-		if (b.second.amount == 1) {
+		if (!b.second.amount) {
 			// equipable items or consumable items which only have 1 amount
 			stream << "bag, " << b.second.name << '\n';
 		}

@@ -434,8 +434,8 @@ void Game::OnChange()
 	auto bagInventory = hero->GetItems();
 
 	if (bagInventory.size() > 0) {
-		items::SaveItem si;
 		for (auto i : bagInventory) {
+			items::SaveItem si;
 			if (auto* ci = dynamic_cast<game::items::Consumable*>(i)) {
 				si.name = ci->name;
 				si.amount = ci->amount;
