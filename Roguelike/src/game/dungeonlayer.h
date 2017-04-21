@@ -46,8 +46,8 @@ namespace game
 		RowsContainer& GetRows() noexcept;
 		const RowsContainer& GetRows() const noexcept;
 
-		nodes::Room* GetRandomRoom(const int seed) const noexcept;
-		nodes::Room* GetRoom(const int x, const int y) const noexcept;
+		nodes::Space* GetRandomRoom(const int seed) const noexcept;
+		nodes::Space* GetRoom(const int x, const int y) const noexcept;
 
 		void SetWidth(const unsigned int width);
 		void SetHeight(const unsigned int height);

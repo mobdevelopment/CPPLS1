@@ -316,8 +316,8 @@ void Dungeon::Randomize(const unsigned int layerCount, const unsigned int width,
 			if (x % 2 != 0) x++;
 			if (y % 2 != 0) y++;
 
-			//auto node = static_cast<nodes::Room*>(layer[y][x]);
-			auto node = static_cast<nodes::Room*>(layer[0][0]);
+			auto node = static_cast<nodes::Room*>(layer[y][x]);
+			//auto node = static_cast<nodes::Room*>(layer[0][0]);
 
 			auto stairUp = new nodes::StairsUp();
 
