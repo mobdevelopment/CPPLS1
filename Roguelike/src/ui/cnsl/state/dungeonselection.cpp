@@ -13,6 +13,16 @@ void DungeonSelection::StartCommandHandler(utils::cmd::Command& command)
 	context.game.SetHero(context.hero);
 	context.game.Start();
 
+	//// SAVESTATE::
+	//game::Save save;
+	//// set dungeon info
+	//save.seed = dungeonSeed;
+	//save.height = dungeonHeight;
+	//save.width = dungeonWidth;
+	//save.layers = dungeonLayers;
+	//// set hero name
+	//save.heroName = context.hero.name;
+
 	context.userInterface.SetState(Type::ROOM);
 }
 

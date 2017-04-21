@@ -41,6 +41,8 @@ namespace game
 		int				layers;
 
 		std::string		heroName;
+		int				heroHp;
+		int				heroExp;
 		int				startX;
 		int				startY;
 		int				startZ;

@@ -316,6 +316,39 @@ void Hero::AddItem(items::Consumable* item) {
 	}
 }
 
+std::unordered_map<int, items::SaveItem> game::Hero::equipedItems()
+{
+	int count = 1;
+	std::unordered_map<int, items::SaveItem> _equipeditems;
+	items::SaveItem i;
+	if (leftHand != NULL) {
+		i.name = leftHand->name;
+		_equipeditems[count] = i;
+		count++;
+	}
+	else if (rightHand != NULL) {
+		i.name = rightHand->name;
+		_equipeditems[count] = i;
+		count++;
+	}
+	else if (feet != NULL) {
+		i.name = feet->name;
+		_equipeditems[count] = i;
+		count++;
+	}
+	else if (legs != NULL) {
+		i.name = legs->name;
+		_equipeditems[count] = i;
+		count++;
+	}
+	else if (body != NULL) {
+		i.name = body->name;
+		_equipeditems[count] = i;
+		count++;
+	}
+	return _equipeditems;
+}
+
 void Hero::AddItem(items::Equipment* item) {
 	items.push_back(item);
 }

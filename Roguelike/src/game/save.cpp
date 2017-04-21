@@ -129,20 +129,33 @@ Save game::ParseSave(std::istream& stream, std::error_code& errorBuffer)
 
 void game::WriteSave(std::ostream& stream, const Save& save)
 {
-	// Stats on the first line.
-	/*stream << hero.name << ',' <<
-		hero.level << ' ' <<
-		hero.maxLifePoints << ' ' <<
-		hero.experiencePoints << ' ' <<
-		hero.attackChance << ' ' <<
-		hero.defenseChance << ' ' <<
-		hero.attackAmount << ' ' <<
-		hero.minDamage << ' ' <<
-		hero.maxDamage << ' ' <<
-		'\n';*/
-
-	// TODO: Items.
-	// Items next.
+	// Write Seed: Seed number, x y z (width, length, height)
+	stream << save.seed << ', ' << save.height << ' ' << save.width << ' ' << save.layers << '\n';
+	// Write Hero: 'hero, ' name x y z (location)
+	stream << "hero, " << save.heroName << ' ' << save.heroHp << ' ' << save.startX << ' ' << save.startY << ' ' << save.startZ << '\n';
+	// Write Equips: 'leg, ' name
+	for (auto ei : save.equipment) {
+		stream << "equip, " << ei.second.name << '\n';
+	}
+	// Write Bag items: 'bag, ' name (possible amount) in case of consumables
+	for (auto b : save.bag) {
+		if (b.second.amount == 1) {
+			// equipable items or consumable items which only have 1 amount
+			stream << "bag, " << b.second.name << '\n';
+		}
+		else {
+			// consumable items which amount is more than 1
+			stream << "bag, " << b.second.name << ' ' << b.second.amount << '\n';
+		}	
+	}
+	// Write not defeated Monsters: 'monster, ' name x y z hp
+	for (auto m : save.monsters) {
+		stream << "monster, " << m.second.name << ' ' << m.second.x << ' ' << m.second.y << ' ' << m.second.z << ' ' << m.second.hp << '\n';
+	}
+	// Write not pickedup Items: 'item, ' name x y z
+	for (auto i : save.items) {
+		stream << "item, " << i.second.name << ' ' << i.second.x << ' ' << i.second.y << ' ' << i.second.z <<'\n';
+	}
 
 	// Check for stream error.
 	if (!stream)

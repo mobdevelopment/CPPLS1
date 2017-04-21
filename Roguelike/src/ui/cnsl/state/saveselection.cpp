@@ -25,7 +25,8 @@ void SaveSelection::SelectCommandHandler(utils::cmd::Command& command)
 
 	// Load the active hero into the context.
 	context.hero = heroes[saves[saveName].heroName];
-	context.hero.lifePoints = context.hero.maxLifePoints;
+	//context.hero // saved hp
+	context.hero.maxLifePoints = context.hero.maxLifePoints;// saved hp
 	context.hero.AddItems(saves[saveName].bag);
 	context.hero.AddEquipables(saves[saveName].equipment);
 

@@ -405,11 +405,102 @@ void Game::OnMove()
 				
 	}
 
-	OnChange(); // It's outside the if so will always be called after a movement
+	//OnChange(); // It's outside the if so will always be called after a movement
 }
 
 void Game::OnChange()
 {
+	// SAVESTATE::
+	game::Save save;
+	// set dungeon info
+	save.seed = dungeonSeed;
+	save.height = dungeon.GetRoomsHeight();
+	save.width = dungeon.GetRoomsWidth();
+	save.layers = dungeon.GetLayers().size();
+	// set hero info 
+	save.heroName = hero.name;
+	save.heroHp = hero.lifePoints;
+	save.heroExp = hero.experiencePoints;
+	//save.startX = 
+	//save.startY = 
+	//save.startZ = 
+	// set equiped items
+	std::unordered_map<int, items::SaveItem> equipedItems;
+	//hero.
+	save.equipment = equipedItems;
+	// set bag items
+	std::unordered_map<int, items::SaveItem> bagItems;
+	auto bagInventory = hero.GetItems();
+
+	if (bagInventory.size() > 0) {
+		int bagCount = 1;
+		items::SaveItem si;
+		for (auto i : bagInventory) {
+			if (auto* ci = dynamic_cast<game::items::Consumable*>(i)) {
+				si.name = ci->name;
+				si.amount = ci->amount;
+			}
+			else if (auto* ci = dynamic_cast<game::items::Equipment*>(i)) {
+				si.name = ci->name;
+			}
+			bagItems[bagCount] = si;
+		}
+	}
+	save.bag = bagItems;
+
+	// Get items and monster from the rooms
+	std::unordered_map<int, SaveMonster> roamMonster;
+	int rMCount = 1;
+	std::unordered_map<int, items::SaveItem> roamItem;
+	int rICount = 1;
+	
+	for (int z = 0; z < dungeon.GetLayers().size(); z++) {
+		for (int y = 0; y < dungeon.GetRoomsHeight(); y++) {
+			for (int x = 0; x < dungeon.GetRoomsWidth(); x++) {
+				auto room = dungeon[z].GetRoom(x, y);
+				if (room != NULL) {
+					if (room == heroLocation) {
+						save.startX = x;
+						save.startY = y;
+						save.startZ = z;
+					}
+					if (room->HasMonster() && room->GetMonster()->lifePoints > 0) {
+						SaveMonster m;
+						auto _m = room->GetMonster();
+	
+						m.name = _m->name;
+						m.hp = _m->lifePoints;
+						m.x = x;
+						m.y = y;
+						m.z = z;
+						roamMonster[rMCount] = m;
+						rMCount++;
+					}
+					if (room->HasItem() && !room->IsItemPickedUp()) {
+						items::SaveItem i;
+						auto _i = room->GetItem();
+
+						i.name = _i->name;
+						i.amount = 1;
+						i.x = x;
+						i.y = y;
+						i.z = z;
+						roamItem[rICount] = i;
+						rICount++;
+					}
+
+				}
+				
+			}
+		}
+	}
+	// set roaming monsters
+	save.monsters = roamMonster;
+	// set free items
+	save.items = roamItem;
+
+	game::SaveGame(save);
+	
 	//WriteHero(std::ofstream(HERO_FILES_FOLDER + '/' + hero.name + HERO_FILE_EXTENSION), hero);
 }
 
