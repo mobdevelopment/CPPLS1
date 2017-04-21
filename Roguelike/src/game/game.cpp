@@ -160,11 +160,11 @@ void Game::AddMonsters(SavedMonstersContainer monsters)
 			if (boost::iequals(tmc.name, tm.name))
 			{
 				auto room = dungeon[tm.z].GetRoom(tm.x, tm.y);
-				if (auto tr = dynamic_cast<nodes::Room*>(room))
-				{
+				if (auto tr = dynamic_cast<nodes::Room*>(room)) {
 					tmc.lifePoints = tm.hp;
 					tr->SetMonster(tmc);
 				}
+				
 			}
 		}
 	}
@@ -206,8 +206,7 @@ void game::Game::AddItems(SavedItemsContainer items)
 			if (boost::iequals(ti.name, ic->name))
 			{
 				auto room = dungeon[ti.z].GetRoom(ti.x, ti.y);
-				if (auto tr = dynamic_cast<nodes::Room*>(room))
-				{
+				if (auto tr = dynamic_cast<nodes::Room*>(room)) {
 					tr->SetItem(*ic);
 				}
 			}
@@ -410,7 +409,7 @@ void Game::OnMove()
 				
 	}
 
-	//OnChange(); // It's outside the if so will always be called after a movement
+	OnChange(); // It's outside the if so will always be called after a movement
 }
 
 void Game::OnChange()
@@ -418,6 +417,7 @@ void Game::OnChange()
 	// SAVESTATE::
 	game::Save save;
 	// set dungeon info
+	save.name = hero.name;
 	save.seed = dungeonSeed;
 	save.height = dungeon.GetRoomsHeight();
 	save.width = dungeon.GetRoomsWidth();
@@ -427,13 +427,8 @@ void Game::OnChange()
 	save.name = hero.name;
 	save.heroHp = hero.lifePoints;
 	save.heroExp = hero.experiencePoints;
-	//save.startX = 
-	//save.startY = 
-	//save.startZ = 
 	// set equiped items
-	std::unordered_map<int, items::SaveItem> equipedItems;
-	//hero.
-	save.equipment = equipedItems;
+	save.equipment = hero.equipedItems();
 	// set bag items
 	std::unordered_map<int, items::SaveItem> bagItems;
 	auto bagInventory = hero.GetItems();
@@ -456,33 +451,33 @@ void Game::OnChange()
 
 	// Get items and monster from the rooms
 	std::unordered_map<int, SaveMonster> roamMonster;
-	int rMCount = 1;
 	std::unordered_map<int, items::SaveItem> roamItem;
-	int rICount = 1;
 	
 	for (int z = 0; z < dungeon.GetLayers().size(); z++) {
-		for (int y = 0; y < dungeon.GetRoomsHeight(); y++) {
+		int locy = 0;
+		for (int y = 0	; y < dungeon.GetRoomsHeight(); y++) {
+			int locx = 0;
 			for (int x = 0; x < dungeon.GetRoomsWidth(); x++) {
-				auto room = dungeon[z].GetRoom(x, y);
+				
+				auto room = dungeon[z].GetRoom(locx, locy);
 				if (room != NULL) {
-					if (room == heroLocation) {
-						save.startX = x;
-						save.startY = y;
+					auto heroRoom = dynamic_cast<nodes::Room*>(heroLocation);
+					if (room == heroRoom) {
+						save.startX = locx;
+						save.startY = locy;
 						save.startZ = z;
 					}
-					if (auto tr = dynamic_cast<nodes::Room*>(room))
-					{
-						if (tr->HasMonster() && tr->GetMonster()->lifePoints > 0) {
+					if (auto tr = dynamic_cast<nodes::Room*>(room)) {
+						if (tr->HasMonster()) {
 							SaveMonster m;
 							auto _m = tr->GetMonster();
-	
+
 							m.name = _m->name;
 							m.hp = _m->lifePoints;
-							m.x = x;
-							m.y = y;
+							m.x = locx;
+							m.y = locy;
 							m.z = z;
-							roamMonster[rMCount] = m;
-							rMCount++;
+							roamMonster.emplace(roamMonster.size(), m);
 						}
 						if (tr->HasItem() && !tr->IsItemPickedUp()) {
 							items::SaveItem i;
@@ -490,15 +485,16 @@ void Game::OnChange()
 
 							i.name = _i->name;
 							i.amount = 1;
-							i.x = x;
-							i.y = y;
+							i.x = locx;
+							i.y = locy;
 							i.z = z;
-							roamItem[rICount] = i;
-							rICount++;
+							roamItem.emplace(roamItem.size(), i);
 						}
 					}
-				}	
+				}
+				locx = locx + 2;
 			}
+			locy = locy + 2;
 		}
 	}
 	// set roaming monsters

@@ -85,7 +85,6 @@ void Room::MoveCommandHandler(utils::cmd::Command& command)
 		context.userInterface.DrawConsole("Use a valid direction, Available options are: up, down, left, right");
 		return;
 	}
-	context.game.OnChange();
 	// Go to the dungeon selection state.
 	context.userInterface.SetState(Type::ROOM);
 }
