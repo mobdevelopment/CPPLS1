@@ -86,9 +86,7 @@ void Bag::DrawConsole() const
 				{
 					std::cout << "name: " << ci->name << ", description: " << ci->description << std::endl;
 				}
-				
 			}
-			
 		}
 	}
 	else {

@@ -132,7 +132,7 @@ Save game::ParseSave(std::istream& stream, std::error_code& errorBuffer)
 void game::WriteSave(std::ostream& stream, const Save& save)
 {
 	// Write Seed: Seed number, x y z (width, length, height)
-	stream << save.seed << ", " << save.height << ' ' << save.width << ' ' << save.layers << '\n';
+	stream << save.seed << ", " << save.width << ' ' << save.height << ' ' << save.layers << '\n';
 	// Write Hero: 'hero, ' name x y z (location)
 	stream << "hero, " << save.heroName << ' ' << save.heroHp << ' ' << save.heroExp << ' ' << save.startX << ' ' << save.startY << ' ' << save.startZ << '\n';
 	// Write Equips: 'leg, ' name
