@@ -35,7 +35,7 @@ namespace game
 		~Save();
 
 		std::string		name;
-		int				seed;
+		unsigned int	seed;
 		int				height;
 		int				width;
 		int				layers;

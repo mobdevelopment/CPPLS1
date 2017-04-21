@@ -73,7 +73,7 @@ const DungeonLayer::RowsContainer& DungeonLayer::GetRows() const noexcept
 	return rows;
 }
 
-nodes::Room* DungeonLayer::GetRandomRoom(const int seed) const noexcept
+nodes::Space* DungeonLayer::GetRandomRoom(const int seed) const noexcept
 {
 	// Rng stuff.
 	std::default_random_engine generator;
@@ -95,7 +95,7 @@ nodes::Room* DungeonLayer::GetRandomRoom(const int seed) const noexcept
 	return room;
 }
 
-nodes::Room* DungeonLayer::GetRoom(const int x, const int y) const noexcept
+nodes::Space* DungeonLayer::GetRoom(const int x, const int y) const noexcept
 {
 	if (x % 2 != 0 || y % 2 != 0)
 		return nullptr;

@@ -2,7 +2,6 @@
 #define GAME_NODES_STAIRSDOWN_HEADER_INCLUDED
 
 #include "node.h"
-#include "room.h"
 #include "type.h"
 #include "space.h"
 

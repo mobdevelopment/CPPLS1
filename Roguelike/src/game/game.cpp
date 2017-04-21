@@ -160,8 +160,11 @@ void Game::AddMonsters(SavedMonstersContainer monsters)
 			if (boost::iequals(tmc.name, tm.name))
 			{
 				auto room = dungeon[tm.z].GetRoom(tm.x, tm.y);
-				tmc.lifePoints = tm.hp;
-				room->SetMonster(tmc);
+				if (auto tr = dynamic_cast<nodes::Room*>(room)) {
+					tmc.lifePoints = tm.hp;
+					tr->SetMonster(tmc);
+				}
+				
 			}
 		}
 	}
@@ -203,8 +206,9 @@ void game::Game::AddItems(SavedItemsContainer items)
 			if (boost::iequals(ti.name, ic->name))
 			{
 				auto room = dungeon[ti.z].GetRoom(ti.x, ti.y);
-				
-				room->SetItem(*ic);
+				if (auto tr = dynamic_cast<nodes::Room*>(room)) {
+					tr->SetItem(*ic);
+				}
 			}
 		}
 	}
@@ -456,18 +460,16 @@ void Game::OnChange()
 				
 				auto room = dungeon[z].GetRoom(locx, locy);
 				if (room != NULL) {
-					if (auto rndroom = dynamic_cast<nodes::Room*>(room)) {
-					//if () {
-
-						auto heroRoom = dynamic_cast<nodes::Room*>(heroLocation);
-						if (room == heroRoom) {
-							save.startX = locx;
-							save.startY = locy;
-							save.startZ = z;
-						}
-						if (room->HasMonster()) {
+					auto heroRoom = dynamic_cast<nodes::Room*>(heroLocation);
+					if (room == heroRoom) {
+						save.startX = locx;
+						save.startY = locy;
+						save.startZ = z;
+					}
+					if (auto tr = dynamic_cast<nodes::Room*>(room)) {
+						if (tr->HasMonster()) {
 							SaveMonster m;
-							auto _m = room->GetMonster();
+							auto _m = tr->GetMonster();
 
 							m.name = _m->name;
 							m.hp = _m->lifePoints;
@@ -476,9 +478,9 @@ void Game::OnChange()
 							m.z = z;
 							roamMonster.emplace(roamMonster.size(), m);
 						}
-						if (room->HasItem() && !room->IsItemPickedUp()) {
+						if (tr->HasItem() && !tr->IsItemPickedUp()) {
 							items::SaveItem i;
-							auto _i = room->GetItem();
+							auto _i = tr->GetItem();
 
 							i.name = _i->name;
 							i.amount = 1;
