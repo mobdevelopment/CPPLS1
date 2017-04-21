@@ -35,7 +35,7 @@ Save game::ParseSave(std::istream& stream)
 	std::string seed;
 	// Name is until the first comma.
 	std::getline(sstream, seed, ',');
-	save.seed = std::stoi(seed);
+	save.seed = std::stoull(seed);
 
 	// Then its spaces seperating the values.
 	sstream >> save.width;
