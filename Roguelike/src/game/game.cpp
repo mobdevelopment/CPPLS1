@@ -424,6 +424,7 @@ void Game::OnChange()
 	save.layers = dungeon.GetLayers().size();
 	// set hero info 
 	save.heroName = hero.name;
+	save.name = hero.name;
 	save.heroHp = hero.lifePoints;
 	save.heroExp = hero.experiencePoints;
 	//save.startX = 
