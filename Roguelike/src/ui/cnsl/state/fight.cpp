@@ -70,7 +70,7 @@ void Fight::FightCommandHandler(utils::cmd::Command& command)
 
 std::vector<std::string> Fight::AttackByEnemy()
 {
-	auto hero = context.game.GetHero();
+	auto& hero = context.game.GetHero();
 
 	std::vector<std::string> output;
 	
